@@ -4,6 +4,8 @@ h1 {
 	padding-bottom: 10px;
 	background-color: rgb(100,180,255);
 	text-align: center;
+	margin-top: 0px;
+	overflow: hidden;
 }
 
 h1 #forum {
@@ -16,18 +18,21 @@ h1 a:hover {
 	color: black;
 }
 
-/*#header {
+#header {
 	text-align: center;
-}*/
+	padding-top: 20px;
+	font-size: 1.3em;
+}
 
 h1 #help {
 	float: right;
+	float: top;
 	font-size: 2em;
 
 }
 
 .sidebar {
-	margin-top: 80px;
+	margin-top: 125px;
   width: 130px;
   position: fixed;
   z-index: 1;
