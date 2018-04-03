@@ -10,11 +10,20 @@ h1 #forum {
 	font-size: .8em;
 	margin-top: 5px;
 	float: left;
-	float: top;
 }
 
-#header {
+h1 a:hover {
+	color: black;
+}
+
+/*#header {
 	text-align: center;
+}*/
+
+h1 #help {
+	float: right;
+	font-size: 2em;
+
 }
 
 .sidebar {
