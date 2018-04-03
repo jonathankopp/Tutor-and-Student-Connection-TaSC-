@@ -1,0 +1,55 @@
+
+body{
+	background-color: beige;
+}
+
+h1 {
+	text-align: center;
+	text-shadow: 2px 2px cyan;
+}
+
+form{
+	padding-bottom: 5px;
+}
+
+legend{
+	font-weight: bold;
+}
+
+.field{
+	font-weight: bold;
+}
+
+.value{
+	border-bottom: 5px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+    
+    /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 0.5;
+}

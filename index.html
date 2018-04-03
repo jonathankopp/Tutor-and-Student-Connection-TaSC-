@@ -3,13 +3,51 @@
 
 <html>
 <head>
-	<title>TaSC</title>
+	<title>TaSC Login</title>
 	<link href="Resources/index.css" rel="stylesheet" type="text/css"/>
 </head>
 
 
 <body>
 	<h1> Tutor and Student Connection </h1>
+	<form id="old_user" name="new_user" action="#" method="post" onsubmit="return validate(this);">
+		<fieldset>
+			<legend>Already a User? Sign In Here!</legend>
+			<div class="formData">
+				
+				<label class="field">Username</label>
+	            <div class="value"><input type="text" size="60" value="" name="new_username" id="new_username"/></div>
+	            
+	            <label class="field">Password</label>
+	            <div class="value"><input type="password" size="60" value="" name="new_password" id="new_password"/></div>
+
+	            <input type="submit" value="I'm Ready!" id="save" name="save"/>
+			</div>
+		</fieldset>
+	</form>
+	<br>
+	<form id="new_user" name="new_user" action="#" method="post" onsubmit="return validate(this);">
+        <fieldset> 
+          <legend>No Account? No Problem!</legend>
+          <div class="formData">
+                          
+            <label class="field">Username</label>
+            <div class="value"><input type="text" size="60" value="" name="new_username" id="new_username"/></div>
+            
+            <label class="field">Password</label>
+            <div class="value"><input type="password" size="60" value="" name="new_password" id="new_password"/></div>
+            
+            <label class="field tooltip">Email Address</label></br>
+            <div class="value tooltip"><span class="tooltiptext"> psst...you should use your RPI email </span><input type="text" size="60" value="" name="new_email" id="new_email"/></div></br>
+
+            <label class="field">What Are You?</label>
+            <div class="value"><input type="checkbox" size="60" value="I'm a Student!" name="student" id="student"/>I'm a Student!</br></div>
+            <div class="value"><input type="checkbox" size="60" value="I'm a Tutor!" name="" id="tutor"/>I'm a Tutor!</br></div>
+            
+            <input type="submit" value="Sign Me Up!" id="new_save" name="new_save"/>
+          </div>
+        </fieldset>
+      </form>
 
 	<a href="connect.html"> Find Tutors/Students </a><br>
 	<a href="forum.html"> Forum </a>

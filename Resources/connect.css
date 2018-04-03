@@ -1,0 +1,59 @@
+h1 {
+	border-color: black;
+	border-bottom: 2px solid #333;
+	padding-bottom: 10px;
+	background-color: rgb(100,180,255);
+	text-align: center;
+}
+
+h1 #forum {
+	font-size: .8em;
+	margin-top: 5px;
+	float: left;
+}
+
+h1 a:hover {
+	color: black;
+}
+
+/*#header {
+	text-align: center;
+}*/
+
+h1 #help {
+	float: right;
+	font-size: 2em;
+
+}
+
+.sidebar {
+	margin-top: 80px;
+  width: 130px;
+  position: fixed;
+  z-index: 1;
+  top: 20px;
+  left: 10px;
+  background: #eee;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+/* The navigation menu links */
+.sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 2em;
+    color: black;
+    display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+    color: blue;
+}
+
+.connections {
+	text-align: center;
+	font-size: 2em;
+	font-style: underline;
+}
