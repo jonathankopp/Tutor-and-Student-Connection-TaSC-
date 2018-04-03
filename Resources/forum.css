@@ -1,7 +1,7 @@
 .head{
 	text-align: center;
 	font-size: 30px;
-	border-bottom: 3px solid #333;
+	border-bottom: 6px solid #333;
     width:110%;
 	margin: 0px;
 
@@ -54,7 +54,6 @@ ul{
     color: cyan;
 }
 .sidenav {
-	margin-top: 44px;
     height: 100%;
     width: 160px;
     position: fixed;
