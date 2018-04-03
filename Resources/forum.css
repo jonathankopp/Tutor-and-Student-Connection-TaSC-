@@ -2,21 +2,56 @@
 	text-align: center;
 	font-size: 30px;
 	border-bottom: 3px solid #333;
+    width:110%;
 	margin: 0px;
 
 }
 
-ul li{
+body{
+    background-color: lightblue;
+}
+
+
+ul{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-bottom:3px solid #333;
 	list-style-type: none;
 
 }
+.discussion:hover{
+    cursor: pointer;
+}
 .discussion {
-    margin-left: 70px; /* Same as the width of the sidenav */
+    margin-top: 0px;
+    margin-left: 52px; /* Same as the width of the sidenav */
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px 10px;
+    width: 100%;
+    color: blue;
+}
+.internalDisc{
+    margin-left: 52px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+    font-size: 16px;
+    width: 100%;
+    color: grey;
+}
+.author{
+    margin-left: 52px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+    font-size: 12px;
+    width: 100%;
+    font-style: italic;
+    color: grey;
 }
 .sidenav a:hover {
     color: #f1f1f1;
+}
+#ds{
+    color: cyan;
 }
 .sidenav {
 	margin-top: 44px;
