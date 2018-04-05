@@ -53,7 +53,7 @@ h1 #help {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 25px;
-    color: lightcyan;
+    color: grey;
     display: block;
 }
 
@@ -100,5 +100,13 @@ h2 {
 }
 
 #logout {
-	margin-top: 350%;
+	margin-top: 330%;
+}
+
+#selected {
+	color: cyan;
+}
+
+.person .connect{
+	color: green;
 }

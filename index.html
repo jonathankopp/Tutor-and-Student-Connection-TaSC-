@@ -25,8 +25,7 @@
 			</div>
 		</fieldset>
 	</form>
-	<button type = "button">Forgot Username?</button>
-	<button type = "button">Forgot Password?</button>
+	<button type = "button">Forgot Username/Password?</button>
 	<br>
 	<form id="new_user" name="new_user" action="#" method="post" onsubmit="return validate(this);">
         <fieldset> 
@@ -41,10 +40,26 @@
             
             <label class="field tooltip">Email Address</label></br>
             <div class="value tooltip"><span class="bottomtooltiptext"> psst...you should use your RPI email </span><input type="text" size="60" value="" name="new_email" id="new_email"/></div></br>
+            <label class="field tooltip">Year</label></br>
+            <div class="value tooltip">
+            	<input type="text" size="60" value="" name="new_email" id="new_email"/>
+            </div></br>
+
+            <label class="field tooltip">Subject(s)</label></br>
+            <div class="value tooltip">
+            	<input type="text" size="60" value="" name="new_email" id="new_email"/>
+            </div></br>
+
+            <label class="field tooltip">Description</label></br>
+            <div class="value tooltip">
+            	<textarea type="text" rows="4" cols="60" value="" name="new_email" id="new_email">
+            </textarea></div></br>
+
 
             <label class="field">What Are You?</label>
             <div class="value"><input type="checkbox" size="60" value="I'm a Student!" name="student" id="student"/>I'm a Student!</br></div>
             <div class="value"><input type="checkbox" size="60" value="I'm a Tutor!" name="" id="tutor"/>I'm a Tutor!</br></div>
+
             
             <input type="submit" value="Sign Me Up!" id="new_save" name="new_save"/>
           </div>
