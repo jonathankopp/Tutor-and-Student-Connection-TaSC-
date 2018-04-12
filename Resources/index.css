@@ -69,7 +69,8 @@ legend{
     padding: 5px;
     position: absolute;
     z-index: 1;
-    left: 100%;
+    left: 115%;
+    width: 425px;
     
     margin-left: -60px;
     

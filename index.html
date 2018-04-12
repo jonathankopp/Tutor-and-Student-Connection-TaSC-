@@ -5,63 +5,74 @@
 <head>
 	<title>TaSC Login</title>
 	<link href="Resources/index.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="Resources/index.js"></script>
 </head>
 
 
 <body>
 	<h1> Tutor and Student Connection </h1>
-	<form id="old_user" name="new_user" action="#" method="post" onsubmit="return validate(this);">
+	<form id="old_user" name="old_user" action="#" method="post" onsubmit="return validateSignIn(this);">
 		<fieldset>
 			<legend>Already a User? Sign In Here!</legend>
 			<div class="formData">
 				
 				<label class="field">Username</label>
-	            <div class="value"><input type="text" size="60" value="" name="new_username" id="new_username"/></div>
+	            <div class="value"><input type="text" size="60" value="" name="my_username" id="my_username"/></div>
 	            
 	            <label class="field">Password</label>
-	            <div class="value"><input type="password" size="60" value="" name="new_password" id="new_password"/></div>
+	            <div class="value"><input type="password" size="60" value="" name="my_password" id="my_password"/></div>
 
-	            <input type="submit" value="I'm Ready!" id="save" name="save"/>
+	            <input type="submit" value="I'm Ready!" id="sign_in" name="sign_in"/>
 			</div>
 		</fieldset>
 	</form>
 	<button type = "button">Forgot Username/Password?</button>
 	<br>
-	<form id="new_user" name="new_user" action="#" method="post" onsubmit="return validate(this);">
+	<form id="new_user" name="new_user" action="#" method="post" onsubmit="return validateSignUp(this);">
         <fieldset> 
           <legend>No Account? No Problem!</legend>
           <div class="formData">
                           
             <label class="field">Username</label>
-            <div class="value"><input type="text" size="60" value="" name="new_username" id="new_username"/></div>
+            <div class="value">
+                <input type="text" size="60" value="" name="new_username" id="new_username"/>
+            </div>
             
             <label class="field tooltip">Password</label></br>
-            <div class="value tooltip"><span class="righttooltiptext">Your password should be a combination of letters and symbols</span><input type="password" size="60" value="" name="new_password" id="new_password"/></div></br>
+            <div class="value tooltip">
+                <span class="righttooltiptext">Your password should be a combination of letters and symbols</span>
+                <input type="password" size="60" value="" name="new_password" id="new_password"/>
+            </div></br>
             
             <label class="field tooltip">Email Address</label></br>
-            <div class="value tooltip"><span class="bottomtooltiptext"> psst...you should use your RPI email </span><input type="text" size="60" value="" name="new_email" id="new_email"/></div></br>
-            <label class="field tooltip">Year</label></br>
             <div class="value tooltip">
-            	<input type="text" size="60" value="" name="new_email" id="new_email"/>
+                <span class="bottomtooltiptext"> psst...you should use your RPI email </span>
+                <input type="text" size="60" value="" name="new_email" id="new_email"/>
+            </div></br>
+
+            <label class="field tooltip">Year</label></br>
+            <div class="value">
+                <input type="text" size="60" value="" name="year" id="year"/>
             </div></br>
 
             <label class="field tooltip">Subject(s)</label></br>
-            <div class="value tooltip">
-            	<input type="text" size="60" value="" name="new_email" id="new_email"/>
+            <div class="value">
+                <input type="text" size="60" value="" name="subject" id="subject"/>
             </div></br>
 
-            <label class="field tooltip">Description</label></br>
-            <div class="value tooltip">
-            	<textarea type="text" rows="4" cols="60" value="" name="new_email" id="new_email">
+            <label class="field">Description</label></br>
+            <div class="value">
+            	<textarea type="text" rows="4" cols="60" value="" name="description" id="description">
             </textarea></div></br>
 
 
             <label class="field">What Are You?</label>
-            <div class="value"><input type="checkbox" size="60" value="I'm a Student!" name="student" id="student"/>I'm a Student!</br></div>
-            <div class="value"><input type="checkbox" size="60" value="I'm a Tutor!" name="" id="tutor"/>I'm a Tutor!</br></div>
+            <div class="value">
+                <input type="checkbox" size="60" value="I'm a Student!" name="student" id="student"/>I'm a Student!</br></div>
+            <div class="value">
+                <input type="checkbox" size="60" value="I'm a Tutor!" name="" id="tutor"/>I'm a Tutor!</br></div>
 
-            
-            <input type="submit" value="Sign Me Up!" id="new_save" name="new_save"/>
+            <input type="submit" value="Sign Me Up!" id="sign_up" name="sign_up"/>
           </div>
         </fieldset>
       </form>
