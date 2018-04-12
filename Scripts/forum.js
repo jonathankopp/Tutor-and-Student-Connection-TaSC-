@@ -1,22 +1,22 @@
 $(document).ready(function() {
-	window.alert("here");
+
 	$.ajax({
 		 	type: "GET",
-		 	url: "forum.json",
+		 	url: "Resources/forumJS.js",
 		 	dataType: "json",
-		 	success: function(responseData, status){
-		  	var output = "<ul>";  
-		 	$.each(responseData.items, function(i, item) {
-	   		output += '<li class="discussion">' + item.Subject + '</li>';
-	    	output += '<li class="internalDisc">' + item.Messege + '</li>';
-	    	output += '<li class="author">' "Posted by "+item+" "+item.date+'</li>';
+		 	success: function(responseData, status){ 
+		 	output="";
+		 	$.each(responseData.information, function(i, information) {
+		 	output += "<ul>";
+	   		output += '<li id="discussion">' + information.Subject + '</li>';
+	    	output += '<li class="internalDisc">' + information.Messege + '</li>';
+	    	output += '<li class="author">' + "Posted by "+information.Name+" "+information.date+'</li>';
+	    	output += "</ul>";
 	  	});
-	  	output += "</ul>";
-	  	$('.discussion').append(output);
-
+	  	$('#discussion').append(output);
 		}, error: function(msg) {
 	  				// there was a problem
 	  	alert("There was a problem: " + msg.status + " " + msg.statusText);
 		}
 	});
-}
+});
