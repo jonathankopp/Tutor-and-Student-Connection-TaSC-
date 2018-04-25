@@ -18,11 +18,11 @@ CREATE TABLE `connections` (
 CREATE TABLE `user_subjects` (
 	`userid` int(10) unsigned NOT NULL,
 	`course` varchar(10) NOT NULL
-)
+);
 
 CREATE TABLE `subject` (
 	`subjectid` int(10) unsigned NOT NULL AUTO_INCREMENT,
-	`course` varchar(100),
+	`course` varchar(100) NOT NULL,
 	PRIMARY KEY (`subjectid`)
 );
 
@@ -40,4 +40,4 @@ CREATE TABLE `comments` (
 	`postid` int(10) unsigned NOT NULL,
 	`comment` varchar(1000) NOT NULL,
 	`commentdate` date 
-)
+);
