@@ -79,7 +79,8 @@ ul{
     color: #f1f1f1;
 }
 #logout {
-    margin-top: 270%;
+    position: absolute;
+    bottom: 5%;
 }
 #ds{
     color: cyan;
@@ -128,4 +129,16 @@ ul{
 #old_user {
     text-align: center;
     font-size: 1.5em;
+}
+
+.field {
+    width: 90%;
+    padding-left: 10%;
+}
+.value{
+    width: 90%;
+    padding-left: 10%;
+}
+#save{
+    margin-left: 10%;
 }
