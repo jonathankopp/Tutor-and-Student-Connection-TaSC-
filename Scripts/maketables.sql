@@ -1,7 +1,7 @@
 CREATE TABLE `users` (
 	`userid` int(10) unsigned NOT NULL AUTO_INCREMENT,
 	`first_names` varchar(100) NOT NULL,
-	`last_name` varchar(100) NOT NULL,
+	`last_name` varchar(100)  NULL,
 	`year` char(4) NOT NULL,
 	`email` varchar(100) NOT NULL,
 	`password` varchar(100) NOT NULL,
@@ -42,3 +42,15 @@ CREATE TABLE `comments` (
 	`comment` varchar(1000) NOT NULL,
 	`commentdate` date 
 );
+/*
+
+
+
+Notice: Only variables should be passed by reference in /opt/lampp/htdocs/Tutor-and-Student-Connection-TaSC-/makepost.php on line 86
+
+Notice: Only variables should be passed by reference in /opt/lampp/htdocs/Tutor-and-Student-Connection-TaSC-/makepost.php on line 86
+Success: 1 movie added to database.
+Post about: da has been added
+
+
+*/

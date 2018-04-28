@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-
-
+<?php 
+  session_start();
+?>
 <html>
 <head>
 	<title>TaSC</title>
@@ -25,17 +26,22 @@
 
 	</div>
 	<div id="discussion">
-		<!-- <ul>
-			<li class="discussion">Problem with command line:</li>
-			<li class="internalDisc">I was having problems with running the example text.  The command line wont let me fit another argument.  And when I run my code it is giving me an error due to this.  Anyone else having these issues?  If you can help please comment below what to do im lost.</li>
-			<li class="author">-Posted by Anon, 03/23/18</li>
-		</ul>
+		<?php
+			$dbOk = false;
 
-		<ul>
-			<li class="discussion">Memory Leak:</li>
-			<li class="internalDisc">I deleted all of the initialized heap memory at the end of my code yet I am getting a memory leak, does anyone have any idea what software I could use to get this to work? If so please let me know!  Thanks.</li>
-			<li class="author">-Posted by JJ Stadler, 03/22/18</li>
-		</ul> -->
+			@ $db =  new msysqli('localhost', 'root', 'Mets2014', 'tasc');
+
+			if ($db->connect_error) {
+				echo '<div class="messages">Could not connect to the database. Error: ';
+				echo $db->connect_errno . ' - ' . $db->connect_error . '</div>';
+			} else {
+				$dbOk = true; 
+			}
+
+			$havePost = isset($_POST["sign_in"]);
+
+			
+		?>
 	</div>
 
 
