@@ -7,6 +7,7 @@
 <html>
 <head>
 	<title>TaSC Login</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
 	<link href="Resources/index.css" rel="stylesheet" type="text/css"/>
 	<script type="text/javascript" src="Scripts/index.js"></script>
 </head>
@@ -14,10 +15,11 @@
 <body>
 	<h1> Tutor and Student Connection </h1>
 	<?php
+
 		$dbOk = false;
 
 
-		@ $db =  new msysqli('localhost', 'root', 'password', 'tasc');
+		@ $db =  new mysqli('localhost', 'root', 'ITWS661650063aletar', 'tasc');
 
 		if ($db->connect_error) {
 			echo '<div class="messages">Could not connect to the database. Error: ';
@@ -61,11 +63,11 @@
 
 			  	$query = "SELECT " . $emaildb . " from users WHERE password=" . $passworddb;
 			  	$result = $db->query($query);
-			  	$record = $result->fetch_assoc();
-			  	if(is_null($record)) {
+			  	if(!$result) {
 			  		echo '<h3> Wrong email or password';
 			  	}
 			  	else {
+			  		$record = $result->fetch_assoc();
 			  		$_SESSION["userid"] = $record['userid'];
 			  		header("Location: connect.php");
 			  		exit;
@@ -88,7 +90,7 @@
 				<label class="field">Password</label>
 				<div class="value"><input type="password" size="60" value="" name="my_password" id="my_password"/></div>
 
-				<input type="submit" value="I'm Ready!" id="sign_in" name="sign_in"/>
+				<input type="submit" value="Sign In" id="sign_in" name="sign_in"/>
 			</div>
 		</fieldset>
 	</form>

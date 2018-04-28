@@ -13,7 +13,7 @@
 		$dbOk = false;
 
 
-		@ $db =  new msysqli('localhost', 'root', 'password', 'tasc');
+		@ $db =  new mysqli('localhost', 'root', 'ITWS661650063aletar', 'tasc');
 
 		if ($db->connect_error) {
 	    echo '<div class="messages">Could not connect to the database. Error: ';
@@ -34,9 +34,9 @@
 	  	$year = htmlspecialchars(trim($_POST["year"]));
 	  	$subjects = htmlspecialchars(trim($_POST["subject"]));
 	  	$description = htmlspecialchars(trim($_POST["description"]));
-	  	$tutor = false;
+	  	$tutor = 0;
 	  	if (isset($_POST["tutor"])) {
-	  		$tutor = true;
+	  		$tutor = 1;
 	  	}
 
 	  	$focusId = '';
@@ -69,11 +69,7 @@
 	    	$errors .= '<li>Description may not be blank</li>';
 	    	if ($focusId == '') $focusId = '#userName';
 	    }
-	    if ($userName == '') {
-	    	$errors .= '<li>Last name may not be blank</li>';
-	    	if ($focusId == '') $focusId = '#userName';
-	    }
-	    if ($tutor == false and !isset($_POST["student"])) {
+	    if ($tutor == 0 and !isset($_POST["student"])) {
 	    	$errors .= '<li>You must be a tutor or a student</li>';
 	    }
 	    if ($errors != '') {
@@ -95,10 +91,11 @@
 			  	$subjectsdb = trim($_POST["subject"]);
 			  	$descriptiondb = trim($_POST["description"]);
 
-			  	$insQuery = "INSERT into users (`first_names`, `last_name`, `year`, `email`, `password`, 
-			  	`description`, `tutor`) VALUES (?,?,?,?,?,?," . $tutor . ")";
+			  	$insQuery = ("INSERT into users (`first_names`, `last_name`, `year`, `email`, `password`, 
+			  	`description`, `tutor`) VALUES (?,?,?,?,?,?,?)");
+			  	echo $insQuery;
 			  	$statement = $db->prepare($insQuery);
-			  	$statement->bind_param("ssssss",$firstNamesdb,$lastNamedb,$yeardb,$emaildb,$passworddb,$descriptiondb);
+			  	$statement->bind_param("ssssssi",$firstNamesdb,$lastNamedb,$yeardb,$emaildb,$passworddb,$descriptiondb,$tutor);
 			  	$statement->execute();		        
 	        // close the prepared statement obj 
 	        $statement->close();
@@ -120,7 +117,7 @@
 
         <label class="field">Last Name</label>
         <div class="value">
-            <input type="text" size="60" value="" name="firstNames" id="firstNames"/>
+            <input type="text" size="60" value="" name="lastName" id="lastName"/>
         </div>
         
         <label class="field tooltip">Password</label></br>
