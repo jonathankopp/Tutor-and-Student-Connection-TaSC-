@@ -5,7 +5,7 @@
     <script type="text/javascript" src="resources/jquery-1.4.3.min.js"></script>
     <link href="Resources/index.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="Scripts/index.js"></script>
-    <title> TaSC Login </title>
+    <title> TaSC Success</title>
   </head>
   <body>
   	<h1> Tutor and Student Connection </h1>
@@ -107,8 +107,8 @@
 				  	$statement->bind_param("ssssss",$firstNamesdb,$lastNamedb,$yeardb,$emaildb,$passworddb,$descriptiondb);
 				  	$statement->execute();
 
-				  	echo '<div class="messages"><h4>Success: ' . $statement->affected_rows . ' actor added to database.</h4>';
-		        echo $firstNames . ' ' . $lastName . ', Email: ' . $email . '</div>';
+				  	echo '<div class="messages"><h4>Account created: User: ' . $firstNames . ' '. $lastName . 'created!</h4>';
+
 		        
 		        // close the prepared statement obj 
 		        $statement->close();
@@ -116,63 +116,7 @@
 		    }
 		  }
   	?>
-		<form id="new_user" name="new_user" action="signup.php" method="post" onsubmit="return validateSignUp(this);">
-      <fieldset> 
-        <legend>No Account? No Problem!</legend>
-        <div class="formData">
-                
-          <label class="field">First Names</label>
-          <div class="value">
-              <input type="text" size="60" value="" name="firstNames" id="firstNames"/>
-          </div>
 
-          <label class="field">Last Name</label>
-          <div class="value">
-              <input type="text" size="60" value="" name="firstNames" id="firstNames"/>
-          </div>
-
-          <label class="field">Username</label>
-          <div class="value">
-              <input type="text" size="60" value="" name="new_username" id="new_username"/>
-          </div>
-          
-          <label class="field tooltip">Password</label></br>
-          <div class="value tooltip">
-              <span class="righttooltiptext">Your password should be a combination of letters and symbols</span>
-              <input type="password" size="60" value="" name="new_password" id="new_password"/>
-          </div></br>
-          
-          <label class="field tooltip">Email Address</label></br>
-          <div class="value tooltip">
-              <span class="bottomtooltiptext"> psst...you should use your RPI email </span>
-              <input type="text" size="60" value="" name="new_email" id="new_email"/>
-          </div></br>
-
-          <label class="field tooltip">Year</label></br>
-          <div class="value">
-              <input type="text" size="60" value="" name="year" id="year"/>
-          </div></br>
-
-          <label class="field tooltip">Subject(s)</label></br>
-          <div class="value">
-              <input type="text" size="60" value="" name="subject" id="subject"/>
-          </div></br>
-
-          <label class="field">Description</label></br>
-          <div class="value">
-          	<textarea type="text" rows="4" cols="60" value="" name="description" id="description">
-          </textarea></div></br>
-
-
-          <label class="field">What Are You?</label>
-          <div class="value">
-              <input type="checkbox" size="60" value="student" name="student" id="student"/>I'm a Student!</br></div>
-          <div class="value">
-              <input type="checkbox" size="60" value="tutor" name="tutor" id="tutor"/>I'm a Tutor!</br></div>
-
-          <input type="submit" value="save" id="save" name="save"/>
-        </div>
-      </fieldset>
-    </form>
+  	<a href="connect.php"> Click here to continue </a>
   </body>
 </html>
