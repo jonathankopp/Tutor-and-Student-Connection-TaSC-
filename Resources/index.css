@@ -88,3 +88,17 @@ legend{
     visibility: visible;
     opacity: 0.35;
 }
+
+a {
+    text-align: center;
+    font-size: 1.5em;
+    color: black;
+}
+
+a:hover {
+    color: white;
+}
+
+h4 {
+    text-align: center;
+}
