@@ -5,7 +5,7 @@
     <script type="text/javascript" src="resources/jquery-1.4.3.min.js"></script>
     <link href="Resources/index.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="Scripts/index.js"></script>
-    <title> TaSC Success</title>
+    <title> TaSC Login </title>
   </head>
   <body>
   	<h1> Tutor and Student Connection </h1>
@@ -13,7 +13,7 @@
   		$dbOk = false;
 
 
-  		@ $db =  new msysqli('localhost', 'root', 'ITWS661650063aletar', 'tasc');
+  		@ $db =  new msysqli('localhost', 'root', 'password', 'tasc');
 
   		if ($db->connect_error) {
 		    echo '<div class="messages">Could not connect to the database. Error: ';
@@ -29,7 +29,6 @@
 		  if ($havePost) {
 		  	$firstNames = htmlspecialchars(trim($_POST["firstNames"]));  
    		  $lastName = htmlspecialchars(trim($_POST["lastName"]));
-		  	$userName = htmlspecialchars(trim($_POST["new_username"]));
 		  	$password = htmlspecialchars(trim($_POST["new_password"]));
 		  	$email = htmlspecialchars(trim($_POST["new_email"]));
 		  	$year = htmlspecialchars(trim($_POST["year"]));
@@ -49,10 +48,6 @@
 		    if ($lastName == '') {
 		      $errors .= '<li>Last name may not be blank</li>';
 		      if ($focusId == '') $focusId = '#lastName';
-		    }
-		    if ($userName == '') {
-		    	$errors .= '<li>username may not be blank</li>';
-		    	if ($focusId == '') $focusId = '#new_userName';
 		    }
 		    if ($password == '') {
 		    	$errors .= '<li>password may not be blank</li>';
@@ -94,7 +89,6 @@
 		    	if ($dbOk) {
 		    		$firstNamesdb = trim($_POST["firstNames"]);  
 		   		  $lastNamedb = trim($_POST["lastName"]);
-				  	$userNamedb = trim($_POST["new_username"]);
 				  	$passworddb = trim($_POST["new_password"]);
 				  	$emaildb = trim($_POST["new_email"]);
 				  	$yeardb = trim($_POST["year"]);
@@ -105,18 +99,67 @@
 				  	`description`, `tutor`) VALUES (?,?,?,?,?,?," . $tutor . ")";
 				  	$statement = $db->prepare($insQuery);
 				  	$statement->bind_param("ssssss",$firstNamesdb,$lastNamedb,$yeardb,$emaildb,$passworddb,$descriptiondb);
-				  	$statement->execute();
-
-				  	echo '<div class="messages"><h4>Account created: User: ' . $firstNames . ' '. $lastName . 'created!</h4>';
-
-		        
+				  	$statement->execute();		        
 		        // close the prepared statement obj 
 		        $statement->close();
+		        header("Location: index.php");
+				  	exit;
 		    	}
 		    }
 		  }
   	?>
+		<form id="new_user" name="new_user" action="signup.php" method="post" onsubmit="return validateSignUp(this);">
+      <fieldset> 
+        <legend>No Account? No Problem!</legend>
+        <div class="formData">
+                
+          <label class="field">First Names</label>
+          <div class="value">
+              <input type="text" size="60" value="" name="firstNames" id="firstNames"/>
+          </div>
 
-  	<a href="connect.php"> Click here to continue </a>
+          <label class="field">Last Name</label>
+          <div class="value">
+              <input type="text" size="60" value="" name="firstNames" id="firstNames"/>
+          </div>
+          
+          <label class="field tooltip">Password</label></br>
+          <div class="value tooltip">
+              <span class="righttooltiptext">Your password should be a combination of letters and symbols</span>
+              <input type="password" size="60" value="" name="new_password" id="new_password"/>
+          </div></br>
+          
+          <label class="field tooltip">Email Address</label></br>
+          <div class="value tooltip">
+              <span class="bottomtooltiptext"> psst...you should use your RPI email </span>
+              <input type="text" size="60" value="" name="new_email" id="new_email"/>
+          </div></br>
+
+          <label class="field tooltip">Year</label></br>
+          <div class="value">
+              <input type="text" size="60" value="" name="year" id="year"/>
+          </div></br>
+
+          <label class="field tooltip">Subject(s)</label></br>
+          <div class="value">
+              <input type="text" size="60" value="" name="subject" id="subject"/>
+          </div></br>
+
+          <label class="field">Description</label></br>
+          <div class="value">
+          	<textarea type="text" rows="4" cols="60" value="" name="description" id="description">
+          </textarea></div></br>
+
+
+          <label class="field">What Are You?</label>
+          <div class="value">
+              <input type="checkbox" size="60" value="student" name="student" id="student"/>I'm a Student!</br></div>
+          <div class="value">
+              <input type="checkbox" size="60" value="tutor" name="tutor" id="tutor"/>I'm a Tutor!</br></div>
+
+          <input type="submit" value="save" id="save" name="save"/>
+        </div>
+      </fieldset>
+    </form>
   </body>
 </html>
