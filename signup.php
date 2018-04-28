@@ -93,12 +93,29 @@
 
 			  	$insQuery = ("INSERT into users (`first_names`, `last_name`, `year`, `email`, `password`, 
 			  	`description`, `tutor`) VALUES (?,?,?,?,?,?,?)");
-			  	echo $insQuery;
 			  	$statement = $db->prepare($insQuery);
 			  	$statement->bind_param("ssssssi",$firstNamesdb,$lastNamedb,$yeardb,$emaildb,$passworddb,$descriptiondb,$tutor);
 			  	$statement->execute();		        
 	        // close the prepared statement obj 
 	        $statement->close();
+
+	        $query = "SELECT userid from users where email='" . $emaildb ."' and password='" . $passworddb ."'";
+	       	$result = $db->query($query);
+	       	$record = $result->fetch_assoc();
+
+	        $subjectlist = explode(",", $subjectsdb);
+
+	        for ($i=0; $i < count($subjectlist); $i++) {
+
+		       	$ins2 = "INSERT into user_subjects (`userid`, `course`) VALUES (?,?)";
+		       	$state2 = $db->prepare($ins2);
+		       	$state2->bind_param("ss",$record["userid"],trim($subjectlist[$i]));
+		       	$state2->execute();
+		       	$state2->close();
+
+		      }
+
+
 	        header("Location: index.php");
 			  	exit;
 	    	}
