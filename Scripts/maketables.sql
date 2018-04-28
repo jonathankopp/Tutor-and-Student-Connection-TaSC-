@@ -4,6 +4,7 @@ CREATE TABLE `users` (
 	`last_name` varchar(100) NOT NULL,
 	`year` char(4) NOT NULL,
 	`email` varchar(100) NOT NULL,
+	`password` varchar(100) NOT NULL,
 	`description` varchar(1000) NOT NULL,
 	`tutor` boolean NOT NULL,
 	PRIMARY KEY (`userid`)
