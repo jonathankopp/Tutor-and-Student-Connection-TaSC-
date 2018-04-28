@@ -1,5 +1,8 @@
-<!DOCTYPE html>
+<?php 
+	session_sart();
+?>
 
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -55,6 +58,19 @@
 	    	if ($dbOk) {
 			  	$emaildb = trim($_POST["my_email"]);
 			  	$passworddb = trim($_POST["my_password"]);
+
+			  	$query = "SELECT " . $emaildb . " from users WHERE password=" . $passworddb;
+			  	$result = $db->query($query);
+			  	$record = $result->fetch_assoc();
+			  	if(is_null($record)) {
+			  		echo '<h3> Wrong email or password';
+			  	}
+			  	else {
+			  		$_SESSION["userid"] = $record['userid'];
+			  		header("Location: connect.php");
+			  		exit;
+			  	}
+
 	    	}
 	    }
 		}
