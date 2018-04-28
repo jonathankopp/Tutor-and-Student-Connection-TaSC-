@@ -1,5 +1,5 @@
 <?php 
-	session_sart();
+	session_start();
 ?>
 
 <!DOCTYPE html>
