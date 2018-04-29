@@ -70,7 +70,7 @@
     			for($i=0; $i <$numRecords; $i++) {
 			    	$post = $result->fetch_assoc();
 					echo "<ul>";
-		   			echo '<li id="discussion">' . $post['topic'] . '</li>';
+		   			echo '<a href=comment.php?post='.$post['postid'].' id="discussion">' . $post['topic'] . '</a>';
 		    		echo '<li class="internalDisc">' . $post['post']. '</li>';
 		    		$q='select first_names from users where userid='. $post['userid'];
 		    		$fn=$db->query($q);
