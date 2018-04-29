@@ -18,7 +18,7 @@ CREATE TABLE `connections` (
 
 CREATE TABLE `user_subjects` (
 	`userid` int(10) unsigned NOT NULL,
-	`course` varchar(100) NOT NULL
+	`course` varchar(10) NOT NULL
 );
 
 CREATE TABLE `subject` (
@@ -46,11 +46,8 @@ CREATE TABLE `comments` (
 
 
 
-Notice: Only variables should be passed by reference in /opt/lampp/htdocs/Tutor-and-Student-Connection-TaSC-/makepost.php on line 86
-
-Notice: Only variables should be passed by reference in /opt/lampp/htdocs/Tutor-and-Student-Connection-TaSC-/makepost.php on line 86
 Success: 1 movie added to database.
-Post about: da has been added
+Post about: a has been added
 
 
 */
