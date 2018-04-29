@@ -69,7 +69,7 @@
 							$statement->execute();
 							$statement->close();
 						}
-						echo "Connection made!";
+						echo '<p id="found"> Connection made! </p>';
 					}
 				}
 			}

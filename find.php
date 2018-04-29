@@ -83,7 +83,8 @@
 								echo '<p> Year: ' . $info["year"] . '</p>';
 								echo '<p> Description: ' . $info["description"] . '</p>';
 								echo '<form class="makeconnection" action="connectionmade.php" method="post">';
-								echo '<input type="submit" value="Connect" id="'.$uid.'" name="'.$uid."'/>";
+								
+								echo '<input type="submit" value="Connect" id="' . $uid . '" name="' . $uid . '"/>';
 								echo '</form>';
  							}
 						}

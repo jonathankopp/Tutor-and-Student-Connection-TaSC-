@@ -113,3 +113,13 @@ h2 {
 .person .connect{
 	color: green;
 }
+
+form {
+	margin-top: 8px;
+	margin-left: 30%;
+}
+
+#found {
+	text-align: center;
+	font-size: 2em;
+}
