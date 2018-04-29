@@ -36,8 +36,6 @@ body{
     float: bottom;
     background-color: lightcyan;
 
-    width: 90%;
-    padding-left: 10%;
 }
 
 
@@ -124,8 +122,7 @@ ul{
 }
 
 #logout {
-    bottom: 3%;
-    position: absolute;
+
 }
 
 .makepost {

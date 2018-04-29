@@ -5,7 +5,7 @@
 <html>
 <head>
 	<title>TaSC</title>
-	<link href="Resources/forum.css" rel="stylesheet" type="text/css"/>
+	<link href="Resources/makepost.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 	<div class="sidenav">
@@ -108,8 +108,8 @@
 	        $qa='select subjectid from subject where course='."'". $_SESSION['course']."'";
 		    $courses=$db->query($qa);
 		    $courseid=$courses->fetch_assoc();
-			//Use session userid here for id
-			$cID='1';$d=date('Y-m-d');$id=1;
+		    
+			$cID='1';$d=date('Y-m-d');$id=$_SESSION['userid'];
 	        $statement->bind_param("sssss",$courseid["subjectid"],$topicForDb,$postForDb,$d,$id);
 	        // make it so:
 	        $statement->execute();

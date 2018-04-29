@@ -13,7 +13,6 @@
 	<title>TaSC</title>
 	<link href="Resources/forum.css" rel="stylesheet" type="text/css"/>
 	<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
-    <script type="text/javascript" src="Scripts/forum.js"></script>
 </head>
 
 
@@ -29,7 +28,7 @@
 	  <?php
 	  	@ $db =  new mysqli('localhost', 'root', 'Mets2014', 'TaSC');
 	  	//Use session userid when done testing
-	  	$q="select course from user_subjects where userid=".'1';
+	  	$q="select course from user_subjects where userid=".$_SESSION['userid'];
 	  	$prepCourses=$db->query($q);
 		$numRecords = $prepCourses->num_rows;
 		for($i=0; $i<$numRecords; $i++){
