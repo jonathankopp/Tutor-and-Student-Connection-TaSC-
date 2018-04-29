@@ -13,7 +13,6 @@
 	<title>TaSC</title>
 	<link href="Resources/forum.css" rel="stylesheet" type="text/css"/>
 	<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
-    <script type="text/javascript" src="Scripts/forum.js"></script>
 </head>
 
 
