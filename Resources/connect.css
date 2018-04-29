@@ -102,8 +102,8 @@ h2 {
 }
 
 #logout {
-	bottom: 5%;
 	position: absolute;
+	bottom: 0%;
 }
 
 #selected {
