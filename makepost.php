@@ -13,7 +13,7 @@
 	  <a id="ds" href="forum.php">Back</a>
 
 	</div>
-	<h1> Tutor and Student Connection </h1>
+	<h1><div id="header">Tutor and Student Connection</div></h1>
 	<form id="old_user" name="new_user" action="makepost.php" method="post" onsubmit="return validate(this);">
 		<fieldset>
 			<legend>New Post</legend>
@@ -108,7 +108,7 @@
 	        $qa='select subjectid from subject where course='."'". $_SESSION['course']."'";
 		    $courses=$db->query($qa);
 		    $courseid=$courses->fetch_assoc();
-		    
+
 			$cID='1';$d=date('Y-m-d');$id=$_SESSION['userid'];
 	        $statement->bind_param("sssss",$courseid["subjectid"],$topicForDb,$postForDb,$d,$id);
 	        // make it so:
@@ -116,7 +116,7 @@
 	        
 	        // give the user some feedback
 	        echo '<div class="makepost">';
-	        echo "Thread about: ".$topicForDb." has been created". '</div>';
+	        echo "Thread: "."'".$topicForDb."'"." has been created". '</div>';
 	        
 	        // close the prepared statement obj 
 	        $statement->close();

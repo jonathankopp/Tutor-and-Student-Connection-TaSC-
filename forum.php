@@ -27,10 +27,10 @@
 	  <a id ="post" href="makepost.php">New Post</a>
 	  <?php
 	  	@ $db =  new mysqli('localhost', 'root', 'Mets2014', 'TaSC');
-	  	//Use session userid when done testing
-	  	$q="select course from user_subjects where userid=".$_SESSION['userid'];
+	  	$q="select course from user_subjects where userid=".'"'.$_SESSION['userid'].'"';
 	  	$prepCourses=$db->query($q);
 		$numRecords = $prepCourses->num_rows;
+		$_SESSION['course']=1;
 		for($i=0; $i<$numRecords; $i++){
 			$course=$prepCourses->fetch_assoc();
 			if($i==0){
@@ -63,7 +63,7 @@
 		    	$courses=$db->query($q);
 		    	$courseid=$courses->fetch_assoc();
 
-				$query = 'select * from forum where courseid='.$courseid["subjectid"].' order by postdate DESC';
+				$query = 'select * from forum where courseid='.'"'.$courseid["subjectid"].'"'.' order by postdate DESC';
     			$result = $db->query($query);
     			$numRecords = $result->num_rows;
     			for($i=0; $i <$numRecords; $i++) {

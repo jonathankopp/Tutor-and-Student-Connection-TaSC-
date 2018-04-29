@@ -13,7 +13,7 @@
 	  <a id="ds" href="forum.php">Back</a>
 
 	</div>
-	<h1> Tutor and Student Connection </h1>
+	<h1><div id="header"> Tutor and Student Connection</div></h1>
 	<div id="discussion">
 		<?php
 			$dbOk = false;
@@ -55,7 +55,7 @@
 			    for($i=0; $i<$numRecords; $i++){
 		    		$post = $result->fetch_assoc();
 		    		echo "<ul>";
-		   			echo '<a id="discussion">' . "Anon:" . '</a>';
+		   			echo '<a id="discussion">' . "Comment:" . '</a>';
 		    		echo '<li class="internalDisc">' . $post['comment']. '</li>';
 		    		echo '<li class="author">'.$post['commentdate'].'</li>';
 		    		echo "</ul>";
@@ -143,11 +143,6 @@
 	        // *only* if we escape our data using addslashes() or (better) mysqli_real_escape_string().
 	        $insQuery = "insert into comments (`postid`,`comment`,`commentdate`) values(?,?,?)";
 	        $statement = $db->prepare($insQuery);
-	        // bind our variables to the question marks
-	        //Use session postid when implemented
-	        // if(isset($_GET['post'])){
-	        // 	$_SESSION['postid']=$_GET['post'];
-	        // }
 			$pID=$_SESSION['postid'];
 			$d=date('Y-m-d');
 	        $statement->bind_param("sss",$pID,$postForDb,$d);
