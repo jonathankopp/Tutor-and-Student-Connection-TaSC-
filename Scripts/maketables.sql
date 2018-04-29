@@ -44,10 +44,7 @@ CREATE TABLE `comments` (
 );
 /*
 
-
-
-Success: 1 movie added to database.
-Post about: a has been added
-
-
+Notice: Undefined index: subject in /opt/lampp/htdocs/Tutor-and-Student-Connection-TaSC-/makepost.php on line 64
+Please correct the following errors:
+First name may not be blank
 */
