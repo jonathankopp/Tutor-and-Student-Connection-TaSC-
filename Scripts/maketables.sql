@@ -18,7 +18,7 @@ CREATE TABLE `connections` (
 
 CREATE TABLE `user_subjects` (
 	`userid` int(10) unsigned NOT NULL,
-	`course` varchar(10) NOT NULL
+	`course` varchar(100) NOT NULL
 );
 
 CREATE TABLE `subject` (
