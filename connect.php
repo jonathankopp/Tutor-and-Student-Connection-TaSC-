@@ -95,7 +95,7 @@
 						echo htmlspecialchars($info["last_name"]) . "<h3>";
 						echo "<p> Course(s): ";
 
-						$subjquery = "SELECT course from user_subjects where userid='" . $sid . "'";
+						$subjquery = "SELECT course from user_subjects where userid='" . $tid . "'";
 						$subjresults = $db->query($subjquery);
 						$numSubjects = $subjresults->num_rows;
 

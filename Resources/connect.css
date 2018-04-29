@@ -102,7 +102,8 @@ h2 {
 }
 
 #logout {
-	margin-top: 290%;
+	position: absolute;
+	bottom: 0%;
 }
 
 #selected {
@@ -111,4 +112,14 @@ h2 {
 
 .person .connect{
 	color: green;
+}
+
+form {
+	margin-top: 8px;
+	margin-left: 30%;
+}
+
+#found {
+	text-align: center;
+	font-size: 2em;
 }
