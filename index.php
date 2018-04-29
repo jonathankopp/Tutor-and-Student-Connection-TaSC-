@@ -61,10 +61,10 @@
 			  	$emaildb = trim($_POST["my_email"]);
 			  	$passworddb = trim($_POST["my_password"]);
 
-			  	$query = "SELECT userid from users where email='" . $emaildb ."' and password='" . $passworddb ."'";
+			  	$query = "SELECT userid from users where email='" . $emaildb ."' AND password='" . $passworddb ."'";
 			  	$result = $db->query($query);
-			  	if($result == false) {
-			  		echo '<h3> Wrong email or password';
+			  	if($result->num_rows == 0) {
+			  		echo '<h3> Wrong email or password </h3>';
 			  	}
 			  	else {
 			  		$record = $result->fetch_assoc();

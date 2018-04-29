@@ -19,8 +19,7 @@
 
 	<div class="sidebar">
 		<a id="navlink" href="forum.html"> Discussion Forum </a>
-		<a href="index.html"> Find a Tutor </a> <br>
-		<a href="subjects.html"> Find a Student </a>
+		<a href="students.php">Make a Connection </a>
 		<a id="logout" href="index.html"> Logout </a>
 	</div>
 
