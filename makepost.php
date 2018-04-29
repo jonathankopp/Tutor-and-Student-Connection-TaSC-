@@ -10,9 +10,7 @@
 <body>
 	<div class="sidenav">
 	  <a id="navlink" href="connect.html">Connect Page</a>
-	  <a id="ds" href="#DS">Data Structures</a>
-	  <a href="#P1">Physics1</a>
-	  <a id="logout" href="index.html"> Logout </a>
+	  <a id="ds" href="forum.php">Back</a>
 
 	</div>
 	<h1> Tutor and Student Connection </h1>
@@ -107,12 +105,13 @@
 	        $statement = $db->prepare($insQuery);
 	        // bind our variables to the question marks
 	        //make cID
-	        $q="select course from subject where subjectid=".'1';
-	        $getQ=$db->query($q);
-			$cID=$getQ->fetch_assoc();
-			//NEEDS COURSE ID
-			$cID='1';$d=date('Y-m-d');$id=$_SESSION['userid'];
-	        $statement->bind_param("sssss",$cID,$topicForDb,$postForDb,$d,$id);
+	        $qa='select subjectid from subject where course='."'". $_SESSION['course']."'";
+		    $courses=$db->query($qa);
+		    $courseid=$courses->fetch_assoc();
+		    print_r("ADSddddddddddddddddd".$courseid["subjectid"]);
+			//Use session userid here for id
+			$cID='1';$d=date('Y-m-d');$id=1;
+	        $statement->bind_param("sssss",$courseid["subjectid"],$topicForDb,$postForDb,$d,$id);
 	        // make it so:
 	        $statement->execute();
 	        

@@ -3,6 +3,12 @@
   session_start();
 ?>
 <html>
+<?php
+	function setSession($course){
+		$_SESSION['course']=$course;
+	}
+	
+?>
 <head>
 	<title>TaSC</title>
 	<link href="Resources/forum.css" rel="stylesheet" type="text/css"/>
@@ -18,18 +24,25 @@
 	</h1>
 
 	<div class="sidenav">
-	  <a id="navlink" href="connect.html">Connect Page</a>
-	  <a id ="post" href="makepost.html">New Post</a>
-	  <!-- add php to pull classes that user is in ($select * from courses where userid = $_SESSION['userid'])-->
+	  <a id="navlink" href="connect.php">Connect Page</a>
+	  <a id ="post" href="makepost.php">New Post</a>
 	  <?php
 	  	@ $db =  new mysqli('localhost', 'root', 'Mets2014', 'TaSC');
+	  	//Use session userid when done testing
 	  	$q="select course from user_subjects where userid=".'1';
 	  	$prepCourses=$db->query($q);
 		$numRecords = $prepCourses->num_rows;
 		for($i=0; $i<$numRecords; $i++){
 			$course=$prepCourses->fetch_assoc();
-			echo "<a href='#selected'>".$course['course']."</a>";
+			if($i==0){
+				$_SESSION['course']=$course['course'];
+			}
+			echo "<a href='forum.php?course=".$course['course']."'>".$course['course']."</a>";
 		}
+		if (isset($_GET['course'])) {
+    		setSession($_GET['course']);
+  		}
+  		echo "<script>console.log( 'Debug Objects: " . $_SESSION['course'] . "' );</script>";
 	  ?>
 	  <a id="logout" href="index.html"> Logout </a>
 
@@ -47,7 +60,11 @@
 				$dbOk = true; 
 			}
 			if($dbOk){
-				$query = 'select * from forum where courseid=1 order by postdate DESC';
+				$q='select subjectid from subject where course='."'". $_SESSION['course']."'";
+		    	$courses=$db->query($q);
+		    	$courseid=$courses->fetch_assoc();
+
+				$query = 'select * from forum where courseid='.$courseid["subjectid"].' order by postdate DESC';
     			$result = $db->query($query);
     			$numRecords = $result->num_rows;
     			for($i=0; $i <$numRecords; $i++) {
@@ -63,8 +80,6 @@
 			    }
 			}
 		?>
-
-
 	</div>
 
 
