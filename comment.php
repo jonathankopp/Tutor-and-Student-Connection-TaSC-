@@ -14,14 +14,60 @@
 
 	</div>
 	<h1> Tutor and Student Connection </h1>
-	<form id="old_user" name="new_user" action="makepost.php" method="post" onsubmit="return validate(this);">
+	<div id="discussion">
+		<?php
+			$dbOk = false;
+
+			@ $db =  new mysqli('localhost', 'root', 'Mets2014', 'TaSC');
+
+			if ($db->connect_error) {
+				echo '<div class="messages">Could not connect to the database. Error: ';
+				echo $db->connect_errno . ' - ' . $db->connect_error . '</div>';
+			} else {
+				$dbOk = true; 
+			}
+			if($dbOk){
+				$q='select subjectid from subject where course='."'". $_SESSION['course']."'";
+		    	$courses=$db->query($q);
+		    	$courseid=$courses->fetch_assoc();
+		    	if(isset($_GET['post'])){
+		    		$_SESSION['postid']=$_GET['post'];
+		    	}else{
+		    		$_SESSION['postid']=1;
+		    	}
+		    	//displays thread
+				$query = 'select * from forum where courseid='.$courseid["subjectid"].' and postid='.$_SESSION['postid'];
+    			$result = $db->query($query);
+		    	$post = $result->fetch_assoc();
+				echo "<ul>";
+	   			echo '<a id="discussion">' . $post['topic'] . '</a>';
+	    		echo '<li class="internalDisc">' . $post['post']. '</li>';
+	    		$q='select first_names from users where userid='. $post['userid'];
+	    		$fn=$db->query($q);
+	    		$fname=$fn->fetch_assoc();
+	    		echo '<li class="author">' . "Posted by ".$fname['first_names'] ." ".$post['postdate'].'</li>';
+	    		echo "</ul>";
+
+	    		//print comments
+			    $query='select * from comments where postid='.$_SESSION['postid'];
+			    $result = $db->query($query);
+			    $numRecords = $result->num_rows;
+			    for($i=0; $i<$numRecords; $i++){
+		    		$post = $result->fetch_assoc();
+		    		echo "<ul>";
+		   			echo '<a id="discussion">' . "Anon:" . '</a>';
+		    		echo '<li class="internalDisc">' . $post['comment']. '</li>';
+		    		echo '<li class="author">'.$post['commentdate'].'</li>';
+		    		echo "</ul>";
+			    }
+
+			}
+		?>
+	</div>
+	<form id="old_user" name="new_user" action="#" method="post" onsubmit="return validate(this);">
 		<fieldset>
-			<legend>New Post</legend>
 			<div class="formData">
-				<label class="field">Subject:</label>
-	            <div class="value"><input type="text" size="60" value="" name="subject" id="subject"/></div>
-	            
-	            <label class="field">Description:</label>
+	            <label class="field">Comment:</label>
 	            <div class="value">
 	            	<textarea rows=4 cols=80 value="" name="context" id="context">
 	            	</textarea>
@@ -61,7 +107,6 @@
 	    // Get the output and clean it for output on-screen.
 	    // First, let's get the output one param at a time.
 	    // Could also output escape with htmlentities()
-	    $subject = htmlspecialchars(trim($_POST["subject"])); 
 	    $context = htmlspecialchars(trim($_POST["context"]));
 	    
 	    // special handling for the date of birth
@@ -74,12 +119,8 @@
 	    
 	    $focusId = ''; // trap the first field that needs updating, better would be to save errors in an array
 	    
-	    if ($subject == '') {
-	      $errors .= '<li>First name may not be blank</li>';
-	      if ($focusId == '') $focusId = '#subject';
-	    }
 	    if ($context == '') {
-	      $errors .= '<li>First name may not be blank</li>';
+	      $errors .= '<li>Cannot submit a blank field</li>';
 	      if ($focusId == '') $focusId = '#context';
 	    }
 	  
@@ -97,26 +138,26 @@
 	        // Let's trim the input for inserting into mysql
 	        // Note that aside from trimming, we'll do no further escaping because we
 	        // use prepared statements to put these values in the database.
-	        $topicForDb = trim($_POST["subject"]); 
 	        $postForDb=trim($_POST["context"]);
 	        // Setup a prepared statement. Alternately, we could write an insert statement - but 
 	        // *only* if we escape our data using addslashes() or (better) mysqli_real_escape_string().
-	        $insQuery = "insert into forum (`courseid`,`topic`,`post`,`postdate`,`userid`) values(?,?,?,?,?)";
+	        $insQuery = "insert into comments (`postid`,`comment`,`commentdate`) values(?,?,?)";
 	        $statement = $db->prepare($insQuery);
 	        // bind our variables to the question marks
-	        //make cID
-	        $qa='select subjectid from subject where course='."'". $_SESSION['course']."'";
-		    $courses=$db->query($qa);
-		    $courseid=$courses->fetch_assoc();
-			//Use session userid here for id
-			$cID='1';$d=date('Y-m-d');$id=1;
-	        $statement->bind_param("sssss",$courseid["subjectid"],$topicForDb,$postForDb,$d,$id);
+	        //Use session postid when implemented
+	        // if(isset($_GET['post'])){
+	        // 	$_SESSION['postid']=$_GET['post'];
+	        // }
+			$pID=$_SESSION['postid'];
+			$d=date('Y-m-d');
+	        $statement->bind_param("sss",$pID,$postForDb,$d);
 	        // make it so:
 	        $statement->execute();
 	        
 	        // give the user some feedback
 	        echo '<div class="makepost">';
-	        echo "Thread about: ".$topicForDb." has been created". '</div>';
+	        echo "Comment posted". '</div>';
+	        echo '<meta http-equiv="refresh" content="1" />';
 	        
 	        // close the prepared statement obj 
 	        $statement->close();
