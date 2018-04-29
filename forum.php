@@ -28,7 +28,7 @@
 	  <?php
 	  	@ $db =  new mysqli('localhost', 'root', 'Mets2014', 'TaSC');
 	  	//Use session userid when done testing
-	  	$q="select course from user_subjects where userid=".'1';
+	  	$q="select course from user_subjects where userid=".$_SESSION['userid'];
 	  	$prepCourses=$db->query($q);
 		$numRecords = $prepCourses->num_rows;
 		for($i=0; $i<$numRecords; $i++){
