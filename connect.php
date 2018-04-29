@@ -18,9 +18,9 @@
 	<h1> Tutor and Student Connection </h1>
 
 	<div class="sidebar">
-		<a id="navlink" href="forum.html"> Discussion Forum </a>
+		<a id="navlink" href="forum.php"> Discussion Forum </a>
 		<a href="find.php">Make a Connection </a>
-		<a id="logout" href="index.html"> Logout </a>
+		<a id="logout" href="index.php"> Logout </a>
 	</div>
 
 	<div class="connections">
@@ -85,7 +85,7 @@
 
 					for ($i=0; $i < $numRecords; $i++) {
 						$record = $result->fetch_assoc();
-						$tid = $record["studentid"];
+						$tid = $record["tutorid"];
 
 						$infoQuery = "SELECT * from users where userid='" . $tid . "'";
 						$infoResult = $db->query($infoQuery);

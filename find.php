@@ -22,7 +22,7 @@
 		<div class="sidebar">
 			<a id="navlink" href="forum.php"> Discussion Forum </a>
 			<a href="connect.php"> Back to Connections </a>
-			<a id="logout" href="index.html"> Logout </a>
+			<a id="logout" href="index.php"> Logout </a>
 		</div>
 
 		<div class="subject">

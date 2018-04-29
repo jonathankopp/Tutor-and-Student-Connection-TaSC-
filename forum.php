@@ -43,7 +43,7 @@
   		}
   		echo "<script>console.log( 'Debug Objects: " . $_SESSION['course'] . "' );</script>";
 	  ?>
-	  <a id="logout" href="index.html"> Logout </a>
+	  <a id="logout" href="index.php"> Logout </a>
 
 	</div>
 	<div id="discussion">
