@@ -21,7 +21,7 @@
 		</div>
 
 		<div class="subject">
-			<h2> Select a Subject to View Students </h2>
+			<input type="submit" value="Search" id="search" name="search" size="60"/>
 
 
 		</div>
