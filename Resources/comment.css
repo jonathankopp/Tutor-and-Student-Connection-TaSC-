@@ -36,8 +36,6 @@ body{
     float: bottom;
     background-color: lightcyan;
 
-    width: 90%;
-    padding-left: 10%;
 }
 
 
@@ -150,5 +148,5 @@ ul{
 
 form{
     width: 90%;
-    padding-left: 7%;
+    padding-left: 10%;
 }
