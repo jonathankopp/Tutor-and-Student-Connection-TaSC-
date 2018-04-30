@@ -111,7 +111,7 @@
 	        $statement->close();
 
 	        //gets the userid from the newly created row in the users table
-	        $query = "SELECT userid from users where email='" . $emaildb ."' and password='" . $passworddb ."'";
+	        $query = "SELECT userid from users where email='" . $emaildb ."' and password='" . $encrypt ."'";
 	       	$result = $db->query($query);
 	       	$record = $result->fetch_assoc();
 
