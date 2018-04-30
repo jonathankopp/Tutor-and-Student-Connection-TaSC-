@@ -61,6 +61,7 @@
 
 						echo "<h3> " . htmlspecialchars($info["first_names"]) . " ";
 						echo htmlspecialchars($info["last_name"]) . "<h3>";
+						echo '<p> Email: ' . $info["email"] . '</p>';
 						echo "<p> Course(s): ";
 
 						$subjquery = "SELECT course from user_subjects where userid='" . $sid . "'";
@@ -93,6 +94,7 @@
 
 						echo "<h3> " . htmlspecialchars($info["first_names"]) . " ";
 						echo htmlspecialchars($info["last_name"]) . "<h3>";
+						echo '<p> Email: ' . $info["email"] . '</p>';
 						echo "<p> Course(s): ";
 
 						$subjquery = "SELECT course from user_subjects where userid='" . $tid . "'";

@@ -97,6 +97,12 @@ h2 {
 	margin-left: 28%;
 }
 
+.connections p {
+	text-align: center;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
 #navlink {
 	border-bottom: 6px solid blue; 
 }
@@ -122,4 +128,9 @@ form {
 #found {
 	text-align: center;
 	font-size: 2em;
+}
+
+h3 {
+	text-decoration: underline;
+
 }
