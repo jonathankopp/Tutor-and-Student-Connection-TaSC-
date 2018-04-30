@@ -36,7 +36,7 @@ showing the relevant information that follows. -->
 	  subjects the user is signed up for, in order to view their respective threads -->
 	  <?php
 	  	//setting up database connection
-	  	@ $db =  new mysqli('localhost', 'root', 'Mets2014', 'TaSC');
+	  	@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 	  	
 	  	//Querying the database for all the course names that the user is signed up for
 	  	//this uses the "$_SESSION['userid']" which stores the current users id, which
@@ -76,7 +76,7 @@ showing the relevant information that follows. -->
 			$dbOk = false;
 
 			//Sets up the connection with the database
-			@ $db =  new mysqli('localhost', 'root', 'Mets2014', 'TaSC');
+			@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
 			//Displays error if the database connection request fails.
 			if ($db->connect_error) {

@@ -20,7 +20,7 @@
 			$dbOk = false;
 
 			//Connecting to the database
-			@ $db =  new mysqli('localhost', 'root', 'Mets2014', 'TaSC');
+			@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
 			//if there is a connection error, it displays this
 			if ($db->connect_error) {
@@ -107,7 +107,7 @@
 	  
 	  /* Create a new database connection object, passing in the host, username,
 	     password, and database to use. The "@" suppresses errors. */
-	  @ $db = new mysqli('localhost', 'root', 'Mets2014', 'TaSC');
+	  @ $db = new mysqli('localhost', 'root', 'password', 'TaSC');
 	  
 	  //if there is a connection error, it displays this
 	  if ($db->connect_error) {
