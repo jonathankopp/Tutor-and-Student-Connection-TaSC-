@@ -18,9 +18,10 @@
 
 		$dbOk = false;
 
+		//creates a connection to the database
+		@ $db =  new mysqli('localhost', 'root', 'password', 'tasc');
 
-		@ $db =  new mysqli('localhost', 'root', 'ITWS661650063aletar', 'tasc');
-
+		//output errors if connection fails
 		if ($db->connect_error) {
 			echo '<div class="messages">Could not connect to the database. Error: ';
 			echo $db->connect_errno . ' - ' . $db->connect_error . '</div>';
@@ -28,16 +29,19 @@
 			$dbOk = true; 
 		}
 
+		//if the user has signed in, check if they signed in correctly
 		$havePost = isset($_POST["sign_in"]);
 
 		$errors = '';
 
 		if ($havePost) {
+			//makes email and password to check in database
 			$email = htmlspecialchars(trim($_POST["my_email"]));
 			$password = htmlspecialchars(trim($_POST["my_password"]));
 
 			$focusId = '';
 
+			//if a field is blank, print out an error
 	    if ($email == '') {
 	    	$errors .= '<li>email may not be blank</li>';
 	    	if ($focusId == '') $focusId = '#new_email';
@@ -56,20 +60,22 @@
 	      echo '    $("' . $focusId . '").focus();';
 	      echo '  });';
 	      echo '</script>';
-	    } else {
+	    } else { //if no errors
 	    	if ($dbOk) {
 			  	$emaildb = trim($_POST["my_email"]);
 			  	$passworddb = trim($_POST["my_password"]);
 
+			  	//queries into user database and checks whether or not
+			  	//the email and password match a row in the users table
 			  	$query = "SELECT userid from users where email='" . $emaildb ."' AND password='" . $passworddb ."'";
 			  	$result = $db->query($query);
-			  	if($result->num_rows == 0) {
+			  	if($result->num_rows == 0) { //if no rows, the wrong email or password was entered
 			  		echo '<h3> Wrong email or password </h3>';
 			  	}
-			  	else {
+			  	else { //if there is a match to a user in the table
 			  		$record = $result->fetch_assoc();
-			  		$_SESSION["userid"] = $record['userid'];
-			  		header("Location: connect.php");
+			  		$_SESSION["userid"] = $record['userid']; //set session userid to the corresponding value
+			  		header("Location: connect.php"); //relocates to the homepage 
 			  		exit;
 			  	}
 

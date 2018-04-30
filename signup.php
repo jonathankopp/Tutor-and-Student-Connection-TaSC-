@@ -12,9 +12,10 @@
 	<?php
 		$dbOk = false;
 
+		//connects to the database
+		@ $db =  new mysqli('localhost', 'root', 'password', 'tasc');
 
-		@ $db =  new mysqli('localhost', 'root', 'ITWS661650063aletar', 'tasc');
-
+		//error if connection fails
 		if ($db->connect_error) {
 	    echo '<div class="messages">Could not connect to the database. Error: ';
 	    echo $db->connect_errno . ' - ' . $db->connect_error . '</div>';
@@ -22,11 +23,14 @@
 	    $dbOk = true; 
 	  }
 
+	  //if the user entered the info already
 	  $havePost = isset($_POST["save"]);
 
 	  $errors = '';
 
+
 	  if ($havePost) {
+	  	//takes in all the input fields 
 	  	$firstNames = htmlspecialchars(trim($_POST["firstNames"]));  
  		  $lastName = htmlspecialchars(trim($_POST["lastName"]));
 	  	$password = htmlspecialchars(trim($_POST["new_password"]));
@@ -41,6 +45,7 @@
 
 	  	$focusId = '';
 
+	  	//if any of the input fields are empty, they must be filled out
 			if ($firstNames == '') {
 	      $errors .= '<li>First name may not be blank</li>';
 	      if ($focusId == '') $focusId = '#firstNames';
@@ -72,7 +77,7 @@
 	    if ($tutor == 0 and !isset($_POST["student"])) {
 	    	$errors .= '<li>You must be a tutor or a student</li>';
 	    }
-	    if ($errors != '') {
+	    if ($errors != '') { //prints out any errors
 	      echo '<div class="messages"><h4>Please correct the following errors:</h4><ul>';
 	      echo $errors;
 	      echo '</ul></div>';
@@ -81,8 +86,9 @@
 	      echo '    $("' . $focusId . '").focus();';
 	      echo '  });';
 	      echo '</script>';
-	    } else {
-	    	if ($dbOk) {
+	    } else { //no errors
+	    	if ($dbOk) { //if connected to database
+	    		//trims all input to be inserted into users table
 	    		$firstNamesdb = trim($_POST["firstNames"]);  
 	   		  $lastNamedb = trim($_POST["lastName"]);
 			  	$passworddb = trim($_POST["new_password"]);
@@ -91,6 +97,7 @@
 			  	$subjectsdb = trim($_POST["subject"]);
 			  	$descriptiondb = trim($_POST["description"]);
 
+			  	//inserts new user into the users table
 			  	$insQuery = ("INSERT into users (`first_names`, `last_name`, `year`, `email`, `password`, 
 			  	`description`, `tutor`) VALUES (?,?,?,?,?,?,?)");
 			  	$statement = $db->prepare($insQuery);
@@ -99,12 +106,15 @@
 	        // close the prepared statement obj 
 	        $statement->close();
 
+	        //gets the userid from the newly created row in the users table
 	        $query = "SELECT userid from users where email='" . $emaildb ."' and password='" . $passworddb ."'";
 	       	$result = $db->query($query);
 	       	$record = $result->fetch_assoc();
 
+	       	//splits the subjects by comma, so user can join multiple subjects
 	        $subjectlist = explode(",", $subjectsdb);
 
+	        //inserts each subject into user_subjects table 
 	        for ($i=0; $i < count($subjectlist); $i++) {
 
 		       	$ins2 = "INSERT into user_subjects (`userid`, `course`) VALUES (?,?)";
@@ -115,7 +125,8 @@
 
 		      }
 
-
+		      //relocates to login page once their account is created
+		      //Note: they will need to login with their new information
 	        header("Location: index.php");
 			  	exit;
 	    	}
