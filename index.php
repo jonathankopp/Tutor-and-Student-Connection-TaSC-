@@ -64,10 +64,12 @@
 	    	if ($dbOk) {
 			  	$emaildb = trim($_POST["my_email"]);
 			  	$passworddb = trim($_POST["my_password"]);
+			  	$encrypt = crypt($passworddb,qgwc); //encrypts the password
+
 
 			  	//queries into user database and checks whether or not
 			  	//the email and password match a row in the users table
-			  	$query = "SELECT userid from users where email='" . $emaildb ."' AND password='" . $passworddb ."'";
+			  	$query = "SELECT userid from users where email='" . $emaildb ."' AND password='" . $encrypt ."'";
 			  	$result = $db->query($query);
 			  	if($result->num_rows == 0) { //if no rows, the wrong email or password was entered
 			  		echo '<h3> Wrong email or password </h3>';

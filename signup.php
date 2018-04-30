@@ -92,6 +92,7 @@
 	    		$firstNamesdb = trim($_POST["firstNames"]);  
 	   		  $lastNamedb = trim($_POST["lastName"]);
 			  	$passworddb = trim($_POST["new_password"]);
+			  	$encrypt = crypt($passworddb,qgwc); //encrypts the password
 			  	$emaildb = trim($_POST["new_email"]);
 			  	$yeardb = trim($_POST["year"]);
 			  	$subjectsdb = trim($_POST["subject"]);
@@ -101,7 +102,7 @@
 			  	$insQuery = ("INSERT into users (`first_names`, `last_name`, `year`, `email`, `password`, 
 			  	`description`, `tutor`) VALUES (?,?,?,?,?,?,?)");
 			  	$statement = $db->prepare($insQuery);
-			  	$statement->bind_param("ssssssi",$firstNamesdb,$lastNamedb,$yeardb,$emaildb,$passworddb,$descriptiondb,$tutor);
+			  	$statement->bind_param("ssssssi",$firstNamesdb,$lastNamedb,$yeardb,$emaildb,$encrypt,$descriptiondb,$tutor);
 			  	$statement->execute();		        
 	        // close the prepared statement obj 
 	        $statement->close();
