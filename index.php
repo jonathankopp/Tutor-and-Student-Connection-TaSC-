@@ -13,7 +13,10 @@
 </head>
 
 <body>
-	<h1> Tutor and Student Connection </h1>
+	<h1>
+		<div id="header"> Tutor and Student Connection 
+		</div> 
+	</h1>
 	<?php
 
 		$dbOk = false;
@@ -64,7 +67,7 @@
 	    	if ($dbOk) {
 			  	$emaildb = trim($_POST["my_email"]);
 			  	$passworddb = trim($_POST["my_password"]);
-			  	$encrypt = crypt($passworddb,qgwc); //encrypts the password
+			  	$encrypt = crypt($passworddb,"qgwc"); //encrypts the password
 
 
 			  	//queries into user database and checks whether or not

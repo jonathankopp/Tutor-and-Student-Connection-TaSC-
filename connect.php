@@ -15,7 +15,10 @@
 
 
 <body>
-	<h1> Tutor and Student Connection </h1>
+	<h1> 
+		<div id="header"> Tutor and Student Connection 
+		</div>
+	</h1>
 
 	<div class="sidebar">
 		<a id="navlink" href="forum.php"> Discussion Forum </a>

@@ -8,7 +8,10 @@
   <title> TaSC Login </title>
 </head>
 <body>
-	<h1> Tutor and Student Connection </h1>
+	<h1>
+		<div id="header"> Tutor and Student Connection 
+		</div>
+	</h1>
 	<?php
 		$dbOk = false;
 
@@ -92,7 +95,7 @@
 	    		$firstNamesdb = trim($_POST["firstNames"]);  
 	   		  $lastNamedb = trim($_POST["lastName"]);
 			  	$passworddb = trim($_POST["new_password"]);
-			  	$encrypt = crypt($passworddb,qgwc); //encrypts the password
+			  	$encrypt = crypt($passworddb,"qgwc"); //encrypts the password
 			  	$emaildb = trim($_POST["new_email"]);
 			  	$yeardb = trim($_POST["year"]);
 			  	$subjectsdb = trim($_POST["subject"]);

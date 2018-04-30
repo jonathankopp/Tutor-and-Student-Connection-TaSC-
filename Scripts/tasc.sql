@@ -134,16 +134,16 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userid`, `first_names`, `last_name`, `year`, `email`, `password`, `description`, `tutor`) VALUES
-(1, 'Jason', 'Smith', '2021', 'smithj@rpi.edu', 'leg', 'I am a first year struggling in all of my courses', 0),
-(2, 'Grace', 'Conway', '2020', 'conwag@rpi.edu', 'leg', 'I study really hard, but my test grades don\'t show it.', 0),
-(3, 'Charlie', 'Brown', '2020', 'brownc@rpi.edu', 'leg', 'I lost my dog Snoopy', 0),
-(4, 'Patrick', 'Star', '2018', 'starp@rpi.edu', 'leg', 'The inner mechanations of my mind are an enigma', 1),
-(5, 'Queena', 'Wang', '2021', 'wangq20@rpi.edu', 'leg', 'I have a bad memory', 0),
-(6, 'Alicia', 'Greene', '2020', 'greena@rpi.edu', 'leg', 'I\'m an engineer why do I need humanities...', 0),
-(7, 'Tony', 'Stark', '2020', 'starkt@rpi.edu', 'leg', 'Have you seen Infinity War yet?', 1),
-(8, 'Jon', 'Snow', '2020', 'snowj@rpi.edu', 'leg', 'I know nothing', 1),
-(9, 'Andrew', 'Leaf', '2020', 'leafa@rpi.edu', 'leg', 'They call me the php master', 1),
-(10, 'Matthew', 'Grill', '1900', 'grillm@rpi.edu', 'hairgel', 'I\'m Matt, and I have a mutual love with AI', 1);
+(1, 'Jason', 'Smith', '2021', 'smithj@rpi.edu', 'qgW/FOr0ssY/E', 'I am a first year struggling in all of my courses', 0),
+(2, 'Grace', 'Conway', '2020', 'conwag@rpi.edu', 'qgW/FOr0ssY/E', 'I study really hard, but my test grades don\'t show it.', 0),
+(3, 'Charlie', 'Brown', '2020', 'brownc@rpi.edu', 'qgW/FOr0ssY/E', 'I lost my dog Snoopy', 0),
+(4, 'Patrick', 'Star', '2018', 'starp@rpi.edu', 'qgW/FOr0ssY/E', 'The inner mechanations of my mind are an enigma', 1),
+(5, 'Queena', 'Wang', '2021', 'wangq20@rpi.edu', 'qgW/FOr0ssY/E', 'I have a bad memory', 0),
+(6, 'Alicia', 'Greene', '2020', 'greena@rpi.edu', 'qgW/FOr0ssY/E', 'I\'m an engineer why do I need humanities...', 0),
+(7, 'Tony', 'Stark', '2020', 'starkt@rpi.edu', 'qgW/FOr0ssY/E', 'Have you seen Infinity War yet?', 1),
+(8, 'Jon', 'Snow', '2020', 'snowj@rpi.edu', 'qgW/FOr0ssY/E', 'I know nothing', 1),
+(9, 'Andrew', 'Leaf', '2020', 'leafa@rpi.edu', 'qgW/FOr0ssY/E', 'They call me the php master', 1),
+(10, 'Matthew', 'Grill', '1900', 'grillm@rpi.edu', 'qgW/FOr0ssY/E', 'I\'m Matt, and I have a mutual love with AI', 1);
 
 -- --------------------------------------------------------
 
