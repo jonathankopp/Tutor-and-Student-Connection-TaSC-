@@ -60,7 +60,7 @@
 						$info = $infoResult->fetch_assoc();
 
 						echo "<h3> " . htmlspecialchars($info["first_names"]) . " ";
-						echo htmlspecialchars($info["last_name"]) . "<h3>";
+						echo htmlspecialchars($info["last_name"]) . "</h3>";
 						echo '<p> Email: ' . $info["email"] . '</p>';
 						echo "<p> Course(s): ";
 
@@ -93,7 +93,7 @@
 						$info = $infoResult->fetch_assoc();
 
 						echo "<h3> " . htmlspecialchars($info["first_names"]) . " ";
-						echo htmlspecialchars($info["last_name"]) . "<h3>";
+						echo htmlspecialchars($info["last_name"]) . "</h3>";
 						echo '<p> Email: ' . $info["email"] . '</p>';
 						echo "<p> Course(s): ";
 
