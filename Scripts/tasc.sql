@@ -2,8 +2,8 @@
 -- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 30, 2018 at 03:25 AM
+-- Host: localhost
+-- Generation Time: Apr 29, 2018 at 03:03 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tasc`
+-- Database: `TaSC`
 --
 
 -- --------------------------------------------------------
@@ -81,7 +81,8 @@ CREATE TABLE `forum` (
 
 INSERT INTO `forum` (`postid`, `courseid`, `topic`, `post`, `postdate`, `userid`) VALUES
 (2, 1, 'What is a linked list?', 'I don\'t like pointers', '2018-04-30', 5),
-(3, 8, 'Opportunity cost', 'Was this project worth the opportunity cost?', '2018-04-30', 6);
+(3, 8, 'Opportunity cost', 'Was this project worth the opportunity cost?', '2018-04-30', 6),
+(4, 11, 'How to be Matthew', 'Use a bottle of hair-gel everyday.', '2018-04-29', 10);
 
 -- --------------------------------------------------------
 
@@ -141,7 +142,8 @@ INSERT INTO `users` (`userid`, `first_names`, `last_name`, `year`, `email`, `pas
 (6, 'Alicia', 'Greene', '2020', 'greena@rpi.edu', 'leg', 'I\'m an engineer why do I need humanities...', 0),
 (7, 'Tony', 'Stark', '2020', 'starkt@rpi.edu', 'leg', 'Have you seen Infinity War yet?', 1),
 (8, 'Jon', 'Snow', '2020', 'snowj@rpi.edu', 'leg', 'I know nothing', 1),
-(9, 'Andrew', 'Leaf', '2020', 'leafa@rpi.edu', 'leg', 'They call me the php master', 1);
+(9, 'Andrew', 'Leaf', '2020', 'leafa@rpi.edu', 'leg', 'They call me the php master', 1),
+(10, 'Matthew', 'Grill', '1900', 'grillm@rpi.edu', 'hairgel', 'I\'m Matt, and I have a mutual love with AI', 1);
 
 -- --------------------------------------------------------
 
@@ -195,7 +197,8 @@ INSERT INTO `user_subjects` (`userid`, `course`) VALUES
 (8, 'Intro to ITWS'),
 (9, 'Intro to ITWS'),
 (9, 'Data Structures'),
-(9, 'Computer Science 1');
+(9, 'Computer Science 1'),
+(10, 'Being Matt 101');
 
 --
 -- Indexes for dumped tables
@@ -227,7 +230,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `forum`
 --
 ALTER TABLE `forum`
-  MODIFY `postid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `postid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `subject`
@@ -239,7 +242,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `userid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
