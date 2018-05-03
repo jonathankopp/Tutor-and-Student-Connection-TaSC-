@@ -26,4 +26,5 @@ Navigate to index.php to login and create a new account by clicking the link pro
 5. Once a new account is created, you will be brought back to the login page where you can 
 now login with your newly created email and password.
 
-6. Once logged in, you are free to navigate the site to connect with students or view and post on the discussion forum. 
+6. Once logged in, you are free to navigate the site to connect with students or view and post on the discussion forum. If you wish to access the account of one of the pre-created users, all the passwords
+are set to "leg" and the emails are displayed in the table. 
