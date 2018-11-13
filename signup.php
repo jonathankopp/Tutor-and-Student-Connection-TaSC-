@@ -5,12 +5,15 @@
   <script type="text/javascript" src="resources/jquery-1.4.3.min.js"></script>
   <link href="Resources/index.css" rel="stylesheet" type="text/css"/>
   <script type="text/javascript" src="Scripts/index.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <title> TaSC Login </title>
 </head>
 <body>
 	<h1>
-		<div id="header"> Tutor and Student Connection 
-		</div>
+		<div id="header" class="jumbotron text-center"> Tutor and Student Connection </div>
 	</h1>
 	<?php
 		$dbOk = false;
@@ -137,6 +140,7 @@
 	    }
 	  }
 	?>
+  <section>
 	<form id="new_user" name="new_user" action="signup.php" method="post" onsubmit="return validateSignUp(this);">
     <fieldset> 
       <legend>No Account? No Problem!</legend>
@@ -144,51 +148,50 @@
               
         <label class="field">First Names</label>
         <div class="value">
-            <input type="text" size="60" value="" name="firstNames" id="firstNames"/>
+            <input type="text" size="60" value="" name="firstNames" id="firstNames" class="form-control" placeholder = "John"/>
         </div>
 
         <label class="field">Last Name</label>
         <div class="value">
-            <input type="text" size="60" value="" name="lastName" id="lastName"/>
+            <input type="text" size="60" value="" name="lastName" id="lastName" class="form-control" placeholder = "Doe"/>
         </div>
         
-        <label class="field tooltip">Password</label></br>
+        <label class="field">Password</label>
+        <input type="password" size="60" value="" name="new_password" id="new_password" placeholder="Password" class="form-control"/>
         <div class="value tooltip">
             <span class="righttooltiptext">Your password should be a combination of letters and symbols</span>
-            <input type="password" size="60" value="" name="new_password" id="new_password"/>
-        </div></br>
+        </div>
         
-        <label class="field tooltip">Email Address</label></br>
+        <label class="field">Email Address</label>
+        <input type="text" size="60" value="" name="new_email" id="new_email" placeholder="doej@rpi.edu" class="form-control"/>
         <div class="value tooltip">
             <span class="bottomtooltiptext"> psst...you should use your RPI email </span>
-            <input type="text" size="60" value="" name="new_email" id="new_email"/>
-        </div></br>
+        </div>
 
-        <label class="field tooltip">Year</label></br>
+        <label class="field">Year</label>
         <div class="value">
-            <input type="text" size="60" value="" name="year" id="year"/>
-        </div></br>
+            <input type="text" size="60" value="" name="year" id="year" class="form-control"/>
+        </div>
 
-        <label class="field tooltip">Subject(s)</label></br>
+        <label class="field">Subject(s)</label>
         <div class="value">
-            <input type="text" size="60" value="" name="subject" id="subject"/>
-        </div></br>
+            <input type="text" size="60" value="" name="subject" id="subject" class="form-control"/>
+        </div>
 
-        <label class="field">Description</label></br>
+        <label class="field">Description</label>
         <div class="value">
-        	<textarea type="text" rows="4" cols="60" value="" name="description" id="description">
-        </textarea></div></br>
-
+        	<textarea type="text" rows="4" cols="60" value="" name="description" id="description" class="form-control">
+        </textarea></div>
 
         <label class="field">What Are You?</label>
         <div class="value">
-            <input type="checkbox" size="60" value="student" name="student" id="student"/>I'm a Student!</br></div>
+            <input type="checkbox" size="60" value="student" name="student" id="student"/>I'm a Student!</div>
         <div class="value">
-            <input type="checkbox" size="60" value="tutor" name="tutor" id="tutor"/>I'm a Tutor!</br></div>
+            <input type="checkbox" size="60" value="tutor" name="tutor" id="tutor"/>I'm a Tutor!</div>
 
-        <input type="submit" value="save" id="save" name="save"/>
-      </div>
+        <input type="submit" value="save" id="save" name="save" class="btn btn-primary"/> </div>
     </fieldset>
   </form>
+  </section>
 </body>
 </html>
