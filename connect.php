@@ -34,7 +34,7 @@
 				$dbOk = false;
 
 				//connects to database 
-				@ $db =  new mysqli('localhost', 'root', 'password', 'tasc');
+				@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
 				//error message if connection to database fails
 				if ($db->connect_error) {

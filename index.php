@@ -22,7 +22,7 @@
 		$dbOk = false;
 
 		//creates a connection to the database
-		@ $db =  new mysqli('localhost', 'root', 'password', 'tasc');
+		@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
 		//output errors if connection fails
 		if ($db->connect_error) {

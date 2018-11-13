@@ -1,4 +1,4 @@
-<?<?php 
+<?php 
 	session_start();
 ?>
 
@@ -29,7 +29,7 @@
 			$dbOk = false;
 
 			//makes connection to database
-			@ $db =  new mysqli('localhost', 'root', 'password', 'tasc');
+			@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
 			//if error connecting to database
 			if ($db->connect_error) {
