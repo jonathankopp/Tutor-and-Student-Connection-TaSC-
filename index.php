@@ -80,7 +80,7 @@
 			  	else { //if there is a match to a user in the table
 			  		$record = $result->fetch_assoc();
 			  		$_SESSION["userid"] = $record['userid']; //set session userid to the corresponding value
-			  		header("Location: connect.php"); //relocates to the homepage 
+			  		header("Location: profile.php"); //relocates to the homepage 
 			  		exit;
 			  	}
 
