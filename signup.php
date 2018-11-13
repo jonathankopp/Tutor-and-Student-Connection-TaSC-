@@ -129,7 +129,6 @@
 		       	$state2->bind_param("ss",$record["userid"],trim($subjectlist[$i]));
 		       	$state2->execute();
 		       	$state2->close();
-
 		      }
 
 		      //relocates to login page once their account is created
@@ -169,13 +168,29 @@
         </div>
 
         <label class="field">Year</label>
+<!--
         <div class="value">
             <input type="text" size="60" value="" name="year" id="year" class="form-control"/>
         </div>
+-->
+        <div class="value">
+          <select class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
 
         <label class="field">Subject(s)</label>
+<!--
         <div class="value">
             <input type="text" size="60" value="" name="subject" id="subject" class="form-control"/>
+        </div>
+-->
+        <div class="value">
+          <select class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
         </div>
 
         <label class="field">Description</label>
@@ -189,7 +204,7 @@
         <div class="value">
             <input type="checkbox" size="60" value="tutor" name="tutor" id="tutor"/>I'm a Tutor!</div>
 
-        <input type="submit" value="save" id="save" name="save" class="btn btn-primary"/> </div>
+        <input type="submit" value="Save" id="save" name="save" class="btn btn-primary"/> </div>
     </fieldset>
   </form>
   </section>
