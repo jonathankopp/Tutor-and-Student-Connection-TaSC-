@@ -13,7 +13,7 @@ variables -->
 </head>
 <body>
 	<div class="sidenav">
-	  <a id="navlink" href="connect.html">Connect Page</a>
+	  <a id="navlink" href="connect.php">Connect Page</a>
 	  <a id="ds" href="forum.php">Back</a>
 
 	</div>
