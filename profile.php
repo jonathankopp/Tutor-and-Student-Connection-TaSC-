@@ -25,7 +25,38 @@
 		<a href="find.php">Make a Connection </a>
 		<a id="logout" href="index.php"> Logout </a>
 	</div>
+    <div class="connections">
+        <h2> Personal Info </h2>
+        <?php
 
+            $dbOk = false;
+
+            //connects to database 
+            @ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+
+            //error message if connection to database fails
+            if ($db->connect_error) {
+                echo '<div class="messages">Could not connect to the database. Error: ';
+                echo $db->connect_errno . ' - ' . $db->connect_error . '</div>';
+            } else {
+                $dbOk = true; 
+            }
+
+            //pulls the user id from the session and accesses user table 
+            //to find if the user is a tutor or a student 
+            $userid = $_SESSION["userid"]; //gets user id from session
+            $namequery = "SELECT first_names,last_name from users where userid='". $userid ."'";
+            $nameCall = $db->query($namequery);
+            $resCall = $nameCall->fetch_assoc();
+
+            //if the user is a tutor, find all connections where the tutorid
+            //matches the userid to output connections
+                echo "<h3>".$resCall["first_names"]." ".$resCall["last_name"]."</h3>";
+                echo "<p>Hello I am a new student trying to learn how to code</p>";
+
+        ?>
+        
+    </div>
 	<div class="connections">
 		<h2> Connections </h2>
 
@@ -47,7 +78,7 @@
 				//pulls the user id from the session and accesses user table 
 				//to find if the user is a tutor or a student 
 				$userid = $_SESSION["userid"]; //gets user id from session
-				$tutorquery = "SELECT tutor from users where userid='". $userid ."'";
+				$tutorquery = "SELECT * from users where userid='". $userid ."'";
 				$istutor = $db->query($tutorquery);
 				$tutorrecord = $istutor->fetch_assoc();
 				$tutor = $tutorrecord["tutor"]; //boolean for user being a tutor
@@ -58,7 +89,7 @@
 					$query = "SELECT * from connections where tutorid='" . $userid . "'";
 					$result = $db->query($query);
 					$numRecords = $result->num_rows;
-
+                    echo '<h4>Who I tutor:</h4>';
 					//for every connection the tutor has, print out the information
 					//of the other user
 					for ($i=0; $i < $numRecords; $i++) {
@@ -96,7 +127,7 @@
 					$query = "SELECT * from connections where studentid='" . $userid . "'";
 					$result = $db->query($query);
 					$numRecords = $result->num_rows;
-
+                    echo "<h4>Tutors:</h4>";
 					//prints out info for each connection made by user to tutors
 					for ($i=0; $i < $numRecords; $i++) {
 						$record = $result->fetch_assoc();
@@ -124,16 +155,12 @@
 
 						echo "<p> Year: " . $info["year"] . "</p>";
 						echo "<p> " . $info["description"] . "</p>";
-					}
+                    }
 				}
 
 			?>
 
-
-		<div class="person"></div>
-
 	</div>
-
 </body>
 
 

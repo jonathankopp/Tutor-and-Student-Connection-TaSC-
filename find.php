@@ -1,4 +1,4 @@
-<?<?php 
+<?php 
 	session_start();
 ?>
 
@@ -21,7 +21,7 @@
 
 		<div class="sidebar">
 			<a id="navlink" href="forum.php"> Discussion Forum </a>
-			<a href="connect.php"> Back to Connections </a>
+			<a href="profile.php"> Back to Profile </a>
 			<a id="logout" href="index.php"> Logout </a>
 		</div>
 
@@ -39,7 +39,7 @@
 				$dbOk = false;
 
 				//connects us to the database
-				@ $db =  new mysqli('localhost', 'root', 'password', 'tasc');
+				@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
 				//if error connecting to database
 				if ($db->connect_error) {

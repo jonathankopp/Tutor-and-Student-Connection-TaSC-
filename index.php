@@ -22,7 +22,7 @@
 		$dbOk = false;
 
 		//creates a connection to the database
-		@ $db =  new mysqli('localhost', 'root', 'password', 'tasc');
+		@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
 		//output errors if connection fails
 		if ($db->connect_error) {
@@ -80,7 +80,7 @@
 			  	else { //if there is a match to a user in the table
 			  		$record = $result->fetch_assoc();
 			  		$_SESSION["userid"] = $record['userid']; //set session userid to the corresponding value
-			  		header("Location: connect.php"); //relocates to the homepage 
+			  		header("Location: profile.php"); //relocates to the homepage 
 			  		exit;
 			  	}
 

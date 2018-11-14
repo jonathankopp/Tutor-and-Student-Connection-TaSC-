@@ -29,7 +29,7 @@ showing the relevant information that follows. -->
 	</h1>
 
 	<div class="sidenav">
-	  <a id="navlink" href="connect.php">Connect Page</a>
+	  <a id="navlink" href="profile.php">Profile Page</a>
 	  <a id ="post" href="makepost.php">New Post</a>
 
 	  <!-- below is the php to dynamically pull from the database and display all the 

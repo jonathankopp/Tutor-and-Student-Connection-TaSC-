@@ -16,7 +16,7 @@
 		$dbOk = false;
 
 		//connects to the database
-		@ $db =  new mysqli('localhost', 'root', 'password', 'tasc');
+		@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
 		//error if connection fails
 		if ($db->connect_error) {
