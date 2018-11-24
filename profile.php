@@ -52,7 +52,6 @@
             //if the user is a tutor, find all connections where the tutorid
             //matches the userid to output connections
             echo "<h3>".$resCall["first_names"]." ".$resCall["last_name"]."</h3>";
-			echo "<p>Hello I am a new student trying to learn how to code</p>";
 			
 
 			/*************************************** RANKING SYSTEM ***************************************/
@@ -75,19 +74,23 @@
 			//getting all scores
 			$allScoresQ="SELECT score FROM users";
 			$allScores = $db->query($allScoresQ);
-			$numScores = $allScoresCall->num_rows;
+			$numScores = $allScores->num_rows;
 
 			//Calculating Standard Deviation
 			$summation = 0;
-			for ($i = 0; i<$numScores; $i++){
+			for ($i = 0; $i<$numScores; $i++){
 				$currScore = $allScores->fetch_assoc();
-				$summation += pow(($currScore - $maybe),2);
+				$summation += pow((int)((int)$currScore['score']- (int)$maybe['AVG(score)']),(int)2);
 			}
+			//debugging
+			//echo"<p>".$summation."<p>";
+
 			$standardDev = sqrt(((float)$summation / (float)$numScores));
+			
 			
 			//finding Percentile
 			$percentile=0;
-			$zScore = ($score - $maybe)/$standardDev;
+			$zScore = ((int)((int)$score['score'] - (int)$maybe['AVG(score)'])/(int)$standardDev);
 			
 			//Using a Z score -> Percentile on Normal Curve Chart
 			if($zScore < -2.5){
@@ -115,39 +118,38 @@
 			}else if($zScore>2.5){
 				$percentile = 100-(3-$zScore);
 			}else{
-				//ERROR
+				//ERROR SPECIAL VALUE
 				$percentile=-7768;
 			}
 			
-			
+			//Catches outliers
 			if($percentile>100){
 				$percentile = 100;
-			}
-			if($percentile<0){
+			}else if($percentile<0){
 				$percentile=0;
 			}
 		
 			//										Done with Percentile
 			
+			//Array of ranks
+			$ranks=['new','inactive','novice','Bronze','Reliable','Silver','Gold','Trusted','TaSC Star','Professor?'];
 			
-			
-			
-			// if($averageScore == 0){
-			// 	if($score['score']!=$averageScore){
-			// 		//rank above average
-			// 	}
-			// 	//rank at average
-			// }else{
-			// 	$percentile = ((double) $score['score'] / (double) $averageScore)*100;
-			// 	//getting the ranking of user
-			// 	switch($percentile){
-			// 		case()
-			// 	}
-			// }
-			
+			//Scaling percentile to index in the array of ranks
+			$userRank=$ranks[((int)$percentile/(int)10)-1];
 
+
+			//DISPLAYING RANK
+			echo "<p>TaSC Rank: ".$userRank."</p>"; 
 			/*********************************** END OF RANKING SYSTEM ***********************************/
+			
+			//Student description
 
+			//Fetching Description (HAVE TO CHANGE TABLE 'description' IS A RESERVED WORD CANNOT QUEREY IT)
+			$descQ = "SELECT * from users where userid='" . $userid . "'";
+			$decCall = $db->query($descQ);
+			$des = $decCall->fetch_assoc();
+
+			echo "<p>About Me: ".$des['description']."</p>";
         ?>
         
     </div>
