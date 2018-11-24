@@ -2,6 +2,7 @@
 <?php 
   session_start();
 ?>
+
 <html>
 <head>
 	<title>TaSC</title>
@@ -11,8 +12,8 @@
 	<div class="sidenav">
 	  <a id="navlink" href="profile.php">Profile Page</a>
 	  <a id="ds" href="forum.php">Back</a>
-
 	</div>
+
 	<h1><div id="header"> Tutor and Student Connection</div></h1>
 	<div id="discussion">
 		<!-- below php dynamically pulls all relevant comments from the database -->
@@ -48,13 +49,23 @@
 		    		$_SESSION['postid']=1;
 		    	}
 
+					//if there was an upvote must upvote.
+					//TODO: IMPLEMENT INCREMENT
+					if(isset($_POST['UserId'])){
+						//have to fetch users score and increment it by one.
+					}
+
+
+
+
+
 		    	//Query's the database for the thread that was clicked on by selecting all from forum
 		    	//where the course id is equal to the subject id and where the postid is equal to the 
 		    	//post id that was selected which was gotten above and placed in $_SESSION['postid']
-				$query = 'select * from forum where courseid='.$courseid["subjectid"].' and postid='.$_SESSION['postid'];
+					$query = 'select * from forum where courseid='.$courseid["subjectid"].' and postid='.$_SESSION['postid'];
     			$result = $db->query($query);
 		    	$post = $result->fetch_assoc();
-				echo "<ul>";
+					echo "<ul>";
 	   			echo '<a id="discussion">' . $post['topic'] . '</a>';
 	    		echo '<li class="internalDisc">' . $post['post']. '</li>';
 	    		$q='select first_names from users where userid='. $post['userid'];
@@ -74,10 +85,13 @@
 		    		echo "<ul>";
 		   			echo '<a id="discussion">' . "Comment:" . '</a>';
 		    		echo '<li class="internalDisc">' . $post['comment']. '</li>';
-		    		echo '<li class="author">'.$post['commentdate'].'</li>';
-		    		echo "</ul>";
-			    }
-
+						echo '<li class="author">'.$post['commentdate'].'</li>';
+						echo '<form class="author" action=" comment.php?post='.$post['postid'].'" method="POST">';
+						echo '<input type="submit" value="Connect" name="UserId" id="'.$post['uid'].'"/>';
+						echo '</form>';
+						echo "</ul>";
+					
+					}
 			}
 		?>
 	<!-- Setting up a forum in order to submit the comment to the thread that is currently being
@@ -158,11 +172,11 @@
 	        
 	        //prepared statement that posts the postid and comment the user inputed, and the day's
 	        //date into the database
-	        $insQuery = "insert into comments (`postid`,`comment`,`commentdate`) values(?,?,?)";
+	        $insQuery = "insert into comments (`postid`,`comment`,`commentdate`,`uid`) values(?,?,?,?)";
 	        $statement = $db->prepare($insQuery);
-			$pID=$_SESSION['postid'];
-			$d=date('Y-m-d');
-	        $statement->bind_param("sss",$pID,$postForDb,$d);
+					$pID=$_SESSION['postid'];
+					$d=date('Y-m-d');
+	        $statement->bind_param("ssss",$pID,$postForDb,$d,$_SESSION['userid']);
 	        // make it so:
 	        $statement->execute();
 	        
