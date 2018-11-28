@@ -53,6 +53,7 @@
 					//TODO: IMPLEMENT INCREMENT
 					if(isset($_POST['UserId'])){
 						//have to fetch users score and increment it by one.
+						// echo '<script>console.log('.$_POST['UserId'].');</script>';
 					}
 
 
