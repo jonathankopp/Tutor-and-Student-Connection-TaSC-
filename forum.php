@@ -7,32 +7,65 @@
 
 <html>
 
-<!-- function sets the the course to the proper one clicked for use later when dynamically
-showing the relevant information that follows. -->
-<?php
-	function setSession($course){
-		$_SESSION['course']=$course;
-	}
-	
-?>
-<head>
-	<title>TaSC</title>
-	<link href="Resources/forum.css" rel="stylesheet" type="text/css"/>
-	<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
-</head>
+	<!-- function sets the the course to the proper one clicked for use later when dynamically
+	showing the relevant information that follows. -->
+	<?php
+		function setSession($course){
+			$_SESSION['course']=$course;
+		}
+	?>
+
+	<head>
+		<title>TaSC</title>
+		<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
+		<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
+		  <!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+      
+		<script>
+
+		  document.addEventListener('DOMContentLoaded', function() {
+			var elems = document.querySelectorAll('.sidenav');
+			var instances = M.Sidenav.init(elems, options);
+		  });
+
+		  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+		  // var collapsibleElem = document.querySelector('.collapsible');
+		  // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+
+		  // Or with jQuery
+
+		  $(document).ready(function(){
+			$('.sidenav').sidenav();
+		  });
+		</script>
+	</head>
 
 
-<body>
-	<h1> 
-		<div id="header"> Tutor and Student Connection 
+	<body>
+
+	<ul id="slide-out" class="sidenav">
+		<li><a id="navlink" href="connect.php">Connect Page</a></li>
+		<li> <a id ="post" href="makepost.php">New Post</a></li>
+		<li class="bottom"><a id="logout" href="index.php">Logout</a></li> 
+	</ul>
+
+	  <div class="jumbotron">
+	  	<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
+		<div>
+		  <h1 class="title">Tutor and Student Connection</>
 		</div>
-	</h1>
-
-	<div class="sidenav">
-	  <a id="navlink" href="connect.php">Connect Page</a>
-	  <a id ="post" href="makepost.php">New Post</a>
-
-	  <!-- below is the php to dynamically pull from the database and display all the 
+	  </div>
+	  
+	  <div class="main">
+		<div class="wrapper">
+  <div class="box a"><ul id="classes" class="classes">
+		  <!-- below is the php to dynamically pull from the database and display all the 
 	  subjects the user is signed up for, in order to view their respective threads -->
 	  <?php
 	  	//setting up database connection
@@ -58,18 +91,16 @@ showing the relevant information that follows. -->
 			//link set up so that each respective course's id gets 
 			//sent to the url so when using $_GET['course'], the right courses
 			//id is there so that it can be dynamically pulled for proper viewing.
-			echo "<a href='forum.php?course=".$course['course']."'>".$course['course']."</a>";
+			echo "<li><a href='forum.php?course=".$course['course']."'>".$course['course']."</a></li>";
 		}
 		//sets the current $_SESSION['course'] to the course that was selected
 		if (isset($_GET['course'])) {
     		setSession($_GET['course']);
   		}
 	  ?>
-	  <a id="logout" href="index.php"> Logout </a>
-
-	</div>
-	<div id="discussion">
-
+	  </ul>
+	  </div>
+  <div class="box b"><div id="post" class="posts">
 		<!-- php to dynamically pull and display all threads for the relevant subject selected
 		by the user -->
 		<?php
@@ -104,7 +135,7 @@ showing the relevant information that follows. -->
     			//selected
     			for($i=0; $i <$numRecords; $i++) {
 			    	$post = $result->fetch_assoc();
-					echo "<ul>";
+					echo "<ul id='classes'>";
 
 					//using href="comment.php?post='.$post['postid'].'" so that when on the comment page
 					//the selected thread's postid can be pulled using $_GET['post'] so the right thread and
@@ -123,8 +154,12 @@ showing the relevant information that follows. -->
 			    }
 			}
 		?>
-	</div>
+	</div></div>
+</div>
+	
+	  
+	  </div>
+	
 
-
-
+	</body>
 </html>

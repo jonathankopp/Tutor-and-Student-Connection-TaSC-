@@ -1,4 +1,4 @@
-<?<?php 
+<?php 
 	session_start();
 ?>
 
@@ -8,21 +8,25 @@
 <html>
 	<head>
 		<title>TaSC Connections</title>
-		<link href="Resources/connect.css" rel="stylesheet" type="text/css"/>
+		<link href="Resources/style.css" rel="stylesheet" type="text/css"/> 	
+		
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+		<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">-->
 	</head>
 
 
 	<body>
 		<h1> 
-			<div id="header"> Tutor and Student Connection 
+			<div id="header" class="jumbotron"> Tutor and Student Connection 
 			</div>
 		</h1>
 
 
-		<div class="sidebar">
-			<a id="navlink" href="forum.php"> Discussion Forum </a>
-			<a href="connect.php"> Back to Connections </a>
-			<a id="logout" href="index.php"> Logout </a>
+		<div id="slide-out" class="sidenav">>
+			<li><a id="navlink" href="forum.php"> Discussion Forum </a></li>
+			<li><a href="connect.php"> Back to Connections </a></li>
+			<li><a id="logout" href="index.php"> Logout </a></li>
 		</div>
 
 		<div class="subject">
