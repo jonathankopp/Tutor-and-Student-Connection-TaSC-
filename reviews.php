@@ -23,12 +23,13 @@
 		//setting up database connection
 		@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
-		$user = $_POST["email"];
+		$user = $_SESSION['email']
 
-		$avgquery = 'SELECT avg(rating) FROM reviews WHERE reviewedemail = "' . $user . '"';
+		$avgquery = 'SELECT avg(rating) as a FROM reviews WHERE reviewedemail = "' . $user . '"';
 
 		$avgresult = $db->query($avgquery);
-		echo '<h1>' . $avgresult . '</h1>';
+		$row = $avgresult->fetch_assoc();
+		echo '<h1>' . $row['a'] . '</h1>';
 
 		$query = 'SELECT * FROM reviews WHERE reviewedemail = "'.$user.'"';
 
@@ -46,9 +47,7 @@
 
 	?>
 
-	<form action="makereview.php" method="post">
-		<input type="submit" id="postreview" value="Leave a Review">
-	</form>
+	<a href="makereview.php">Make a Review</a>
 
 </body>
 </html>

@@ -48,7 +48,7 @@ CREATE TABLE `reviews` (
 	`reviewedemail` varchar(100) NOT NULL,
 	`createdat` datetime,
 	`rating` tinyint(1) NOT NULL,
-	`review` varchar(1000) NOT NULL,
+	`review` varchar(1000),
 	PRIMARY KEY (`revieweremail`,`reviewedemail`)
 );
 /*
