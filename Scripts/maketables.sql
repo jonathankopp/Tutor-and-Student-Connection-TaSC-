@@ -42,9 +42,18 @@ CREATE TABLE `comments` (
 	`comment` varchar(1000) NOT NULL,
 	`commentdate` date 
 );
+
+CREATE TABLE `reviews` (
+	`revieweremail` varchar(100) NOT NULL,
+	`reviewedemail` varchar(100) NOT NULL,
+	`createdat` datetime,
+	`rating` tinyint(1) NOT NULL,
+	`review` varchar(1000) NOT NULL,
+	PRIMARY KEY (`revieweremail`,`reviewedemail`)
+);
 /*
 
 Notice: Undefined index: subject in /opt/lampp/htdocs/Tutor-and-Student-Connection-TaSC-/makepost.php on line 64
 Please correct the following errors:
 First name may not be blank
-*/
+*/ 
