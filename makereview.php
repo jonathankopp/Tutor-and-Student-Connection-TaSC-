@@ -1,14 +1,14 @@
 <?php
 	session_start();
-	
+
 	@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 	date_default_timezone_set("America/New_York");
 	$date = date('Y-m-d H:i:s');
-	if isset($_POST["postreview"]) {
+	if (isset($_POST["postreview"])) {
 		if (!isset($_POST['review'])) {
 			$insertquery = 'INSERT INTO reviews (`revieweremail`, `reviewedemail`, `createdat`, `rating`) VALUES (?,?,?,?)';
 			$stmt = $db->prepare($insertquery);
-			$stmt->bind_param($_SESSION['useremail'], $_SESSION['reviewedemail'], $date, $_POST['rating']);
+			$stmt->bind_param($_SESSION['uemail'], $_SESSION['reviewedemail'], $date, $_POST['rating']);
 			$stmt->execute();
 			$stmt->close();
 
@@ -16,12 +16,12 @@
 			$insertquery = 'INSERT INTO reviews (`revieweremail`, `reviewedemail`, `createdat`, `rating`) VALUES (?,?,?,?)';
 						$insertquery = 'INSERT INTO reviews (`revieweremail`, `reviewedemail`, `createdat`, `rating`, `review`) VALUES (?,?,?,?,?)';
 			$stmt = $db->prepare($insertquery);
-			$stmt->bind_param($_SESSION['useremail'], $_SESSION['reviewedemail'], $date, $_POST['rating'], $_POST['review']);
+			$stmt->bind_param($_SESSION['uemail'], $_SESSION['reviewedemail'], $date, $_POST['rating'], $_POST['review']);
 			$stmt->execute();
 			$stmt->close();
 		}
 
-		header('Location: reviews.php');
+		//header('Location: reviews.php');
 	}
 ?>
 

@@ -27,8 +27,22 @@
 
 		<div class="subject">
 			<form name="search" action="find.php" method="get">
-				<label class="field">Search for a subject:</label>
-				<input type="text" size="60" height="40" value="" id="subject" name="subject"/>
+				<label class="field">Choose a Subject:</label>
+				<select name="subject">
+					<?php
+					@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+
+					$subjectquery = 'SELECT course FROM subject';
+					$result = $db->query($subjectquery);
+					while($subjects = $result->fetch_assoc()) {
+						if (isset($_GET['search']) && $_GET['subject'] == $subjects['course']) {
+							echo '<option value="' . $subjects['course'] . '"selected>' . $subjects['course'] . '</option?>';
+						}else {
+							echo '<option value="' . $subjects['course'] . '">' . $subjects['course'] . '</option?>';
+						}
+					}
+					?>
+				</select>
 				<input type="submit" value="Search" id="search" name="search"/>	
 			</form>
 		</div>

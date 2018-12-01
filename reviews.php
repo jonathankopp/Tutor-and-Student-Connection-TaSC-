@@ -23,7 +23,7 @@
 		//setting up database connection
 		@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
-		$user = $_SESSION['email']
+		$user = $_SESSION['uemail'];
 
 		$avgquery = 'SELECT avg(rating) as a FROM reviews WHERE reviewedemail = "' . $user . '"';
 

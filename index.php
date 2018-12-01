@@ -72,7 +72,7 @@
 
 			  	//queries into user database and checks whether or not
 			  	//the email and password match a row in the users table
-			  	$query = "SELECT userid from users where email='" . $emaildb ."' AND password='" . $encrypt ."'";
+			  	$query = "SELECT userid, email from users where email='" . $emaildb ."' AND password='" . $encrypt ."'";
 			  	$result = $db->query($query);
 			  	if($result->num_rows == 0) { //if no rows, the wrong email or password was entered
 			  		echo '<h3> Wrong email or password </h3>';
@@ -80,6 +80,7 @@
 			  	else { //if there is a match to a user in the table
 			  		$record = $result->fetch_assoc();
 			  		$_SESSION["userid"] = $record['userid']; //set session userid to the corresponding value
+			  		$_SESSION["uemail"] = $record['email'];
 			  		header("Location: profile.php"); //relocates to the homepage 
 			  		exit;
 			  	}
