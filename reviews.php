@@ -23,20 +23,25 @@
 		//setting up database connection
 		@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
-		$user = $_POST["reviewid"];
+		$user = $_POST["email"];
 
-		$avgquery = 'SELECT avg(rating) FROM reviews WHERE uid = "' . $user . '"';
+		$avgquery = 'SELECT avg(rating) FROM reviews WHERE reviewedemail = "' . $user . '"';
 
 		$avgresult = $db->query($avgquery);
 		echo '<h1>' . $avgresult . '</h1>';
 
-		$query = 'SELECT * FROM reviews WHERE uid = "'.$user.'"';
+		$query = 'SELECT * FROM reviews WHERE reviewedemail = "'.$user.'"';
 
 		$result = $db->query($query);
 		while($row = $result->fetch_assoc()) {
+			$uq = 'SELECT first_names, last_name FROM users WHERE email = "' . $row["revieweremail"] . '"';
+			$uresult = $db->query($uq);
+			$urow = $uresult->fetch_assoc();
+
 			echo '<h2>' . $row["rating"] . '</h2>';
 			echo '<p>' . $row["review"] . '</p>';
-			echo $row["date"];
+			echo "By: " . $urow["first_names"] . " " . $urow["last_name"];
+			echo $row["createdat"];
 		}
 
 	?>
