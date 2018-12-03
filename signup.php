@@ -40,7 +40,6 @@
 	  	$vpassword = htmlspecialchars(trim($_POST["verify_password"]));
 	  	$email = htmlspecialchars(trim($_POST["new_email"]));
 	  	$year = htmlspecialchars(trim($_POST["year"]));
-	  	$subjects = htmlspecialchars(trim($_POST["subject"]));
 	  	$description = htmlspecialchars(trim($_POST["description"]));
 	  	$tutor = 0;
 	  	if (isset($_POST["tutor"])) {
