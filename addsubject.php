@@ -18,7 +18,7 @@
 	if (isset($_POST['addsubject'])) {
 		$inquery = 'INSERT INTO ' . $table . ' (`userid`, `course`) VALUES (?,?)';
 		$stmt = $db->prepare($inquery);
-		$stmt->bind_param($_SESSION['userid'], $_POST['addsubject']);
+		$stmt->bind_param("is",$_SESSION['userid'], $_POST['addsubject']);
 		$stmt->execute();
 		$stmt->close();
 
