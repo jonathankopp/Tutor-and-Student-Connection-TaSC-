@@ -14,7 +14,24 @@ h1 {
     color: white;
     margin-top: 0;
     padding-top: 0;
-    height: 88px;
+    height: 174px;
+}
+
+#header {
+/*  background: transparent !important;*/
+  background: #0cb5ff;
+  color: white;
+}
+
+section {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 15px;
+  padding: 20px;;
+  width: 400px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 form{
@@ -32,6 +49,8 @@ legend{
 
 .value{
 	border-bottom: 5px;
+  margin-bottom: 5px;
+
 }
 
 .tooltip {
@@ -91,7 +110,6 @@ legend{
 
 a {
     text-align: center;
-    font-size: 1.5em;
     color: black;
 }
 

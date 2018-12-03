@@ -10,11 +10,15 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
 	<link href="Resources/index.css" rel="stylesheet" type="text/css"/>
 	<script type="text/javascript" src="Scripts/index.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 	<h1>
-		<div id="header"> Tutor and Student Connection 
+		<div id="header" class="jumbotron text-center"> Tutor and Student Connection 
 		</div> 
 	</h1>
 	<?php
@@ -88,32 +92,26 @@
 	    	}
 	    }
 		}
-
-
 	?>
+  <section>
 	<form id="old_user" name="old_user" action="index.php" method="post" onsubmit="return validateSignIn(this);">
 		<fieldset>
 			<legend>Sign in</legend>
 			<div class="formData">
 
 				<label class="field">Email</label>
-				<div class="value"><input type="text" size="60" value="" name="my_email" id="my_email"/></div>
+				<div class="value"><input class="form-control" type="text" size="60" value="" name="my_email" id="my_email"/></div>
 
 				<label class="field">Password</label>
-				<div class="value"><input type="password" size="60" value="" name="my_password" id="my_password"/></div>
+				<div class="value"><input class="form-control" type="password" size="60" value="" name="my_password" id="my_password"/></div>
 
-				<input type="submit" value="Sign In" id="sign_in" name="sign_in"/>
+				<input class="btn btn-primary" type="submit" value="Sign In" id="sign_in" name="sign_in"/>
 			</div>
 		</fieldset>
 	</form>
-	<button type = "button">Forgot Email/Password?</button>
+	<button class="btn btn-light" type = "button">Forgot Email/Password?</button>
 	<br>
-	<a href="signup.php"> Don't have an account? Sign up here! </a>
+	Don't have an account? <a href="signup.php"> Register </a>
+  </section>
 </body>
-
-
-
-
-
-
 </html>

@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>
-		<div id="header"> Tutor and Student Connection 
+		<div id="header" class="jumbotron text-center"> Tutor and Student Connection 
 		</div>
 	</h1>
 	<?php
