@@ -5,6 +5,10 @@
   <script type="text/javascript" src="resources/jquery-1.4.3.min.js"></script>
   <link href="Resources/index.css" rel="stylesheet" type="text/css"/>
   <script type="text/javascript" src="Scripts/index.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <title> TaSC Login </title>
 </head>
 <body>
@@ -141,25 +145,25 @@
             <input type="text" size="60" value="" name="lastName" id="lastName"/>
         </div>
         
-        <label class="field tooltip">Password</label></br>
+        <label class="field tooltip">Password</label><br>
         <div class="value tooltip">
             <span class="righttooltiptext">Your password should be a combination of letters and symbols</span>
             <input type="password" size="60" value="" name="new_password" id="new_password"/>
-        </div></br>
+        </div><br>
 
-        <label class="field tooltip">Verify Password</label></br>
+        <label class="field tooltip">Verify Password</label><br>
         <div class="value tooltip">
             <span class="righttooltiptext">Your password should be a combination of letters and symbols</span>
             <input type="password" size="60" value="" name="verify_password" id="verify_password"/>
-        </div></br>
+        </div><br>
         
-        <label class="field tooltip">Email Address</label></br>
+        <label class="field tooltip">Email Address</label><br>
         <div class="value tooltip">
             <span class="bottomtooltiptext"> psst...you should use your RPI email </span>
             <input type="text" size="60" value="" name="new_email" id="new_email"/>
-        </div></br>
+        </div><br>
 
-        <label class="field tooltip">Year</label></br>
+        <label class="field tooltip">Year</label><br>
         <div class="value">
           <select name="year" id="year">
           	<option value="2018" selected>2018</option>
@@ -169,15 +173,15 @@
           	<option value="2022">2022</option>
           	<option value="2023">2023</option>
           </select>
-        </div></br>
+        </div><br>
 
-        <label class="field">Description</label></br>
+        <label class="field">Description</label><br>
         <div class="value">
         	<textarea type="text" rows="4" cols="60" value="" name="description" id="description">
-        </textarea></div></br>
+        </textarea></div><br>
 
 
-    	 <input type="submit" value="save" id="save" name="save"/>
+    	 <input class="btn btn-primary" type="submit" value="Sign Up" id="save" name="save"/>
       </div>
     </fieldset>
   </form>
