@@ -78,7 +78,7 @@
 				$matchquery = 'SELECT userid FROM ' . $opptable . ' WHERE course = "' . $_POST['subject'] . '"';
 
 				$result = $db->query($matchquery);
-				if $result->num_rows == 0 {
+				if ($result->num_rows == 0) {
 					echo '<p id="nomatch"> No Matches Found </p>';
 				} else {
 					echo '<form class="makeconnection" action="viewprofile.php" method="post" name="connect">';
