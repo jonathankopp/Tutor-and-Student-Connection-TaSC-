@@ -16,6 +16,15 @@
 		}
 	}
 
+	if (isset($_POST['viewstudent'])) {
+		$_SESSION['searchSubject'] = "";
+		$_SESSION['tutor'] = 1;
+	}
+
+	if (isset($_POST['viewtutor'])) {
+		$_SESSION['searchSubject'] = "";
+		$_SESSION['tutor'] = 0;
+	}
 
 	if (isset($_POST['connected'])) {
 		$tutor = 0;
@@ -56,6 +65,12 @@
 		<div id="header"> Tutor and Student Connection 
 		</div>
 	</h1>
+
+	<div class="sidebar">
+		<a id="navlink" href="forum.php"> Discussion Forum </a>
+		<a href="profile.php"> Back to Profile </a>
+		<a id="logout" href="index.php"> Logout </a>
+	</div>
 	<?php
 	$infoquery = 'SELECT * FROM users WHERE userid = "' . $_SESSION['viewuserid'] . '"';
 	$result = $db->query($infoquery);

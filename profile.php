@@ -25,8 +25,6 @@
 
 	<div class="sidebar">
 		<a id="navlink" href="forum.php"> Discussion Forum </a>
-		<a href="find.php">Make a Connection </a>
-		<a href="reviews.php">Reviews</a>
 		<a id="logout" href="index.php"> Logout </a>
 	</div>
     <div class="connections">
@@ -199,23 +197,26 @@
 					echo "<h3> " . htmlspecialchars($info["first_names"]) . " ";
 					echo htmlspecialchars($info["last_name"]) . "</h3>";
 					echo '<p> Email: ' . $info["email"] . '</p>';
-					echo "<p> Course(s): ";
+					echo "<p> Connected Course(s): ";
 
 					//If the user is in multiple subjects, output all of the subjects that 
 					//the user is in
-					$subjquery = "SELECT course from student_subjects where userid='" . $sid . "'";
+					$subjquery = "SELECT subject from connections where studentid=" . $sid . " and tutorid=".$_SESSION['userid'];
 					$subjresults = $db->query($subjquery);
 					$numSubjects = $subjresults->num_rows;
 
 					for ($j=0; $j < ($numSubjects-1); $j++) {
 						$subj = $subjresults->fetch_assoc();
-						echo $subj["course"] . ", ";
+						echo $subj["subject"] . ", ";
 					}
 					$subj = $subjresults->fetch_assoc();
-					echo $subj["course"] . "</p>";
+					echo $subj["subject"] . "</p>";
 
 					echo "<p> Year: " . $info["year"] . "</p>";
 					echo "<p> " . $info["description"] . "</p>";
+					echo '<form name="viewtutor" action="viewprofile.php" method="post">';
+					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile"/>';
+					echo '</form>';
 				}
 
 
@@ -236,33 +237,25 @@
 					echo "<h3> " . htmlspecialchars($info["first_names"]) . " ";
 					echo htmlspecialchars($info["last_name"]) . "</h3>";
 					echo '<p> Email: ' . $info["email"] . '</p>';
-					echo "<p> Tutor Course(s): ";
 
-					$subjquery = "SELECT course from tutor_subjects where userid='" . $tid . "'";
+					echo "<p> Connected Course(s): ";
+
+					$subjquery = "SELECT subject from connections where tutorid=" . $tid . " and studentid=".$_SESSION['userid'];
 					$subjresults = $db->query($subjquery);
 					$numSubjects = $subjresults->num_rows;
 
 					for ($j=0; $j < ($numSubjects-1); $j++) {
 						$subj = $subjresults->fetch_assoc();
-						echo $subj["course"] . ", ";
+						echo $subj["subject"] . ", ";
 					}
 					$subj = $subjresults->fetch_assoc();
-					echo $subj["course"] . "</p>";
-					echo "<p> Student Course(s): ";
-
-					$subjquery = "SELECT course from student_subjects where userid='" . $tid . "'";
-					$subjresults = $db->query($subjquery);
-					$numSubjects = $subjresults->num_rows;
-
-					for ($j=0; $j < ($numSubjects-1); $j++) {
-						$subj = $subjresults->fetch_assoc();
-						echo $subj["course"] . ", ";
-					}
-					$subj = $subjresults->fetch_assoc();
-					echo $subj["course"] . "</p>";
+					echo $subj["subject"] . "</p>";
 
 					echo "<p> Year: " . $info["year"] . "</p>";
 					echo "<p> " . $info["description"] . "</p>";
+					echo '<form name="viewstudent" action="viewprofile.php" method="post">';
+					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile"/>';
+					echo '</form>';
         }
 
 
