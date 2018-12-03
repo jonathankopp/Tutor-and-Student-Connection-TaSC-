@@ -1,5 +1,8 @@
 <?php
 	session_start();
+	if (!isset($_SESSION['userid'])) {
+		header('Location: index.php');
+	}
 ?>
 
 <!DOCTYPE html>
@@ -258,6 +261,20 @@
 			?>
 
 	</div>
+	<div class="courses">
+		<form action="find.php" method="post">
+			<input type="submit" name="findstudent" value="Find a Student"/>
+		</form>
+		<form action="find.php" method="post">
+			<input type="submit" name="findtutor" value="Find a Tutor"/>
+		</form>
+		<form action="addsubject.php" method="post">
+			<input type="submit" name="tutorsubject" value="Add a subject to tutor"/>
+		</form>
+		<form action="addsubject.php" method="post">
+			<input type="submit" name="studentsubject" value="Add a subject to find help in"/>
+		</form>
+
 </body>
 
 

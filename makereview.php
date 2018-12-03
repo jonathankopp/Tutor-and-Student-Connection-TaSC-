@@ -1,5 +1,8 @@
 <?php
 	session_start();
+	if (!isset($_SESSION['userid'])) {
+		header('Location: index.php');
+	}
 
 	@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 	date_default_timezone_set("America/New_York");
@@ -8,7 +11,7 @@
 		if (!isset($_POST['review'])) {
 			$insertquery = 'INSERT INTO reviews (`revieweremail`, `reviewedemail`, `createdat`, `rating`) VALUES (?,?,?,?)';
 			$stmt = $db->prepare($insertquery);
-			$stmt->bind_param($_SESSION['uemail'], $_SESSION['reviewedemail'], $date, $_POST['rating']);
+			$stmt->bind_param($_SESSION['uemail'], $_SESSION['viewemail'], $date, $_POST['rating']);
 			$stmt->execute();
 			$stmt->close();
 
@@ -21,7 +24,7 @@
 			$stmt->close();
 		}
 
-		//header('Location: reviews.php');
+		header('Location: viewprofile.php');
 	}
 ?>
 

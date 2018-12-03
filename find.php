@@ -1,5 +1,22 @@
 <?php 
 	session_start();
+	if (!isset($_SESSION['userid'])) {
+		header('Location: index.php');
+	}
+
+	@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+
+	if (isset($_POST['findstudent'])) {
+		$_SESSION['s_table'] = "tutor_subjects";
+		$_SESSION['tutor'] = 1;
+	}
+	if (isset($_POST['findtutor'])) {
+		$_SESSION['s_table'] = "student_subjects";
+		$_SESSION['tutor'] = 0;
+	}
+
+	$table = $_SESSION["s_table"];
+
 ?>
 
 <!DOCTYPE html>
@@ -26,13 +43,13 @@
 		</div>
 
 		<div class="subject">
-			<form name="search" action="find.php" method="get">
+			<form name="search" action="find.php" method="post">
 				<label class="field">Choose a Subject:</label>
 				<select name="subject">
 					<?php
-					@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+					
 
-					$subjectquery = 'SELECT course FROM subject';
+					$subjectquery = 'SELECT course FROM ' . $table . ' WHERE userid="' . $_SESSION['userid'] . '"';
 					$result = $db->query($subjectquery);
 					while($subjects = $result->fetch_assoc()) {
 						if (isset($_GET['search']) && $_GET['subject'] == $subjects['course']) {
@@ -50,10 +67,49 @@
 		<div class="person">
 
 			<?php
+			if (isset($_POST['subject'])) {
+				$_SESSION['searchSubject'] = $subject;
+				$opptable = "";
+				if ($table == "tutor_subjects") {
+					$opptable = "student_subjects";
+				} else {
+					$opptable = "tutor_subjects";
+				}
+				$matchquery = 'SELECT userid FROM ' . $opptable . ' WHERE course = "' . $_POST['subject'] . '"';
+
+				$result = $db->query($matchquery);
+				if $result->num_rows == 0 {
+					echo '<p id="nomatch"> No Matches Found </p>';
+				} else {
+					echo '<form class="makeconnection" action="viewprofile.php" method="post" name="connect">';
+					while($row = $result->fetch_assoc()) {
+							//selects the info for that user from users table to output
+							$infoQuery = "SELECT userid, first_names, last_name, score from users where userid='" . $row['userid'] . "'";
+							$infoResult = $db->query($infoQuery);
+							$info = $infoResult->fetch_assoc();
+
+							$name = $info["first_names"] . ' ' . $info["last_name"] . ': ' . $info['score'];
+							//makes a button for each user 
+							echo '<input type="submit" value="' . $name . '" id="' . $info['userid'] . '" name="' . $info['userid'] . '"/>';
+							
+					}
+					echo '</form>';
+				}
+			}
+
+			?>
+
+
+		</div>
+
+	</body>
+
+
+</html>
+
+<!-- 
 				$dbOk = false;
 
-				//connects us to the database
-				@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
 				//if error connecting to database
 				if ($db->connect_error) {
@@ -121,14 +177,4 @@
 					}
 				}
 
-
-
-			?>
-
-
-		</div>
-
-	</body>
-
-
-</html>
+ -->

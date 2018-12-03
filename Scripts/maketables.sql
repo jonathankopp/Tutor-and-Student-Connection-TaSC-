@@ -6,19 +6,27 @@ CREATE TABLE `users` (
 	`email` varchar(100) NOT NULL,
 	`password` varchar(100) NOT NULL,
 	`description` varchar(1000) NOT NULL,
-	`tutor` boolean NOT NULL,
+	`score` int(10) NOT NULL,
 	PRIMARY KEY (`userid`)
 );
 
 CREATE TABLE `connections` (
 	`tutorid` int(10) unsigned NOT NULL,
 	`studentid` int(10) unsigned NOT NULL,
-	`subject` varchar(100) NOT NULL
+	`subject` varchar(100) NOT NULL,
+	PRIMARY KEY (`tutorid`, `studentid`, `subject`)
 );
 
-CREATE TABLE `user_subjects` (
+CREATE TABLE `student_subjects` (
 	`userid` int(10) unsigned NOT NULL,
-	`course` varchar(100) NOT NULL
+	`course` varchar(100) NOT NULL,
+	PRIMARY KEY (`userid`, `course`)
+);
+
+CREATE TABLE `tutor_subjects` (
+	`userid` int(10) unsigned NOT NULL,
+	`course` varchar(100) NOT NULL,
+	PRIMARY KEY (`userid`, `course`)
 );
 
 CREATE TABLE `subject` (
@@ -38,9 +46,10 @@ CREATE TABLE `forum` (
 );
 
 CREATE TABLE `comments` (
-	`postid` int(10) unsigned NOT NULL,
-	`comment` varchar(1000) NOT NULL,
-	`commentdate` date 
+  `postid` int(10) UNSIGNED NOT NULL,
+  `comment` varchar(1000) NOT NULL,
+  `commentdate` date DEFAULT NULL,
+  `uid` int(10) NOT NULL
 );
 
 CREATE TABLE `reviews` (
@@ -51,9 +60,3 @@ CREATE TABLE `reviews` (
 	`review` varchar(1000),
 	PRIMARY KEY (`revieweremail`,`reviewedemail`)
 );
-/*
-
-Notice: Undefined index: subject in /opt/lampp/htdocs/Tutor-and-Student-Connection-TaSC-/makepost.php on line 64
-Please correct the following errors:
-First name may not be blank
-*/ 

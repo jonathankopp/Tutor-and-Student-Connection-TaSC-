@@ -133,17 +133,21 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userid`, `first_names`, `last_name`, `year`, `email`, `password`, `description`, `tutor`) VALUES
-(1, 'Jason', 'Smith', '2021', 'smithj@rpi.edu', 'qgW/FOr0ssY/E', 'I am a first year struggling in all of my courses', 0),
-(2, 'Grace', 'Conway', '2020', 'conwag@rpi.edu', 'qgW/FOr0ssY/E', 'I study really hard, but my test grades don\'t show it.', 0),
+
+INSERT INTO `users` (`userid`, `first_names`, `last_name`, `year`, `email`, `password`, `description`, `score`) VALUES
+(1, 'Jason', 'Smith', '2021', 'smithj@rpi.edu', 'qgW/FOr0ssY/E', 'I am a first year struggling in all of my courses', 11),
+(2, 'Grace', 'Conway', '2020', 'conwag@rpi.edu', 'qgW/FOr0ssY/E', 'I study really hard, but my test grades don\'t show it.', 7),
 (3, 'Charlie', 'Brown', '2020', 'brownc@rpi.edu', 'qgW/FOr0ssY/E', 'I lost my dog Snoopy', 0),
-(4, 'Patrick', 'Star', '2018', 'starp@rpi.edu', 'qgW/FOr0ssY/E', 'The inner mechanations of my mind are an enigma', 1),
-(5, 'Queena', 'Wang', '2021', 'wangq20@rpi.edu', 'qgW/FOr0ssY/E', 'I have a bad memory', 0),
-(6, 'Alicia', 'Greene', '2020', 'greena@rpi.edu', 'qgW/FOr0ssY/E', 'I\'m an engineer why do I need humanities...', 0),
-(7, 'Tony', 'Stark', '2020', 'starkt@rpi.edu', 'qgW/FOr0ssY/E', 'Have you seen Infinity War yet?', 1),
-(8, 'Jon', 'Snow', '2020', 'snowj@rpi.edu', 'qgW/FOr0ssY/E', 'I know nothing', 1),
-(9, 'Andrew', 'Leaf', '2020', 'leafa@rpi.edu', 'qgW/FOr0ssY/E', 'They call me the php master', 1),
-(10, 'Matthew', 'Grill', '1900', 'grillm@rpi.edu', 'qgW/FOr0ssY/E', 'I\'m Matt, and I have a mutual love with AI', 1);
+(4, 'Patrick', 'Star', '2018', 'starp@rpi.edu', 'qgW/FOr0ssY/E', 'The inner mechanations of my mind are an enigma', 0),
+(5, 'Queena', 'Wang', '2021', 'wangq20@rpi.edu', 'qgW/FOr0ssY/E', 'I have a bad memory', 15),
+(6, 'Alicia', 'Greene', '2020', 'greena@rpi.edu', 'qgW/FOr0ssY/E', 'I\'m an engineer why do I need humanities...', 4),
+(7, 'Tony', 'Stark', '2020', 'starkt@rpi.edu', 'qgW/FOr0ssY/E', 'Have you seen Infinity War yet?', 2),
+(8, 'Jon', 'Snow', '2020', 'snowj@rpi.edu', 'qgW/FOr0ssY/E', 'I know nothing', 3),
+(9, 'Andrew', 'Leaf', '2020', 'leafa@rpi.edu', 'qgW/FOr0ssY/E', 'They call me the php master', 5),
+(10, 'Matthew', 'Grill', '1900', 'grillm@rpi.edu', 'qgW/FOr0ssY/E', 'I\'m Matt, and I have a mutual love with AI', 0),
+(11, 'a', 'a', '2020', 'a', 'qgsOKtcIIwW2E', 'aa', 0),
+(12, 'jon', 'Montag', '2020', 'leg', 'qgW/FOr0ssY/E', 'kdfjalk', 10),
+(14, 'Robert', 'Roth', '2020', 'tit', 'qgph1nZX5OjEc', 'aa', 20);
 
 -- --------------------------------------------------------
 
