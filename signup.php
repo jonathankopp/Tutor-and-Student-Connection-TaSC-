@@ -69,16 +69,9 @@
 	    	$errors .= '<li>year may not be blank</li>';
 	    	if ($focusId == '') $focusId = '#year';
 	    }
-	    if ($subjects == '') {
-	    	$errors .= '<li>Subject may not be blank</li>';
-	    	if ($focusId == '') $focusId = '#subject';
-	    } 
 	    if ($description == '') {
 	    	$errors .= '<li>Description may not be blank</li>';
 	    	if ($focusId == '') $focusId = '#userName';
-	    }
-	    if ($tutor == 0 and !isset($_POST["student"])) {
-	    	$errors .= '<li>You must be a tutor or a student</li>';
 	    }
 	    if ($errors != '') { //prints out any errors
 	      echo '<div class="messages"><h4>Please correct the following errors:</h4><ul>';
@@ -93,19 +86,18 @@
 	    	if ($dbOk) { //if connected to database
 	    		//trims all input to be inserted into users table
 	    		$firstNamesdb = trim($_POST["firstNames"]);  
-	   		  $lastNamedb = trim($_POST["lastName"]);
+	   		  	$lastNamedb = trim($_POST["lastName"]);
 			  	$passworddb = trim($_POST["new_password"]);
 			  	$encrypt = crypt($passworddb,"qgwc"); //encrypts the password
 			  	$emaildb = trim($_POST["new_email"]);
 			  	$yeardb = trim($_POST["year"]);
-			  	$subjectsdb = trim($_POST["subject"]);
 			  	$descriptiondb = trim($_POST["description"]);
 
 			  	//inserts new user into the users table
 			  	$insQuery = ("INSERT into users (`first_names`, `last_name`, `year`, `email`, `password`, 
-			  	`description`, `tutor`) VALUES (?,?,?,?,?,?,?)");
+			  	`description`) VALUES (?,?,?,?,?,?)");
 			  	$statement = $db->prepare($insQuery);
-			  	$statement->bind_param("ssssssi",$firstNamesdb,$lastNamedb,$yeardb,$emaildb,$encrypt,$descriptiondb,$tutor);
+			  	$statement->bind_param("ssssss",$firstNamesdb,$lastNamedb,$yeardb,$emaildb,$encrypt,$descriptiondb);
 			  	$statement->execute();		        
 	        // close the prepared statement obj 
 	        $statement->close();
@@ -119,15 +111,7 @@
 	        $subjectlist = explode(",", $subjectsdb);
 
 	        //inserts each subject into user_subjects table 
-	        for ($i=0; $i < count($subjectlist); $i++) {
-
-		       	$ins2 = "INSERT into user_subjects (`userid`, `course`) VALUES (?,?)";
-		       	$state2 = $db->prepare($ins2);
-		       	$state2->bind_param("ss",$record["userid"],trim($subjectlist[$i]));
-		       	$state2->execute();
-		       	$state2->close();
-
-		      }
+	        
 
 		      //relocates to login page once their account is created
 		      //Note: they will need to login with their new information
@@ -169,24 +153,13 @@
             <input type="text" size="60" value="" name="year" id="year"/>
         </div></br>
 
-        <label class="field tooltip">Subject(s)</label></br>
-        <div class="value">
-            <input type="text" size="60" value="" name="subject" id="subject"/>
-        </div></br>
-
         <label class="field">Description</label></br>
         <div class="value">
         	<textarea type="text" rows="4" cols="60" value="" name="description" id="description">
         </textarea></div></br>
 
 
-        <label class="field">What Are You?</label>
-        <div class="value">
-            <input type="checkbox" size="60" value="student" name="student" id="student"/>I'm a Student!</br></div>
-        <div class="value">
-            <input type="checkbox" size="60" value="tutor" name="tutor" id="tutor"/>I'm a Tutor!</br></div>
-
-        <input type="submit" value="save" id="save" name="save"/>
+    	 <input type="submit" value="save" id="save" name="save"/>
       </div>
     </fieldset>
   </form>
