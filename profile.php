@@ -181,82 +181,90 @@
 				$tutorquery = "SELECT * from users where userid='". $userid ."'";
 				$istutor = $db->query($tutorquery);
 				$tutorrecord = $istutor->fetch_assoc();
-				$tutor = $tutorrecord["tutor"]; //boolean for user being a tutor
 
-				//if the user is a tutor, find all connections where the tutorid
-				//matches the userid to output connections
-				if ($tutor) {
-					$query = "SELECT * from connections where tutorid='" . $userid . "'";
-					$result = $db->query($query);
-					$numRecords = $result->num_rows;
-                    echo '<h4>Who I tutor:</h4>';
-					//for every connection the tutor has, print out the information
-					//of the other user
-					for ($i=0; $i < $numRecords; $i++) {
-						$record = $result->fetch_assoc();
-						$sid = $record["studentid"];
+				$query = "SELECT * from connections where tutorid='" . $userid . "'";
+				$result = $db->query($query);
+				$numRecords = $result->num_rows;
+                  echo '<h4>Who I tutor:</h4>';
+				//for every connection the tutor has, print out the information
+				//of the other user
+				for ($i=0; $i < $numRecords; $i++) {
+					$record = $result->fetch_assoc();
+					$sid = $record["studentid"];
 
-						$infoQuery = "SELECT * from users where userid='" . $sid . "'";
-						$infoResult = $db->query($infoQuery);
-						$info = $infoResult->fetch_assoc();
+					$infoQuery = "SELECT * from users where userid='" . $sid . "'";
+					$infoResult = $db->query($infoQuery);
+					$info = $infoResult->fetch_assoc();
 
-						echo "<h3> " . htmlspecialchars($info["first_names"]) . " ";
-						echo htmlspecialchars($info["last_name"]) . "</h3>";
-						echo '<p> Email: ' . $info["email"] . '</p>';
-						echo "<p> Course(s): ";
+					echo "<h3> " . htmlspecialchars($info["first_names"]) . " ";
+					echo htmlspecialchars($info["last_name"]) . "</h3>";
+					echo '<p> Email: ' . $info["email"] . '</p>';
+					echo "<p> Course(s): ";
 
-						//If the user is in multiple subjects, output all of the subjects that 
-						//the user is in
-						$subjquery = "SELECT course from user_subjects where userid='" . $sid . "'";
-						$subjresults = $db->query($subjquery);
-						$numSubjects = $subjresults->num_rows;
+					//If the user is in multiple subjects, output all of the subjects that 
+					//the user is in
+					$subjquery = "SELECT course from student_subjects where userid='" . $sid . "'";
+					$subjresults = $db->query($subjquery);
+					$numSubjects = $subjresults->num_rows;
 
-						for ($j=0; $j < ($numSubjects-1); $j++) {
-							$subj = $subjresults->fetch_assoc();
-							echo $subj["course"] . ", ";
-						}
+					for ($j=0; $j < ($numSubjects-1); $j++) {
 						$subj = $subjresults->fetch_assoc();
-						echo $subj["course"] . "</p>";
-
-						echo "<p> Year: " . $info["year"] . "</p>";
-						echo "<p> " . $info["description"] . "</p>";
+						echo $subj["course"] . ", ";
 					}
+					$subj = $subjresults->fetch_assoc();
+					echo $subj["course"] . "</p>";
 
-				} else { //assume the user is a student
-					//uses the same method as above but matches userid to studentid instead of tutorid
-					$query = "SELECT * from connections where studentid='" . $userid . "'";
-					$result = $db->query($query);
-					$numRecords = $result->num_rows;
-                    echo "<h4>Tutors:</h4>";
-					//prints out info for each connection made by user to tutors
-					for ($i=0; $i < $numRecords; $i++) {
-						$record = $result->fetch_assoc();
-						$tid = $record["tutorid"];
-
-						$infoQuery = "SELECT * from users where userid='" . $tid . "'";
-						$infoResult = $db->query($infoQuery);
-						$info = $infoResult->fetch_assoc();
-
-						echo "<h3> " . htmlspecialchars($info["first_names"]) . " ";
-						echo htmlspecialchars($info["last_name"]) . "</h3>";
-						echo '<p> Email: ' . $info["email"] . '</p>';
-						echo "<p> Course(s): ";
-
-						$subjquery = "SELECT course from user_subjects where userid='" . $tid . "'";
-						$subjresults = $db->query($subjquery);
-						$numSubjects = $subjresults->num_rows;
-
-						for ($j=0; $j < ($numSubjects-1); $j++) {
-							$subj = $subjresults->fetch_assoc();
-							echo $subj["course"] . ", ";
-						}
-						$subj = $subjresults->fetch_assoc();
-						echo $subj["course"] . "</p>";
-
-						echo "<p> Year: " . $info["year"] . "</p>";
-						echo "<p> " . $info["description"] . "</p>";
-                    }
+					echo "<p> Year: " . $info["year"] . "</p>";
+					echo "<p> " . $info["description"] . "</p>";
 				}
+
+
+				//uses the same method as above but matches userid to studentid instead of tutorid
+				$query = "SELECT * from connections where studentid='" . $userid . "'";
+				$result = $db->query($query);
+				$numRecords = $result->num_rows;
+                  echo "<h4>Tutors:</h4>";
+				//prints out info for each connection made by user to tutors
+				for ($i=0; $i < $numRecords; $i++) {
+					$record = $result->fetch_assoc();
+					$tid = $record["tutorid"];
+
+					$infoQuery = "SELECT * from users where userid='" . $tid . "'";
+					$infoResult = $db->query($infoQuery);
+					$info = $infoResult->fetch_assoc();
+
+					echo "<h3> " . htmlspecialchars($info["first_names"]) . " ";
+					echo htmlspecialchars($info["last_name"]) . "</h3>";
+					echo '<p> Email: ' . $info["email"] . '</p>';
+					echo "<p> Tutor Course(s): ";
+
+					$subjquery = "SELECT course from tutor_subjects where userid='" . $tid . "'";
+					$subjresults = $db->query($subjquery);
+					$numSubjects = $subjresults->num_rows;
+
+					for ($j=0; $j < ($numSubjects-1); $j++) {
+						$subj = $subjresults->fetch_assoc();
+						echo $subj["course"] . ", ";
+					}
+					$subj = $subjresults->fetch_assoc();
+					echo $subj["course"] . "</p>";
+					echo "<p> Student Course(s): ";
+
+					$subjquery = "SELECT course from student_subjects where userid='" . $tid . "'";
+					$subjresults = $db->query($subjquery);
+					$numSubjects = $subjresults->num_rows;
+
+					for ($j=0; $j < ($numSubjects-1); $j++) {
+						$subj = $subjresults->fetch_assoc();
+						echo $subj["course"] . ", ";
+					}
+					$subj = $subjresults->fetch_assoc();
+					echo $subj["course"] . "</p>";
+
+					echo "<p> Year: " . $info["year"] . "</p>";
+					echo "<p> " . $info["description"] . "</p>";
+        }
+
 
 			?>
 

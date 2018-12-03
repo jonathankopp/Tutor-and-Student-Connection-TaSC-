@@ -2,8 +2,8 @@
 -- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 29, 2018 at 03:03 PM
+-- Host: 127.0.0.1
+-- Generation Time: Dec 03, 2018 at 07:35 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `TaSC`
+-- Database: `tasc`
 --
 
 -- --------------------------------------------------------
@@ -31,15 +31,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `comments` (
   `postid` int(10) UNSIGNED NOT NULL,
   `comment` varchar(1000) NOT NULL,
-  `commentdate` date DEFAULT NULL
+  `commentdate` date DEFAULT NULL,
+  `uid` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `comments`
 --
 
-INSERT INTO `comments` (`postid`, `comment`, `commentdate`) VALUES
-(2, 'Just use std::list and pretend you know what you\'re doing', '2018-04-30');
+INSERT INTO `comments` (`postid`, `comment`, `commentdate`, `uid`) VALUES
+(2, 'Just use std::list and pretend you know what you\'re doing', '2018-04-30', 0);
 
 -- --------------------------------------------------------
 
@@ -58,7 +59,9 @@ CREATE TABLE `connections` (
 --
 
 INSERT INTO `connections` (`tutorid`, `studentid`, `subject`) VALUES
-(4, 5, 'Data structures');
+(4, 5, 'Data structures'),
+(5, 7, 'Data Structures'),
+(5, 8, 'Data Structures');
 
 -- --------------------------------------------------------
 
@@ -83,6 +86,55 @@ INSERT INTO `forum` (`postid`, `courseid`, `topic`, `post`, `postdate`, `userid`
 (2, 1, 'What is a linked list?', 'I don\'t like pointers', '2018-04-30', 5),
 (3, 8, 'Opportunity cost', 'Was this project worth the opportunity cost?', '2018-04-30', 6),
 (4, 11, 'How to be Matthew', 'Use a bottle of hair-gel everyday.', '2018-04-29', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `revieweremail` varchar(100) NOT NULL,
+  `reviewedemail` varchar(100) NOT NULL,
+  `createdat` datetime DEFAULT NULL,
+  `rating` tinyint(1) NOT NULL,
+  `review` varchar(1000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_subjects`
+--
+
+CREATE TABLE `student_subjects` (
+  `userid` int(10) UNSIGNED NOT NULL,
+  `course` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `student_subjects`
+--
+
+INSERT INTO `student_subjects` (`userid`, `course`) VALUES
+(5, 'Physics 2'),
+(6, 'Economics'),
+(6, 'Psychology'),
+(7, 'Biology'),
+(7, 'Data Structures'),
+(7, 'Intro to ITWS'),
+(7, 'Physics 2'),
+(8, 'Calculus 1'),
+(8, 'Calculus 2'),
+(8, 'Data Structures'),
+(8, 'Economics'),
+(8, 'Intro to ITWS'),
+(8, 'Physics 1'),
+(8, 'Psychology'),
+(9, 'Computer Science 1'),
+(9, 'Data Structures'),
+(9, 'Intro to ITWS'),
+(10, 'Being Matt 101');
 
 -- --------------------------------------------------------
 
@@ -115,6 +167,43 @@ INSERT INTO `subject` (`subjectid`, `course`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tutor_subjects`
+--
+
+CREATE TABLE `tutor_subjects` (
+  `userid` int(10) UNSIGNED NOT NULL,
+  `course` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tutor_subjects`
+--
+
+INSERT INTO `tutor_subjects` (`userid`, `course`) VALUES
+(1, 'Data Structures'),
+(1, 'Economics'),
+(1, 'Intro to ITWS'),
+(1, 'Physics 1'),
+(2, 'Biology'),
+(2, 'Calculus 2'),
+(2, 'Physics 2'),
+(3, 'Computer Science 1'),
+(3, 'Intro to ITWS'),
+(3, 'Psychology'),
+(4, 'Biology'),
+(4, 'Calculus 1'),
+(4, 'Calculus 2'),
+(4, 'Data Structures'),
+(4, 'Intro to ITWS'),
+(4, 'Physics 1'),
+(4, 'Physics 2'),
+(4, 'Psychology'),
+(5, 'Data Structures'),
+(5, 'Intro to ITWS');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -126,13 +215,12 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `description` varchar(1000) NOT NULL,
-  `tutor` tinyint(1) NOT NULL
+  `score` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
-
 
 INSERT INTO `users` (`userid`, `first_names`, `last_name`, `year`, `email`, `password`, `description`, `score`) VALUES
 (1, 'Jason', 'Smith', '2021', 'smithj@rpi.edu', 'qgW/FOr0ssY/E', 'I am a first year struggling in all of my courses', 11),
@@ -149,64 +237,15 @@ INSERT INTO `users` (`userid`, `first_names`, `last_name`, `year`, `email`, `pas
 (12, 'jon', 'Montag', '2020', 'leg', 'qgW/FOr0ssY/E', 'kdfjalk', 10),
 (14, 'Robert', 'Roth', '2020', 'tit', 'qgph1nZX5OjEc', 'aa', 20);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `user_subjects`
---
-
-CREATE TABLE `user_subjects` (
-  `userid` int(10) UNSIGNED NOT NULL,
-  `course` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `user_subjects`
---
-
-INSERT INTO `user_subjects` (`userid`, `course`) VALUES
-(1, 'Data Structures'),
-(1, 'Physics 1'),
-(1, 'Intro to ITWS'),
-(1, 'Economics'),
-(2, 'Physics 2'),
-(2, 'Biology'),
-(2, 'Calculus 2'),
-(3, 'Computer Science 1'),
-(3, 'Psychology'),
-(3, 'Intro to ITWS'),
-(4, 'Data Structures'),
-(4, 'Intro to ITWS'),
-(4, 'Physics 1'),
-(4, 'Physics 2'),
-(4, 'Calculus 1'),
-(4, 'Calculus 2'),
-(4, 'Biology'),
-(4, 'Psychology'),
-(5, 'Data Structures'),
-(5, 'Intro to ITWS'),
-(5, 'Physics 2'),
-(6, 'Economics'),
-(6, 'Psychology'),
-(7, 'Data Structures'),
-(7, 'Intro to ITWS'),
-(7, 'Biology'),
-(7, 'Physics 2'),
-(8, 'Economics'),
-(8, 'Psychology'),
-(8, 'Physics 1'),
-(8, 'Calculus 1'),
-(8, 'Calculus 2'),
-(8, 'Data Structures'),
-(8, 'Intro to ITWS'),
-(9, 'Intro to ITWS'),
-(9, 'Data Structures'),
-(9, 'Computer Science 1'),
-(10, 'Being Matt 101');
-
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `connections`
+--
+ALTER TABLE `connections`
+  ADD PRIMARY KEY (`tutorid`,`studentid`,`subject`);
 
 --
 -- Indexes for table `forum`
@@ -215,10 +254,28 @@ ALTER TABLE `forum`
   ADD PRIMARY KEY (`postid`);
 
 --
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`revieweremail`,`reviewedemail`);
+
+--
+-- Indexes for table `student_subjects`
+--
+ALTER TABLE `student_subjects`
+  ADD PRIMARY KEY (`userid`,`course`);
+
+--
 -- Indexes for table `subject`
 --
 ALTER TABLE `subject`
   ADD PRIMARY KEY (`subjectid`);
+
+--
+-- Indexes for table `tutor_subjects`
+--
+ALTER TABLE `tutor_subjects`
+  ADD PRIMARY KEY (`userid`,`course`);
 
 --
 -- Indexes for table `users`
@@ -246,7 +303,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `userid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

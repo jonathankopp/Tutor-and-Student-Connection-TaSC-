@@ -68,7 +68,7 @@
 
 			<?php
 			if (isset($_POST['subject'])) {
-				$_SESSION['searchSubject'] = $subject;
+				$_SESSION['searchSubject'] = $_POST['subject'];
 				$opptable = "";
 				if ($table == "tutor_subjects") {
 					$opptable = "student_subjects";

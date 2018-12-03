@@ -5,17 +5,17 @@
 	}
 	@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
-	if (isset($_POST['connect'])) {
-		$listquery = 'SELECT userid, email FROM users';
-		$result = $db->query($listquery);
-		while ($row = $result->fetch_assoc()) {
-			if (isset($_POST[$row['userid']])) {
-				$_SESSION['viewuserid'] = $row['userid'];
-				$_SESSION['viewemail'] = $row['email'];
- 				break;
-			}
+
+	$listquery = 'SELECT userid, email FROM users';
+	$result = $db->query($listquery);
+	while ($row = $result->fetch_assoc()) {
+		if (isset($_POST[$row['userid']])) {
+			$_SESSION['viewuserid'] = $row['userid'];
+			$_SESSION['viewemail'] = $row['email'];
+				break;
 		}
 	}
+
 
 	if (isset($_POST['connected'])) {
 		$tutor = 0;
@@ -30,7 +30,7 @@
 
 		$insquery = 'INSERT INTO connections (`tutorid`, `studentid`, `subject`) VALUES (?,?,?)';
 		$stmt = $db->prepare($insquery);
-		$stmt->bind_params($tutor, $student, $_SESSION['searchSubject']);
+		$stmt->bind_param("iis", $tutor, $student, $_SESSION['searchSubject']);
 		$stmt->execute();
 		$stmt->close();
 
@@ -60,7 +60,7 @@
 	$infoquery = 'SELECT * FROM users WHERE userid = "' . $_SESSION['viewuserid'] . '"';
 	$result = $db->query($infoquery);
 	$info = $result->fetch_assoc();
-	echo '<h2> ' . $info['first_names'] . ' ' . ' </h2>';
+	echo '<h2> ' . $info['first_names'] . ' ' . $info['last_name'].  ' </h2>';
 	echo '<p> Email: ' . $info['email'] . '</p>';
 	echo '<p> Description: ' . $info['description'] . '</p>';
 	echo '<p> Year: ' . $info['year'] . '</p>';
@@ -74,7 +74,7 @@
 	}
 	$isconn = $db->query($conquery);
 	if (!($isconn->fetch_assoc())) {
-		echo '<form action="viewprofile.php" method="post">'
+		echo '<form action="viewprofile.php" method="post">';
 		echo '<input type="submit" name="connected" value="Connect"/></form>';
 	}
 
