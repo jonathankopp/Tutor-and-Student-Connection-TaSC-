@@ -9,22 +9,25 @@
 	$date = date('Y-m-d H:i:s');
 	if (isset($_POST["postreview"])) {
 		if (!isset($_POST['review'])) {
-			$insertquery = 'INSERT INTO reviews (`revieweremail`, `reviewedemail`, `createdat`, `rating`) VALUES (?,?,?,?)';
+			echo "1";
+			$insertquery = 'INSERT INTO reviews (`revieweremail`, `reviewedemail`, `createdat`, `rating`) VALUES (?,?,?,?);';
 			$stmt = $db->prepare($insertquery);
-			$stmt->bind_param($_SESSION['uemail'], $_SESSION['viewemail'], $date, $_POST['rating']);
+			$stmt->bind_param("sssi", $_SESSION['uemail'], $_SESSION['viewemail'], $date, $_POST['rating']);
 			$stmt->execute();
 			$stmt->close();
 
 		} else {
-			$insertquery = 'INSERT INTO reviews (`revieweremail`, `reviewedemail`, `createdat`, `rating`) VALUES (?,?,?,?)';
+			echo "2";
+			$insertquery = 'INSERT INTO reviews (`revieweremail`, `reviewedemail`, `createdat`, `rating`) VALUES (?,?,?,?);';
 						$insertquery = 'INSERT INTO reviews (`revieweremail`, `reviewedemail`, `createdat`, `rating`, `review`) VALUES (?,?,?,?,?)';
 			$stmt = $db->prepare($insertquery);
-			$stmt->bind_param($_SESSION['uemail'], $_SESSION['reviewedemail'], $date, $_POST['rating'], $_POST['review']);
+			$stmt->bind_param("sssis", $_SESSION['uemail'], $_SESSION['reviewedemail'], $date, $_POST['rating'], $_POST['review']);
 			$stmt->execute();
 			$stmt->close();
+			echo "here";
 		}
 
-		header('Location: viewprofile.php');
+		//header('Location: viewprofile.php');
 	}
 ?>
 
