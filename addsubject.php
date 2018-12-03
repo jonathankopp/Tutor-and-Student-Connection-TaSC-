@@ -43,18 +43,20 @@
 		</div>
 	</h1>
 
-
+	Add a subject:
 	<form action="addsubject.php" method="post">
 		<select name="addsubject">
 			<?php
-			$subquery = 'SELECT course FROM subject EXCEPT ';
-			$subquery .= 'SELECT course FROM ' . $table . ' WHERE userid = "' . $_SESSION['userid'] . '"';
-			$result =$db->query($subquery);
+			$subquery = 'SELECT course FROM subject WHERE course NOT IN (';
+			$subquery .= 'SELECT course FROM ' . $table . ' WHERE userid = ' . $_SESSION['userid'] . ');';
+			echo $subquery;
+			$result = $db->query($subquery);
 			while($row=$result->fetch_assoc()) {
 				echo '<option value="' . $row['course'] . '">'.$row['course'] . ' </option>';
 			}
 			?>
 		</select>
+		<input type="submit" name="add" value="Add Subject"/>
 	</form>
 </body>
 
