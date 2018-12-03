@@ -8,8 +8,8 @@
 	date_default_timezone_set("America/New_York");
 	$date = date('Y-m-d H:i:s');
 	if (isset($_POST["postreview"])) {
-		if (!isset($_POST['review'])) {
-			echo "1";
+		if (trim($_POST['review'])=="") {
+			//echo "1";
 			$insertquery = 'INSERT INTO reviews (`revieweremail`, `reviewedemail`, `createdat`, `rating`) VALUES (?,?,?,?);';
 			$stmt = $db->prepare($insertquery);
 			$stmt->bind_param("sssi", $_SESSION['uemail'], $_SESSION['viewemail'], $date, $_POST['rating']);
@@ -17,17 +17,16 @@
 			$stmt->close();
 
 		} else {
-			echo "2";
-			$insertquery = 'INSERT INTO reviews (`revieweremail`, `reviewedemail`, `createdat`, `rating`) VALUES (?,?,?,?);';
-						$insertquery = 'INSERT INTO reviews (`revieweremail`, `reviewedemail`, `createdat`, `rating`, `review`) VALUES (?,?,?,?,?)';
+			//echo "2";
+			$insertquery = 'INSERT INTO reviews (`revieweremail`, `reviewedemail`, `createdat`, `rating`, `review`) VALUES (?,?,?,?,?);';
 			$stmt = $db->prepare($insertquery);
-			$stmt->bind_param("sssis", $_SESSION['uemail'], $_SESSION['reviewedemail'], $date, $_POST['rating'], $_POST['review']);
+			$stmt->bind_param("sssis", $_SESSION['uemail'], $_SESSION['viewemail'], $date, $_POST['rating'], $_POST['review']);
 			$stmt->execute();
 			$stmt->close();
-			echo "here";
+			//echo "here";
 		}
 
-		//header('Location: viewprofile.php');
+		header('Location: viewprofile.php');
 	}
 ?>
 
