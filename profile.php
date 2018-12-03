@@ -26,6 +26,18 @@
 	<div class="sidebar">
 		<a id="navlink" href="forum.php"> Discussion Forum </a>
 		<a id="logout" href="index.php"> Logout </a>
+		<form action="find.php" method="post">
+			<input type="submit" name="findstudent" value="Find a Student"/>
+		</form>
+		<form action="find.php" method="post">
+			<input type="submit" name="findtutor" value="Find a Tutor"/>
+		</form>
+		<form action="addsubject.php" method="post">
+			<input type="submit" name="tutorsubject" value="Add a subject to tutor"/>
+		</form>
+		<form action="addsubject.php" method="post">
+			<input type="submit" name="studentsubject" value="Add a subject to find help in"/>
+		</form>
 	</div>
     <div class="connections">
         <h2> Personal Info </h2>
@@ -262,19 +274,7 @@
 			?>
 
 	</div>
-	<div class="courses">
-		<form action="find.php" method="post">
-			<input type="submit" name="findstudent" value="Find a Student"/>
-		</form>
-		<form action="find.php" method="post">
-			<input type="submit" name="findtutor" value="Find a Tutor"/>
-		</form>
-		<form action="addsubject.php" method="post">
-			<input type="submit" name="tutorsubject" value="Add a subject to tutor"/>
-		</form>
-		<form action="addsubject.php" method="post">
-			<input type="submit" name="studentsubject" value="Add a subject to find help in"/>
-		</form>
+
 
 </body>
 
