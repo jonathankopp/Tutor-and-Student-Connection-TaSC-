@@ -109,8 +109,6 @@
 			</div>
 		</fieldset>
 	</form>
-	<button class="btn btn-light" type = "button">Forgot Email/Password?</button>
-	<br>
 	Don't have an account? <a href="signup.php"> Register </a>
   </section>
 </body>

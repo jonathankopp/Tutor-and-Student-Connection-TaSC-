@@ -37,6 +37,7 @@
 	  	$firstNames = htmlspecialchars(trim($_POST["firstNames"]));  
  		$lastName = htmlspecialchars(trim($_POST["lastName"]));
 	  	$password = htmlspecialchars(trim($_POST["new_password"]));
+	  	$vpassword = htmlspecialchars(trim($_POST["verify_password"]));
 	  	$email = htmlspecialchars(trim($_POST["new_email"]));
 	  	$year = htmlspecialchars(trim($_POST["year"]));
 	  	$subjects = htmlspecialchars(trim($_POST["subject"]));
@@ -61,17 +62,21 @@
 	    	$errors .= '<li>password may not be blank</li>';
 	    	if ($focusId == '') $focusId = '#new_password';
 	    }
+	    if ($vpassword == '') {
+	    	$errors .= '<li>Verify password may not be blank</li>';
+	    	if ($focusId == '') $focusId = '#verify_password';
+	    }
 	    if ($email == '') {
 	    	$errors .= '<li>email may not be blank</li>';
 	    	if ($focusId == '') $focusId = '#new_email';
 	    }
-	    if ($year == '') {
-	    	$errors .= '<li>year may not be blank</li>';
-	    	if ($focusId == '') $focusId = '#year';
-	    }
 	    if ($description == '') {
 	    	$errors .= '<li>Description may not be blank</li>';
 	    	if ($focusId == '') $focusId = '#userName';
+	    }
+	    if ($password != $vpassword && $password != "") {
+	    	$errors .= '<li>passwords do not match</li>';
+	    	if ($focusId == '') $focusId = '#new_password';
 	    }
 	    if ($errors != '') { //prints out any errors
 	      echo '<div class="messages"><h4>Please correct the following errors:</h4><ul>';
@@ -141,6 +146,12 @@
             <span class="righttooltiptext">Your password should be a combination of letters and symbols</span>
             <input type="password" size="60" value="" name="new_password" id="new_password"/>
         </div></br>
+
+        <label class="field tooltip">Verify Password</label></br>
+        <div class="value tooltip">
+            <span class="righttooltiptext">Your password should be a combination of letters and symbols</span>
+            <input type="password" size="60" value="" name="verify_password" id="verify_password"/>
+        </div></br>
         
         <label class="field tooltip">Email Address</label></br>
         <div class="value tooltip">
@@ -150,7 +161,14 @@
 
         <label class="field tooltip">Year</label></br>
         <div class="value">
-            <input type="text" size="60" value="" name="year" id="year"/>
+          <select name="year" id="year">
+          	<option value="2018" selected>2018</option>
+          	<option value="2019">2019</option>
+          	<option value="2020">2020</option>
+          	<option value="2021">2021</option>
+          	<option value="2022">2022</option>
+          	<option value="2023">2023</option>
+          </select>
         </div></br>
 
         <label class="field">Description</label></br>
