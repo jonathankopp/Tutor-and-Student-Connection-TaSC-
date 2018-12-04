@@ -42,10 +42,22 @@
 <body>
 	<ul id="slide-out" class="sidenav">	
 		<li><a class="nav-item" href="forum.php">Discussion Forum </a></li>
-		<li><a class="nav-item" href="find.php" name="findstudent" value="Find a Student">Find a Student</a></li>
-		<li><a class="nav-item" href="find.php" name="findtutor" value="Find a Tutor">Find a Tutor</a></li>
-		<li><a class="nav-item" href="addsubject.php">Add a subject to tutor</a></li>
-		<li><a class="nav-item" href="addsubject.php">Add a subject to find help in</a></li>
+<!--		<li><a class="nav-item" href="find.php" name="findstudent" value="Find a Student">Find a Student</a></li>-->
+		<form action="find.php" method="post">
+			<input type="submit" name="findstudent" value="Find a Student"/>
+		</form>
+<!--		<li><a class="nav-item" href="find.php" name="findtutor" value="Find a Tutor">Find a Tutor</a></li>-->
+		<form action="find.php" method="post">
+			<input type="submit" name="findtutor" value="Find a Tutor"/>
+		</form>
+<!--		<li><a class="nav-item" href="addsubject.php">Add a subject to tutor</a></li>-->
+		<form action="addsubject.php" method="post">
+			<input type="submit" name="tutorsubject" value="Add a subject to tutor"/>
+		</form>
+<!--		<li><a class="nav-item" href="addsubject.php">Add a subject to find help in</a></li>-->
+		<form action="addsubject.php" method="post">
+			<input type="submit" name="studentsubject" value="Add a subject to find help in"/>
+		</form>
 		<li class="bottom"><a id="bottom" href="index.php"> Logout </a></li>
 	</ul>
   <div class="jumbotron">
