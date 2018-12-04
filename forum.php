@@ -19,18 +19,87 @@ showing the relevant information that follows. -->
 	
 ?>
 <head>
-	<title>TaSC</title>
-	<link href="Resources/forum.css" rel="stylesheet" type="text/css"/>
-	<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
-</head>
+		<title>Discussion Forum</title>
+		<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
+		<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
+		  <!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+      
+		<script>
+		  document.addEventListener('DOMContentLoaded', function() {
+			var elems = document.querySelectorAll('.sidenav');
+			var instances = M.Sidenav.init(elems);
+		  });
+		  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+		  // var collapsibleElem = document.querySelector('.collapsible');
+		  // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+		  // Or with jQuery
+		  $(document).ready(function(){
+			$('.sidenav').sidenav();
+		  });
+		</script>
+	</head>
+
 
 
 <body>
+<!--
 	<h1> 
 		<div id="header"> Tutor and Student Connection 
 		</div>
 	</h1>
+-->
+	<ul id="slide-out" class="sidenav">
+		<li> <a id ="post" href="makepost.php">New Post</a></li>
+		<li><a class="nav-item" href="profile.php">My Profile</a></li>
+	  <!-- below is the php to dynamically pull from the database and display all the 
+	  subjects the user is signed up for, in order to view their respective threads -->
+	  <?php
+	  	//setting up database connection
+	  	@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+	  	
+	  	//Querying the database for all the course names that the user is signed up for
+	  	//this uses the "$_SESSION['userid']" which stores the current users id, which
+	  	//is setup during login and is accessable all througout the code
+	  	$q="select course from student_subjects where userid=".'"'.$_SESSION['userid'].'" UNION select course from tutor_subjects where userid='.'"'.$_SESSION['userid'].'"';
+	  	$prepCourses=$db->query($q);
+		  $numRecords = $prepCourses->num_rows;
 
+		// $_SESSION['course']=1;
+		for($i=0; $i<$numRecords; $i++){
+			$course=$prepCourses->fetch_assoc();
+			if($i==0){
+				//Defaults the subject in view to the first one the user
+				//is signed up for
+				$_SESSION['course']=$course['course'];
+			}
+
+			//Dynamically creates the html for each "link"
+			//link set up so that each respective course's id gets 
+			//sent to the url so when using $_GET['course'], the right courses
+			//id is there so that it can be dynamically pulled for proper viewing.
+			echo "<li><a href='forum.php?course=".$course['course']."'>".$course['course']."</a></li>";
+		}
+		//sets the current $_SESSION['course'] to the course that was selected
+		if (isset($_GET['course'])) {
+    		setSession($_GET['course']);
+  		}
+	  ?>
+		<li class="bottom"><a id="logout" href="index.php">Logout</a></li> 
+	</ul>
+
+	  <div class="jumbotron">
+	  	<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
+		<div>
+		  <h1 class="title">Tutor and Student Connection</h1>
+		</div>
+	  </div>
+  
 	<div class="sidenav">
 	  <a id="navlink" href="profile.php">Profile Page</a>
 	  <a id ="post" href="makepost.php">New Post</a>

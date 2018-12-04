@@ -34,11 +34,6 @@ section {
   margin-bottom: 20px;
 }
 
-form{
-    padding-top: 15px;
-	padding-bottom: 5px;
-}
-
 legend{
 	font-weight: bold;
 }
@@ -49,14 +44,12 @@ legend{
 
 .value{
 	border-bottom: 5px;
-  margin-bottom: 5px;
-
+  margin-bottom: 7px;
 }
 
 .tooltip {
     position: relative;
     display: inline-block;
-    
 }
 
 .tooltip .bottomtooltiptext {
