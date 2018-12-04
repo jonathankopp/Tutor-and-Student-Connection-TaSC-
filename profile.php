@@ -258,7 +258,7 @@
     </div>
   <div class="box">
     <div class="connections">
-		<h2> Connections </h2>
+		<h3> Connections </h3>
 
 			<?php
 
