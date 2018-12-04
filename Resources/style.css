@@ -169,3 +169,12 @@ a#discussion {
 .findPadding {
   padding: 20px;
 }
+
+.collapsible {
+	border-top: 0px !important;
+	border: 0px !important;
+}
+
+.collapsible-header h4{
+	padding: 0px;
+}
