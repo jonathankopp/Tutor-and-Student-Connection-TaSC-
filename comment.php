@@ -157,10 +157,11 @@
 			    $query='select * from comments where postid='.$_SESSION['postid'];
 			    $result = $db->query($query);
 			    $numRecords = $result->num_rows;
+				  echo '<a id="commentsHeader">' . "Comments:" . '</a><div class="commentsSection">';
 			    for($i=0; $i<$numRecords; $i++){
 		    		$post = $result->fetch_assoc();
 		    		echo "<ul>";
-						echo '<a id="discussion">' . "Comment:" . '</a>';
+//						echo '<a id="discussion">' . "Comment:" . '</a>';
 
 		    		echo '<li class="internalDisc">' . $post['comment']. '</li>';
 						echo '<li class="author">'.$post['commentdate'].'</li>';
@@ -171,6 +172,7 @@
 						echo "</ul>";
 					
 					}
+          echo "</div>";
 			}
 		?>
 	<!-- Setting up a forum in order to submit the comment to the thread that is currently being

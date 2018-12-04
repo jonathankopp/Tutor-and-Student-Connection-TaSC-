@@ -122,6 +122,8 @@ textarea {
   background: #0cb5ff;
   padding: 10px;
   padding-top: 6px;
+  width: 52px;
+  float: right;
 }
 
 input {
@@ -134,9 +136,31 @@ input {
   font-weight: 500;
   width: 100%;
   text-align: left;
+  font-size: 98% !important;
 }
 
 input:hover {
   background-color: rgba(0, 0, 0, 0.05);
   cursor: pointer;
+}
+
+.newpost {
+  padding-top: 20px;
+	width: 75%;
+}
+
+div#discussion {
+  padding: 15px;
+}
+
+a#discussion {
+  font-size: 140%;
+}
+
+#commentsHeader {
+  font-size: 140%;
+}
+
+.commentsSection {
+  padding-left: 3%;
 }
