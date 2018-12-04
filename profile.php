@@ -214,6 +214,7 @@
         </div>
     </div>
 	<div class="connections">
+    <div class="box">
         <h2> Classes </h2>
         <?php
 
@@ -246,9 +247,10 @@
 
 
         ?>
-
     </div>
-	<div class="connections">
+    </div>
+  <div class="box">
+    <div class="connections">
 		<h2> Connections </h2>
 
 			<?php
@@ -355,7 +357,8 @@
 			?>
 
 		</div>
-	</div>
+  </div>
+  </div>
 
 </body>
 

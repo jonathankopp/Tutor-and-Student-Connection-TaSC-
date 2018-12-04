@@ -71,7 +71,7 @@ section {
 }
 
 .posts ul {
-	padding:5%;
+	padding:2%;
 	margin:1%;
 	border-bottom: 1px solid grey;
 
@@ -87,17 +87,18 @@ section {
 
 .wrapperForum {
 	display: grid;
-	grid-template-columns: 75% 29%
+	grid-template-columns: 75% 29%;
 	grid-gap: 1px;
+  
 }
 .wrapperProfile{
 	display: grid;
-	grid-template-columns: 30% 69%;
+	grid-template-columns: 30% 30% 30%;
 	grid-gap: 10px;
 }
 
 .box{
-	padding-left: 2%;
+	padding-left: 5%;
 }
 .left {
   font-size: 100%;
