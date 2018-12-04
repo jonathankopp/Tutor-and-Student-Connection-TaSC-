@@ -10,7 +10,6 @@
 
 <html>
 <head>
-<head>
 	<title>Profile</title>
 	<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -39,8 +38,6 @@
 		</script>
 
 </head>
-</head>
-
 
 <body>
 	<ul id="slide-out" class="sidenav">	

@@ -36,7 +36,7 @@
 	<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
 	<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
 		  <!-- Compiled and minified CSS -->
-<!--		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
 		<!-- Compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -59,15 +59,24 @@
 </head>
 
 <body>
-	<h1> 
-			<div>
-			  <h1 class="title jumbotron">Tutor and Student Connection</h1>
-			</div>
-	</h1>
+	<ul id="slide-out" class="sidenav">		
+		<li><a class="nav-item" href="find.php">Make a Connection </a></li>
+		<li><a class="nav-item" href="forum.php"> Discussion Forum </a></li>
+		<li><a class="nav-item" href="reviews.php">Review</a></li>
+		<li><a class="nav-item" href="profile.php">My Profile</a></li>
+		<li class="bottom"><a id="logout" href="index.php">Logout</a></li>
+	</ul>
+	 <div class="jumbotron">
+		<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
+		<div>
+		  <h1 class="title">Tutor and Student Connection</h1>
+
+		</div>
+	</div>
   
 	Add a subject:
 	<form action="addsubject.php" method="post">
-		<select name="addsubject">
+		<select class="browser-default" name="addsubject">
 			<?php
 			$subquery = 'SELECT course FROM subject WHERE course NOT IN (';
 			$subquery .= 'SELECT course FROM ' . $table . ' WHERE userid = ' . $_SESSION['userid'] . ');';
