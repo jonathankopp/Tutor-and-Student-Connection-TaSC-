@@ -231,7 +231,7 @@
 
 	?>
 
-<a href="makereview.php"><h6>Make a Review</h6></a>
+<a  href="makereview.php"><h6 class="review">Make a Review</h6></a>
 </body>
 
 
