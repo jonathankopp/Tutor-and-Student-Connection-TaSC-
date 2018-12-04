@@ -8,7 +8,7 @@
 
 <html>
 <head>
-<title>TaSC</title>
+	<title>TaSC</title>
 	<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
 		<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
 		  <!-- Compiled and minified CSS -->
@@ -24,25 +24,27 @@
 			var elems = document.querySelectorAll('.sidenav');
 			var instances = M.Sidenav.init(elems, options);
 		  });
+
 		  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
 		  // var collapsibleElem = document.querySelector('.collapsible');
 		  // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+
 		  // Or with jQuery
+
 		  $(document).ready(function(){
 			$('.sidenav').sidenav();
 		  });
 		</script>
 </head>
 <body>
-    <ul id="slide-out" class="sidenav">
+	  
+	  <ul id="slide-out" class="sidenav">
 		<li><a class="nav-item" href="find.php">Make a Connection </a></li>
-		<li><a class="nav-item" href="reviews.php">Reviews</a></li>
 		<li><a class="nav-item" href="makepost.php">Make a Post</a></li>
 		<li><a class="nav-item" href="profile.php">My Profile</a></li>
 		<li><a id="navlink" href="forum.php">Back</a></li>
 		<li class="bottom"><a id="logout" href="index.php">Logout</a></li> 
 	</ul>
-
 	  <div class="jumbotron">
 	  	<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
 		<div>

@@ -36,46 +36,43 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 		  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-      
 		<script>
 		  document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.sidenav');
 			var instances = M.Sidenav.init(elems, options);
 		  });
+
 		  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
 		  // var collapsibleElem = document.querySelector('.collapsible');
 		  // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+
 		  // Or with jQuery
+
 		  $(document).ready(function(){
-        $('.sidenav').sidenav();
-//        $('select').material_select();
+			$('.sidenav').sidenav();
 		  });
 		</script>
-
-</head>
+	</head>
 
 
 	<body>
-	<ul id="slide-out" class="sidenav">	
-		<li><a class="nav-item" href="forum.php">Discussion Forum </a></li>
-		<li><a class="nav-item" href="profile.php">My Profile</a></li>
-		<li class="bottom"><a id="bottom" href="index.php"> Logout </a></li>
-	</ul>
-  <div class="jumbotron">
-		<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
-		<div>
-		  <h1 class="title">Tutor and Student Connection</h1>
+		<ul id="slide-out" class="sidenav">
+			<li><a id="navlink" href="forum.php"> Discussion Forum </a></li>
+			<li><a class="nav-item" href="profile.php">My Profile</a></li>
+		<li class="bottom"><a id="logout" href="index.php">Logout</a></li>
+		</ul>
+		<div class="jumbotron">
+			<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
+			<div>
+			  <h1 class="title">Tutor and Student Connection</h1>
+			</div>
 		</div>
-  </div>
-
-
-<!--
-		<div class="sidebar">
-			<a id="navlink" href="forum.php"> Discussion Forum </a>
-			<a href="profile.php"> Back to Profile </a>
-			<a id="logout" href="index.php"> Logout </a>
-		</div>
--->
+		<div class="subject">
+			<form name="search" action="find.php" method="get">
+				<label class="field">Search for a subject:</label>
+				<input type="text" size="60" height="40" value="" id="subject" name="subject"/>
+				<input type="submit" value="Search" id="search" name="search"/>	
+			</form
 
 		<div class="subject">
 			<form name="search" action="find.php" method="post">
@@ -211,3 +208,4 @@
 				}
 
  -->
+ ?>
