@@ -25,7 +25,7 @@
 			var elems = document.querySelectorAll('.sidenav');
 			var instances = M.Sidenav.init(elems);
 			var collapseElems = document.querySelectorAll('.collapsible');
-			var instant = M.Collapsible.init(collapseElems);
+			var instant = M.Collapsible.init(collapseElems, {accordion: false});
 		  });
 		  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
 		  // var collapsibleElem = document.querySelector('.collapsible');
@@ -233,19 +233,23 @@
             } else {
                 $dbOk = true;
             }
+			echo "<ul class='collapsible expandable'>";
 			$studentQ='SELECT `course` FROM student_subjects WHERE userid='.$_SESSION['userid'].';';
 			$studentCall = $db->query($studentQ);
-			echo "<ul class='collapsible'><li><h6 class= 'collapsible-header'>Student Classes:</h6>";
+			echo "<li><h6 class= 'collapsible-header'>Student Classes:</h6>";
 			while($row=$studentCall->fetch_assoc()){
-				echo "<p class='collapsible-body'>". $row["course"]. "</p></li>";
+				echo "<p class='collapsible-body'>". $row["course"]. "</p>";
 			}
-
+			
+			echo "</li>";
 			$tutorQ='SELECT `course` FROM tutor_subjects WHERE userid='.$_SESSION['userid'].';';
 			$tutorCall = $db->query($tutorQ);
 			echo "<li><h6 class= 'collapsible-header'>Tutor Classes:</h6>";
 			while($row=$tutorCall->fetch_assoc()){
-				echo "<p class='collapsible-body'>". $row["course"]. "</p></li></ul>";
+				echo "<p class='collapsible-body'>". $row["course"]. "</p>";
 			}
+			echo "</li>";
+			echo "</ul>";
 
 
 
@@ -311,9 +315,11 @@
 					echo $subj["subject"] . "</p>";
 
 					echo '<form class="collapsible-body" name="viewtutor" action="viewprofile.php" method="post">';
-					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile"/></li>';
+					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile"/>';
 					echo '</form>';
 				}
+				
+				echo "</li></ul>";
 
 
 				//uses the same method as above but matches userid to studentid instead of tutorid
@@ -348,9 +354,11 @@
 
 					
 					echo '<form class= "collapsible-body" name="viewstudent" action="viewprofile.php" method="post">';
-					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile" id="viewprofile"/></li>';
+					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile" id="viewprofile"/>';
 					echo '</form>';
         }
+		
+			echo "</li></ul>";
 
 
 			?>
