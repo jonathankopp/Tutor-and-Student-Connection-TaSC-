@@ -49,7 +49,6 @@
 		<li><a class="nav-item" href="find.php" name="findtutor" value="Find a Tutor">Find a Tutor</a></li>
 		<li><a class="nav-item" href="addsubject.php">Add a subject to tutor</a></li>
 		<li><a class="nav-item" href="addsubject.php">Add a subject to find help in</a></li>
-		<li><a class="nav-item" href="profile.php">My Profile</a></li>
 		<li><a id="bottom" href="index.php"> Logout </a></li>
 	</ul>
   <div class="jumbotron">

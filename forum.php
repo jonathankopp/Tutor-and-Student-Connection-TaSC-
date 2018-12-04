@@ -55,9 +55,41 @@ showing the relevant information that follows. -->
 	</h1>
 -->
 	<ul id="slide-out" class="sidenav">
-		<li><a id="navlink" href="connect.php">Connect Page</a></li>
 		<li> <a id ="post" href="makepost.php">New Post</a></li>
 		<li><a class="nav-item" href="profile.php">My Profile</a></li>
+	  <!-- below is the php to dynamically pull from the database and display all the 
+	  subjects the user is signed up for, in order to view their respective threads -->
+	  <?php
+	  	//setting up database connection
+	  	@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+	  	
+	  	//Querying the database for all the course names that the user is signed up for
+	  	//this uses the "$_SESSION['userid']" which stores the current users id, which
+	  	//is setup during login and is accessable all througout the code
+	  	$q="select course from student_subjects where userid=".'"'.$_SESSION['userid'].'" UNION select course from tutor_subjects where userid='.'"'.$_SESSION['userid'].'"';
+	  	$prepCourses=$db->query($q);
+		  $numRecords = $prepCourses->num_rows;
+
+		// $_SESSION['course']=1;
+		for($i=0; $i<$numRecords; $i++){
+			$course=$prepCourses->fetch_assoc();
+			if($i==0){
+				//Defaults the subject in view to the first one the user
+				//is signed up for
+				$_SESSION['course']=$course['course'];
+			}
+
+			//Dynamically creates the html for each "link"
+			//link set up so that each respective course's id gets 
+			//sent to the url so when using $_GET['course'], the right courses
+			//id is there so that it can be dynamically pulled for proper viewing.
+			echo "<li><a href='forum.php?course=".$course['course']."'>".$course['course']."</a></li>";
+		}
+		//sets the current $_SESSION['course'] to the course that was selected
+		if (isset($_GET['course'])) {
+    		setSession($_GET['course']);
+  		}
+	  ?>
 		<li class="bottom"><a id="logout" href="index.php">Logout</a></li> 
 	</ul>
 
