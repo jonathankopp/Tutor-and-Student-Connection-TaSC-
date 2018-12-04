@@ -23,9 +23,11 @@
 
 
 <html>
-	<head>
-		<title>TaSC Connections</title>
-		<link href="Resources/find-style.css" rel="stylesheet" type="text/css"/>
+<head>
+	<title>TaSC</title>
+	<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
 		<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
 		  <!-- Compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -34,10 +36,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 		  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-		
-		
 		<script>
-
 		  document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.sidenav');
 			var instances = M.Sidenav.init(elems, options);
@@ -59,7 +58,6 @@
 	<body>
 		<ul id="slide-out" class="sidenav">
 			<li><a id="navlink" href="forum.php"> Discussion Forum </a></li>
-			<li><a class="nav-item" href="reviews.php">Reviews</a></li>
 			<li><a class="nav-item" href="profile.php">My Profile</a></li>
 		<li class="bottom"><a id="logout" href="index.php">Logout</a></li>
 		</ul>
@@ -74,16 +72,13 @@
 				<label class="field">Search for a subject:</label>
 				<input type="text" size="60" height="40" value="" id="subject" name="subject"/>
 				<input type="submit" value="Search" id="search" name="search"/>	
-			</form>
-		</div>
+			</form
 
 		<div class="subject">
 			<form name="search" action="find.php" method="post">
 				<label class="field">Choose a Subject:</label>
-				<select name="subject">
+				<select class="browser-default" name="subject">
 					<?php
-					
-
 					$subjectquery = 'SELECT course FROM ' . $table . ' WHERE userid="' . $_SESSION['userid'] . '"';
 					$result = $db->query($subjectquery);
 					while($subjects = $result->fetch_assoc()) {

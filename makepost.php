@@ -46,6 +46,7 @@ variables -->
 			  <h1 class="title">Tutor and Student Connection</h1>
 			</div>
 		</div>
+  
   <section>
 	<form id="old_user" name="new_user" action="makepost.php" method="post" onsubmit="return validate(this);">
 		<fieldset>

@@ -10,9 +10,7 @@
 
 <html>
 <head>
-<head>
-	<title>TaSC Profile</title>
-	<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
+	<title>TaSC Profile</title>\	<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
 		<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
@@ -39,16 +37,25 @@
 		</script>
 
 </head>
-</head>
-
 
 <body>
 	<ul id="slide-out" class="sidenav">	
 		<li><a class="nav-item" href="forum.php">Discussion Forum </a></li>
-		<li><a class="nav-item" href="find.php" name="findstudent" value="Find a Student">Find a Student</a></li>
-		<li><a class="nav-item" href="find.php" name="findtutor" value="Find a Tutor">Find a Tutor</a></li>
-		<li><a class="nav-item" href="addsubject.php">Add a subject to tutor</a></li>
-		<li><a class="nav-item" href="addsubject.php">Add a subject to find help in</a></li>
+		<li><form action="find.php" method="post">
+			<input type="submit" name="findstudent" value="Find a Student"/>
+		</form></li>
+    
+		<li><form action="find.php" method="post">
+			<input type="submit" name="findtutor" value="Find a Tutor"/>
+		</form></li>
+    
+		<li><form action="addsubject.php" method="post">
+			<input type="submit" name="tutorsubject" value="Add a subject to tutor"/>
+		</form></li>
+    
+		<li><form action="addsubject.php" method="post">
+			<input type="submit" name="studentsubject" value="Add a subject to find help in"/>
+		</form></li>
 		<li class="bottom"><a id="bottom" href="index.php"> Logout </a></li>
 	</ul>
   <div class="jumbotron">

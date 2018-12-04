@@ -20,7 +20,6 @@
 
       
 		<script>
-
 		  document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.sidenav');
 			var instances = M.Sidenav.init(elems, options);
@@ -41,19 +40,27 @@
 	  
 	  <ul id="slide-out" class="sidenav">
 		<li><a class="nav-item" href="find.php">Make a Connection </a></li>
-		<li><a class="nav-item" href="reviews.php">Reviews</a></li>
 		<li><a class="nav-item" href="makepost.php">Make a Post</a></li>
 		<li><a class="nav-item" href="profile.php">My Profile</a></li>
 		<li><a id="navlink" href="forum.php">Back</a></li>
 		<li class="bottom"><a id="logout" href="index.php">Logout</a></li> 
 	</ul>
-
 	  <div class="jumbotron">
 	  	<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
 		<div>
 		  <h1 class="title">Tutor and Student Connection</h1>
 		</div>
 	  </div>
+  
+<!--
+	<div class="sidenav">
+	  <a id="navlink" href="profile.php">Profile Page</a>
+	  <a id="ds" href="forum.php">Back</a>
+	</div>
+
+	<h1><div id="header"> Tutor and Student Connection</div></h1>
+  
+-->
 	<div id="discussion">
 		<!-- below php dynamically pulls all relevant comments from the database -->
 		<?php
