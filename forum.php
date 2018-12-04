@@ -317,7 +317,16 @@ showing the relevant information that follows. -->
 					//link set up so that each respective course's id gets 
 					//sent to the url so when using $_GET['course'], the right courses
 					//id is there so that it can be dynamically pulled for proper viewing.
-					echo "<li class='classList'><a href='forum.php?course=".$course['course']."'>".$course['course']."</a></li>";
+					if(isset($_GET['course'])){
+						if($_GET['course']==$course['course']){
+							echo "<li class='classList'><a href='forum.php?course=".$course['course']."'>--> ".$course['course']. "</a></li>";
+						}else{
+							echo "<li class='classList'><a href='forum.php?course=".$course['course']."'>".$course['course']."</a></li>";
+						}
+					}else{
+						echo "<li class='classList'><a href='forum.php?course=".$course['course']."'>".$course['course']."</a></li>";
+					}
+					
 				}
 				
 				//sets the current $_SESSION['course'] to the course that was selected
