@@ -314,8 +314,8 @@
 					$subj = $subjresults->fetch_assoc();
 					echo $subj["subject"] . "</p>";
 
-					echo '<form class="collapsible-body" name="viewtutor" action="viewprofile.php" method="post">';
-					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile"/>';
+					echo '<form class="collapsible-body" action="viewprofile.php" method="post">';
+					echo '<input type="submit" name="viewtutor'.$info['userid'] .'" value="View Profile"/>';
 					echo '</form>';
 				}
 				
@@ -353,8 +353,8 @@
 					echo $subj["subject"] . "</p>";
 
 					
-					echo '<form class= "collapsible-body" name="viewstudent" action="viewprofile.php" method="post">';
-					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile" id="viewprofile"/>';
+					echo '<form class= "collapsible-body" action="viewprofile.php" method="post">';
+					echo '<input type="submit" name="viewstudent'.$info['userid'] .'" value="View Profile" id="viewprofile"/>';
 					echo '</form>';
         }
 		
