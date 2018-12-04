@@ -147,7 +147,14 @@ input:hover {
 
 .newpost {
   padding-top: 20px;
-	width: 90%;
+  padding-left: 5%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+	width: 65%;
+  background: white;
+/*  border-top: 1px solid grey;*/
+/*  border-radius: 10px;*/
 }
 
 div#discussion {

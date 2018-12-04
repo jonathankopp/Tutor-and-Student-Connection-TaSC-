@@ -50,7 +50,6 @@ showing the relevant information that follows. -->
 <body>
 
 	<ul id="slide-out" class="sidenav">
-		<li> <a id ="post" href="makepost.php">New Post</a></li>
 		<li><a class="nav-item" href="profile.php">My Profile</a></li>
 		<li class="bottom"><a id="logout" href="index.php">Logout</a></li> 
 	</ul>
@@ -293,7 +292,7 @@ showing the relevant information that follows. -->
 				//Querying the database for all the course names that the user is signed up for
 				//this uses the "$_SESSION['userid']" which stores the current users id, which
 				//is setup during login and is accessable all througout the code
-				$q="select course from student_subjects where userid=".'"'.$_SESSION['userid'].'" UNION select course from tutor_subjects where userid='.'"'.$_SESSION['userid'].'"';
+				$q="select course from student_subjects where userid=".'"'.$_SESSION['userid'].'"';
 				$prepCourses=$db->query($q);
 				$numRecords = $prepCourses->num_rows;
 
@@ -311,6 +310,18 @@ showing the relevant information that follows. -->
 					//sent to the url so when using $_GET['course'], the right courses
 					//id is there so that it can be dynamically pulled for proper viewing.
 					echo "<li><a href='forum.php?course=".$course['course']."'>".$course['course']."</a></li>";
+				}
+				$qT="select course from tutor_subjects where userid=".'"'.$_SESSION['userid'].'"';
+				$prepCoursesT=$db->query($qT);
+				$numRecordsT = $prepCoursesT->num_rows;
+				for($i=0; $i<$numRecordsT; $i++){
+					$courseT=$prepCoursesT->fetch_assoc();
+				
+					//Dynamically creates the html for each "link"
+					//link set up so that each respective course's id gets 
+					//sent to the url so when using $_GET['course'], the right courses
+					//id is there so that it can be dynamically pulled for proper viewing.
+					echo "<li><a href='forum.php?course=".$courseT['course']."'>".$courseT['course']."</a></li>";
 				}
 				//sets the current $_SESSION['course'] to the course that was selected
 				if (isset($_GET['course'])) {
