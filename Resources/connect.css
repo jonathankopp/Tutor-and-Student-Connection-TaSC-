@@ -19,35 +19,6 @@ h1 a:hover {
 }
 
 
-#header {
-	background: #0cb5ff;
-	color: white;
-}
-
-.sidebar a:hover {
-    color: #f1f1f1;
-}
-
-.sidebar {
-    height: 100%;
-    width: 160px;
-    position: fixed;
-
-    top: 0;
-    left: 0;
-    background-color: blue;
-    overflow-x: hidden;
-    padding-top: 20px;
-}
-
-.sidebar a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: grey;
-    display: block;
-}
-
 h2 {
 	text-align: center;
 	font-size: 2em;
@@ -59,6 +30,8 @@ h2 {
 	width: 250px;
 	margin-right: auto;
 	margin-left: auto;
+	position:fixed;
+	
 }
 .person p{
 	text-align: center;
@@ -78,6 +51,7 @@ h2 {
 }
 
 .connections {
+	position: fixed;
 	text-align: center;
 	width: 800px;
 	margin: 0 auto;
