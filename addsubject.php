@@ -75,6 +75,7 @@
 		<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
 		<div>
 		  <h1 class="title">Tutor and Student Connection</h1>
+
 		</div>
 	</div>
 
