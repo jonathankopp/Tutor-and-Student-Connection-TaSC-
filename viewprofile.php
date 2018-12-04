@@ -85,8 +85,8 @@
 <body>
   		<ul id="slide-out" class="sidenav">
 			<li><a id="navlink" href="forum.php"> Discussion Forum </a></li>
-			<li><a class="nav-item" href="profile.php">My Profile</a></li
-		<li class="bottom"><a id="bottom" href="index.php"> Logout </a></li>
+			<li><a class="nav-item" href="profile.php">My Profile</a></li>
+			<li class="bottom"><a id="bottom" href="index.php"> Logout </a></li>
 		</ul>
 		<div class="jumbotron">
 			<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
@@ -194,7 +194,7 @@
 	echo '<p> Email: ' . $info['email'] . '</p>';
 	echo '<p> Description: ' . $info['description'] . '</p>';
 	echo '<p> Year: ' . $info['year'] . '</p>';
-	echo '<p> TaSC Rating: ' . $userRank . '</p></div>';
+	echo '<p> TaSC Rating: ' . $userRank . '</p>';
 
 	$conquery = '';
 	if ($_SESSION['tutor']) {
@@ -205,7 +205,7 @@
 	$isconn = $db->query($conquery);
 	if (!($isconn->fetch_assoc()) && ($_SESSION['searchSubject'] != "")) {
 		echo '<form action="viewprofile.php" method="post">';
-		echo '<input type="submit" name="connected" value="Connect"/></form>';
+		echo '<input type="submit" name="connected" value="Connect"/></form></div>';
 	}
 
 	$avgquery = 'SELECT avg(rating) as a FROM reviews WHERE reviewedemail = "' . $info['email'] . '"';
