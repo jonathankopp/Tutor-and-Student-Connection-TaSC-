@@ -49,7 +49,7 @@
 		<li><a class="nav-item" href="find.php" name="findtutor" value="Find a Tutor">Find a Tutor</a></li>
 		<li><a class="nav-item" href="addsubject.php">Add a subject to tutor</a></li>
 		<li><a class="nav-item" href="addsubject.php">Add a subject to find help in</a></li>
-		<li><a id="bottom" href="index.php"> Logout </a></li>
+		<li class="bottom"><a id="bottom" href="index.php"> Logout </a></li>
 	</ul>
   <div class="jumbotron">
 		<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
@@ -307,7 +307,7 @@
 					echo "<p> Year: " . $info["year"] . "</p>";
 					echo "<p> " . $info["description"] . "</p>";
 					echo '<form name="viewstudent" action="viewprofile.php" method="post">';
-					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile"/>';
+					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile" id="viewprofile"/>';
 					echo '</form>';
         }
 
