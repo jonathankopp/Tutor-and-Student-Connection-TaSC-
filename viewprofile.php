@@ -190,11 +190,11 @@
 	$infoquery = 'SELECT * FROM users WHERE userid = "' . $_SESSION['viewuserid'] . '"';
 	$result = $db->query($infoquery);
 	$info = $result->fetch_assoc();
-	echo '<h2> ' . $info['first_names'] . ' ' . $info['last_name'].  ' </h2>';
+	echo '<div class="wrapperViewProf"><div class="right"><h2> ' . $info['first_names'] . ' ' . $info['last_name'].  ' </h2>';
 	echo '<p> Email: ' . $info['email'] . '</p>';
 	echo '<p> Description: ' . $info['description'] . '</p>';
 	echo '<p> Year: ' . $info['year'] . '</p>';
-	echo '<p> TaSC Rating: ' . $userRank . '</p>';
+	echo '<p> TaSC Rating: ' . $userRank . '</p></div>';
 
 	$conquery = '';
 	if ($_SESSION['tutor']) {
@@ -212,8 +212,8 @@
 
 	$avgresult = $db->query($avgquery);
 	$row = $avgresult->fetch_assoc();
-	echo '<h2> Average Rating: ' . $row['a'] . '</h2>';
-
+	echo '<div class="left"><h4><u> Average Rating: ' . $row['a'] . '</u></h4>';
+	echo '<a><h5>Reviews:<h5></a>';
 	$query = 'SELECT * FROM reviews WHERE reviewedemail = "'.$info['email'].'"';
 
 	$result = $db->query($query);
@@ -222,15 +222,15 @@
 		$uresult = $db->query($uq);
 		$urow = $uresult->fetch_assoc();
 
-		echo '<h2>' . $row["rating"] . '</h2>';
+		echo '<h4>' . $row["rating"] . '/10</h4>';
 		echo '<p>' . $row["review"] . '</p>';
-		echo "By: " . $urow["first_names"] . " " . $urow["last_name"];
-		echo $row["createdat"];
+		echo "By: " . $urow["first_names"] . " " . $urow["last_name"] . " " ;
+		echo $row["createdat"] . "</div></div>";
 	}
 
 	?>
 
-<a href="makereview.php">Make a Review</a>
+<a href="makereview.php"><h6>Make a Review</h6></a>
 </body>
 
 
