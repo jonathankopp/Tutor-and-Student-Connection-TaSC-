@@ -54,9 +54,39 @@
 
 					//if there was an upvote must upvote.
 					//TODO: IMPLEMENT INCREMENT
-					if(isset($_POST['UserId'])){
+					if(isset($_POST['commentUID'])){
 						//have to fetch users score and increment it by one.
 						// echo '<script>console.log('.$_POST['UserId'].');</script>';
+						
+						//check if liked:
+						// echo "<h3>".$_POST['commentUID']."</h3>";
+						$hasLikedQ = 'SELECT * FROM `comment_user` WHERE `postID`= '.$_GET['commentID'].';';
+						$hasLikedCall = $db->query($hasLikedQ);
+						if($hasLikedCall->num_rows ==  0){
+							//Insert into usercomment
+							$insertUCQ = 'INSERT INTO `comment_user` (`postid`,`likeID`) VALUES (?,?);';
+							$insertUCCall = $db->prepare($insertUCQ);
+							$insertUCCall->bind_param("ii", $_GET['commentID'],$_SESSION['userid']);
+							$insertUCCall->execute();
+							$insertUCCall->close();
+
+							//update user score
+							$incUserQ = 'UPDATE users SET `score` = `score` + '. 1 .' WHERE `userid`= '.$_POST['commentUID'].';';
+							$incUserCall = $db->prepare($incUserQ);
+							$incUserCall->execute();
+							$incUserCall->close();
+
+							//update comment score
+							$insertCommQ = 'UPDATE comments SET `likes` = `likes` + '. 1 .' WHERE `commentID`= '.$_GET['commentID'].';';
+							$insertCommCall = $db->prepare($insertCommQ);
+							$insertCommCall->execute();
+							$insertCommCall->close();
+						}
+	
+						
+
+
+
 					}
 
 
@@ -87,11 +117,13 @@
 			    for($i=0; $i<$numRecords; $i++){
 		    		$post = $result->fetch_assoc();
 		    		echo "<ul>";
-		   			echo '<a id="discussion">' . "Comment:" . '</a>';
+						echo '<a id="discussion">' . "Comment:" . '</a>';
+
 		    		echo '<li class="internalDisc">' . $post['comment']. '</li>';
 						echo '<li class="author">'.$post['commentdate'].'</li>';
-						echo '<form class="author" action=" comment.php?post='.$post['postid'].'" method="POST">';
-						echo '<input type="submit" value="Connect" name="UserId" id="'.$post['uid'].'"/>';
+						echo '<li class="author">Likes: '.$post['likes'].'</li>';
+						echo '<form class="author" action=" comment.php?post='.$post['postid'].'&commentID='.$post['commentID'].'" method="POST">';
+						echo '<button name="commentUID" value="'.$post['uid'].'" type=submit>upvote</button>';
 						echo '</form>';
 						echo "</ul>";
 					
