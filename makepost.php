@@ -8,7 +8,7 @@ variables -->
 
 <html>
 <head>
-	<title>New Post</title>
+	<title>TaSC</title>
 	<!--<link href="Resources/makepost.css" rel="stylesheet" type="text/css"/>-->
 	<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
 	<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
@@ -35,8 +35,6 @@ variables -->
 		</script>
 </head>
 <body>
-
-<!--	<h1><div id="header">Tutor and Student Connection</div></h1>-->
   		<ul id="slide-out" class="sidenav">
 			<li><a id="navlink" href="forum.php"> Discussion Forum </a></li>
 			<li><a class="nav-item" href="profile.php">My Profile</a></li>

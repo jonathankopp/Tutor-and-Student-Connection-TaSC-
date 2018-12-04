@@ -11,7 +11,7 @@
 <html>
 <head>
 <head>
-	<title>Profile</title>
+	<title>TaSC Profile</title>
 	<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
@@ -79,8 +79,9 @@
 		</form>
 	</div>
   
--->
+--><div class="wrapperProfile">
     <div class="connections">
+    	<div class="box">
         <h2> Personal Info </h2>
         <?php
 
@@ -206,7 +207,7 @@
 
 			echo "<p>About Me: ".$des['description']."</p>";
         ?>
-        
+        </div>
     </div>
 	<div class="connections">
         <h2> Classes </h2>
@@ -349,8 +350,8 @@
 
 			?>
 
+		</div>
 	</div>
-
 
 </body>
 
