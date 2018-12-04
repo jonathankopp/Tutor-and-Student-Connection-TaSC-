@@ -215,8 +215,10 @@ showing the relevant information that follows. -->
 	        
 	        // give the user some feedback
 	        // Tells them that their thread has been created
-	        echo '<div class="makepost">';
-	        echo "Thread: "."'".$topicForDb."'"." has been created". '</div>';
+	     
+					echo '<div class="makepost">';
+					echo "Thread: "."'".$topicForDb."'"." has been created". '</div>';
+	        echo '<meta http-equiv="refresh" content="1" />';
 	        
 	        // close the prepared statement obj 
 	        $statement->close();
