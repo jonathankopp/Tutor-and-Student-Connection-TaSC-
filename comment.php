@@ -164,7 +164,7 @@
 						echo '<li class="author">'.$post['commentdate'].'</li>';
 						echo '<li class="author">Likes: '.$post['likes'].'</li>';
 						echo '<form class="author" action=" comment.php?post='.$post['postid'].'&commentID='.$post['commentID'].'" method="POST">';
-						echo '<button name="commentUID" value="'.$post['uid'].'" type=submit>upvote</button>';
+						echo '<button name="commentUID" class="buttonColor " value="'.$post['uid'].'" type=submit><i class="small material-icons thumb_up">thumb_up</i></button>';
 						echo '</form>';
 						echo "</ul>";
 					

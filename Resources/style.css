@@ -201,6 +201,11 @@ a#discussion {
 .collapsible-header h4{
 	padding: 0px;
 }
+
+.buttonColor{
+	border: 0px;
+	color: #0cb5ff;
+}
 .review{
 	padding: 2%;
 }
