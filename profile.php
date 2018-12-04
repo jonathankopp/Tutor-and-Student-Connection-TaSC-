@@ -12,17 +12,14 @@
 <head>
 	<title>TaSC Profile</title>
 		<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
 		  <!-- Compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
 		<!-- Compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 		  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-      
 		<script>
 		  document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.sidenav');
@@ -36,27 +33,26 @@
 			$('.sidenav').sidenav();
 		  });
 		</script>
-
 </head>
-
 <body>
-	<ul id="slide-out" class="sidenav">	
+  <ul id="slide-out" class="sidenav">
 		<li><a class="nav-item" href="forum.php">Discussion Forum </a></li>
-		<li><form action="find.php" method="post">
+<!--		<li><a class="nav-item" href="find.php" name="findstudent" value="Find a Student">Find a Student</a></li>-->
+		<form action="find.php" method="post">
 			<input type="submit" name="findstudent" value="Find a Student"/>
-		</form></li>
-    
-		<li><form action="find.php" method="post">
+		</form>
+<!--		<li><a class="nav-item" href="find.php" name="findtutor" value="Find a Tutor">Find a Tutor</a></li>-->
+		<form action="find.php" method="post">
 			<input type="submit" name="findtutor" value="Find a Tutor"/>
-		</form></li>
-    
-		<li><form action="addsubject.php" method="post">
+		</form>
+<!--		<li><a class="nav-item" href="addsubject.php">Add a subject to tutor</a></li>-->
+		<form action="addsubject.php" method="post">
 			<input type="submit" name="tutorsubject" value="Add a subject to tutor"/>
-		</form></li>
-    
-		<li><form action="addsubject.php" method="post">
+		</form>
+<!--		<li><a class="nav-item" href="addsubject.php">Add a subject to find help in</a></li>-->
+		<form action="addsubject.php" method="post">
 			<input type="submit" name="studentsubject" value="Add a subject to find help in"/>
-		</form></li>
+		</form>
 		<li class="bottom"><a id="bottom" href="index.php"> Logout </a></li>
 	</ul>
   <div class="jumbotron">
@@ -65,7 +61,7 @@
 		  <h1 class="title">Tutor and Student Connection</h1>
 		</div>
   </div>
-  
+
 <!--
 	<div class="sidebar">
 		<a id="navlink" href="forum.php"> Discussion Forum </a>
@@ -73,20 +69,20 @@
 		<form action="find.php" method="post">
 			<input type="submit" name="findstudent" value="Find a Student"/>
 		</form>
-    
+
 		<form action="find.php" method="post">
 			<input type="submit" name="findtutor" value="Find a Tutor"/>
 		</form>
-    
+
 		<form action="addsubject.php" method="post">
 			<input type="submit" name="tutorsubject" value="Add a subject to tutor"/>
 		</form>
-    
+
 		<form action="addsubject.php" method="post">
 			<input type="submit" name="studentsubject" value="Add a subject to find help in"/>
 		</form>
 	</div>
-  
+
 --><div class="wrapperProfile">
     <div class="connections">
     	<div class="box">
@@ -95,7 +91,7 @@
 
             $dbOk = false;
 
-            //connects to database 
+            //connects to database
             @ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
             //error message if connection to database fails
@@ -103,11 +99,11 @@
                 echo '<div class="messages">Could not connect to the database. Error: ';
                 echo $db->connect_errno . ' - ' . $db->connect_error . '</div>';
             } else {
-                $dbOk = true; 
+                $dbOk = true;
             }
 
-            //pulls the user id from the session and accesses user table 
-            //to find if the user is a tutor or a student 
+            //pulls the user id from the session and accesses user table
+            //to find if the user is a tutor or a student
 			$userid = $_SESSION["userid"]; //gets user id from session
             $namequery = "SELECT first_names,last_name from users where userid='". $userid ."'";
             $nameCall = $db->query($namequery);
@@ -116,14 +112,14 @@
             //if the user is a tutor, find all connections where the tutorid
             //matches the userid to output connections
             echo "<h3>".$resCall["first_names"]." ".$resCall["last_name"]."</h3>";
-			
+
 
 			/*************************************** RANKING SYSTEM ***************************************/
-			
-			
-			
+
+
+
 			//						                Calculating Percentile
-			
+
 			//getting single users Score
 			$userid = $_SESSION["userid"]; //gets user id from session
 			$scorequery = "SELECT score from users where userid='". $userid ."'";
@@ -150,12 +146,12 @@
 			//echo"<p>".$summation."<p>";
 
 			$standardDev = sqrt(((float)$summation / (float)$numScores));
-			
-			
+
+
 			//finding Percentile
 			$percentile=0;
 			$zScore = ((int)((int)$score['score'] - (int)$maybe['AVG(score)'])/(int)$standardDev);
-			
+
 			//Using a Z score -> Percentile on Normal Curve Chart
 			if($zScore < -2.5){
 				$percentile = 0;
@@ -185,27 +181,27 @@
 				//ERROR SPECIAL VALUE
 				$percentile=-7768;
 			}
-			
+
 			//Catches outliers
 			if($percentile>100){
 				$percentile = 100;
 			}else if($percentile<0){
 				$percentile=0;
 			}
-		
+
 			//										Done with Percentile
-			
+
 			//Array of ranks
 			$ranks=['new','inactive','novice','Bronze','Reliable','Silver','Gold','Trusted','TaSC Star','Professor?'];
-			
+
 			//Scaling percentile to index in the array of ranks
 			$userRank=$ranks[((int)$percentile/(int)10)-1];
 
 
 			//DISPLAYING RANK
-			echo "<p>TaSC Rank: ".$userRank."</p>"; 
+			echo "<p>TaSC Rank: ".$userRank."</p>";
 			/*********************************** END OF RANKING SYSTEM ***********************************/
-			
+
 			//Student description
 
 			//Fetching Description (HAVE TO CHANGE TABLE 'description' IS A RESERVED WORD CANNOT QUEREY IT)
@@ -223,7 +219,7 @@
 
             $dbOk = false;
 
-            //connects to database 
+            //connects to database
             @ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
             //error message if connection to database fails
@@ -231,7 +227,7 @@
                 echo '<div class="messages">Could not connect to the database. Error: ';
                 echo $db->connect_errno . ' - ' . $db->connect_error . '</div>';
             } else {
-                $dbOk = true; 
+                $dbOk = true;
             }
 			$studentQ='SELECT `course` FROM student_subjects WHERE userid='.$_SESSION['userid'].';';
 			$studentCall = $db->query($studentQ);
@@ -246,11 +242,11 @@
 			while($row=$tutorCall->fetch_assoc()){
 				echo "<p>". $row["course"]. "</p>";
 			}
-            
-            
-			
+
+
+
         ?>
-        
+
     </div>
 	<div class="connections">
 		<h2> Connections </h2>
@@ -259,7 +255,7 @@
 
 				$dbOk = false;
 
-				//connects to database 
+				//connects to database
 				@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
 				//error message if connection to database fails
@@ -267,11 +263,11 @@
 					echo '<div class="messages">Could not connect to the database. Error: ';
 					echo $db->connect_errno . ' - ' . $db->connect_error . '</div>';
 				} else {
-					$dbOk = true; 
+					$dbOk = true;
 				}
 
-				//pulls the user id from the session and accesses user table 
-				//to find if the user is a tutor or a student 
+				//pulls the user id from the session and accesses user table
+				//to find if the user is a tutor or a student
 				$userid = $_SESSION["userid"]; //gets user id from session
 				$tutorquery = "SELECT * from users where userid='". $userid ."'";
 				$istutor = $db->query($tutorquery);
@@ -296,7 +292,7 @@
 					echo '<p> Email: ' . $info["email"] . '</p>';
 					echo "<p> Connected Course(s): ";
 
-					//If the user is in multiple subjects, output all of the subjects that 
+					//If the user is in multiple subjects, output all of the subjects that
 					//the user is in
 					$subjquery = "SELECT subject from connections where studentid=" . $sid . " and tutorid=".$_SESSION['userid'];
 					$subjresults = $db->query($subjquery);
