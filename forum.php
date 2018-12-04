@@ -22,6 +22,7 @@ showing the relevant information that follows. -->
 		<title>Discussion Forum</title>
 		<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
 		<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		  <!-- Compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -39,8 +40,13 @@ showing the relevant information that follows. -->
 		  // var collapsibleElem = document.querySelector('.collapsible');
 		  // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
 		  // Or with jQuery
+      $('.classes').on('click', 'li.classList a', function(events){
+
+      });
+
 		  $(document).ready(function(){
-			$('.sidenav').sidenav();
+			 $('.sidenav').sidenav();
+        
 		  });
 		</script>
 	</head>
@@ -310,7 +316,7 @@ showing the relevant information that follows. -->
 					//link set up so that each respective course's id gets 
 					//sent to the url so when using $_GET['course'], the right courses
 					//id is there so that it can be dynamically pulled for proper viewing.
-					echo "<li><a href='forum.php?course=".$course['course']."'>".$course['course']."</a></li>";
+					echo "<li class='classList'><a href='forum.php?course=".$course['course']."'>".$course['course']."</a></li>";
 				}
 				//sets the current $_SESSION['course'] to the course that was selected
 				if (isset($_GET['course'])) {
