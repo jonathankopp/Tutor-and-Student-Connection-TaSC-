@@ -111,25 +111,6 @@ showing the relevant information that follows. -->
 	<div class="main">
 		<div class="wrapperForum">
 		<div class="left">
-    <div class="newpost">
-	<form id="old_user" name="new_user" method="post" onsubmit="return validate(this);">
-		<fieldset>
-			<legend>New Post</legend>
-			<div class="formData">
-				<label class="field">Subject:</label>
-	            <div class="value"><input type="text" size="60" value="" name="subject" id="subject"/></div>
-	            
-	            <label class="field">Description:</label>
-	            <div class="value">
-	            	<textarea class="formData" rows=4 cols=80 value="" name="context" id="context">
-	            	</textarea>
-	            </div>
-
-	            <input type="submit" value="save" id="save" name="save"/>
-			</div>
-		</fieldset>
-	</form>
-  </div>
 	<?php
 	  // We'll need a database connection both for retrieving records and for 
 	  // inserting them.  Let's get it up front and use it for both processes
@@ -341,7 +322,25 @@ showing the relevant information that follows. -->
 			
 		</div>
 	</div>
+    <div class="newpost">
+	<form id="old_user" name="new_user" method="post" onsubmit="return validate(this);">
+		<fieldset>
+			<legend>New Post</legend>
+			<div class="formData">
+				<label class="field">Subject:</label>
+	            <div class="value"><input type="text" size="60" value="" name="subject" id="subject"/></div>
+	            
+	            <label class="field">Description:</label>
+	            <div class="value">
+	            	<textarea class="formData" rows=4 cols=80 value="" name="context" id="context">
+	            	</textarea>
+	            </div>
 
+	            <input type="submit" value="save" id="save" name="save"/>
+			</div>
+		</fieldset>
+	</form>
+  </div>
 </body>
 
 </html>
