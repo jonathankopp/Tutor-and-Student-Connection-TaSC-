@@ -180,7 +180,7 @@
         </textarea></div>
 
 
-    	 <input class="btn btn-primary" type="submit" value="Sign Up" id="save" name="save"/>
+    	 <input class="btn btn-primary" type="submit" value="Sign Up" id="save" name="save" style="width:80px;"/>
       </div>
     </fieldset>
   </form>
