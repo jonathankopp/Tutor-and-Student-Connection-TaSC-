@@ -129,6 +129,7 @@
 	    }
 	  }
 	?>
+  <section>
 	<form id="new_user" name="new_user" action="signup.php" method="post" onsubmit="return validateSignUp(this);">
     <fieldset> 
       <legend>No Account? No Problem!</legend>
@@ -136,33 +137,33 @@
               
         <label class="field">First Names</label>
         <div class="value">
-            <input type="text" size="60" value="" name="firstNames" id="firstNames"/>
+            <input class="form-control" placeholder = "John" type="text" size="60" value="" name="firstNames" id="firstNames"/>
         </div>
 
         <label class="field">Last Name</label>
         <div class="value">
-            <input type="text" size="60" value="" name="lastName" id="lastName"/>
+            <input class="form-control" placeholder = "Doe" type="text" size="60" value="" name="lastName" id="lastName"/>
         </div>
         
-        <label class="field tooltip">Password</label><br>
+        <label class="field">Password</label>
+        <input class="form-control" type="password" size="60" value="" name="new_password" id="new_password"/>
         <div class="value tooltip">
             <span class="righttooltiptext">Your password should be a combination of letters and symbols</span>
-            <input type="password" size="60" value="" name="new_password" id="new_password"/>
-        </div><br>
-
-        <label class="field tooltip">Verify Password</label><br>
-        <div class="value tooltip">
-            <span class="righttooltiptext">Your password should be a combination of letters and symbols</span>
-            <input type="password" size="60" value="" name="verify_password" id="verify_password"/>
-        </div><br>
+        </div>
         
-        <label class="field tooltip">Email Address</label><br>
+        <label class="field">Verify Password</label>
+        <input class="form-control" type="password" size="60" value="" name="verify_password" id="verify_password"/>
+        <div class="value tooltip">
+            <span class="righttooltiptext">Your password should be a combination of letters and symbols</span>
+        </div>
+        
+        <label class="field">Email Address</label>
+        <input class="form-control" type="text" size="60" value="" name="new_email" id="new_email"/>
         <div class="value tooltip">
             <span class="bottomtooltiptext"> psst...you should use your RPI email </span>
-            <input type="text" size="60" value="" name="new_email" id="new_email"/>
-        </div><br>
+        </div>
 
-        <label class="field tooltip">Year</label><br>
+        <label class="field">Year</label>
         <div class="value">
           <select name="year" id="year">
           	<option value="2018" selected>2018</option>
@@ -172,17 +173,18 @@
           	<option value="2022">2022</option>
           	<option value="2023">2023</option>
           </select>
-        </div><br>
+        </div>
 
-        <label class="field">Description</label><br>
+        <label class="field">Description</label>
         <div class="value">
-        	<textarea type="text" rows="4" cols="60" value="" name="description" id="description">
-        </textarea></div><br>
+        	<textarea class="form-control" type="text" rows="4" cols="60" value="" name="description" id="description">
+        </textarea></div>
 
 
     	 <input class="btn btn-primary" type="submit" value="Sign Up" id="save" name="save"/>
       </div>
     </fieldset>
   </form>
+  </section>
 </body>
 </html>
