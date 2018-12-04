@@ -24,6 +24,8 @@
 		  document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.sidenav');
 			var instances = M.Sidenav.init(elems);
+			var collapseElems = document.querySelectorAll('.collapsible');
+			var instant = M.Collapsible.init(collapseElems);
 		  });
 		  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
 		  // var collapsibleElem = document.querySelector('.collapsible');
@@ -31,6 +33,7 @@
 		  // Or with jQuery
 		  $(document).ready(function(){
 			$('.sidenav').sidenav();
+			$('.collapsible').collapsible();
 		  });
 		</script>
 </head>
@@ -86,7 +89,7 @@
 --><div class="wrapperProfile">
     <div class="connections">
     	<div class="box">
-        <h2> Personal Info </h2>
+        <h3> Personal Info </h3>
         <?php
 
             $dbOk = false;
@@ -111,7 +114,7 @@
 
             //if the user is a tutor, find all connections where the tutorid
             //matches the userid to output connections
-            echo "<h3>".$resCall["first_names"]." ".$resCall["last_name"]."</h3>";
+            echo "<h5>".$resCall["first_names"]." ".$resCall["last_name"]."</h5>";
 
 
 			/*************************************** RANKING SYSTEM ***************************************/
@@ -215,7 +218,7 @@
     </div>
 	<div class="connections">
     <div class="box">
-        <h2> Classes </h2>
+        <h3> Classes </h3>
         <?php
 
             $dbOk = false;
@@ -232,16 +235,16 @@
             }
 			$studentQ='SELECT `course` FROM student_subjects WHERE userid='.$_SESSION['userid'].';';
 			$studentCall = $db->query($studentQ);
-			echo "<h3>Student Classes:</h3>";
+			echo "<ul class='collapsible'><li><h6 class= 'collapsible-header'>Student Classes:</h6>";
 			while($row=$studentCall->fetch_assoc()){
-				echo "<p>". $row["course"]. "</p>";
+				echo "<p class='collapsible-body'>". $row["course"]. "</p></li>";
 			}
 
 			$tutorQ='SELECT `course` FROM tutor_subjects WHERE userid='.$_SESSION['userid'].';';
 			$tutorCall = $db->query($tutorQ);
-			echo "<h3>Tutor Classes:</h3>";
+			echo "<li><h6 class= 'collapsible-header'>Tutor Classes:</h6>";
 			while($row=$tutorCall->fetch_assoc()){
-				echo "<p>". $row["course"]. "</p>";
+				echo "<p class='collapsible-body'>". $row["course"]. "</p></li></ul>";
 			}
 
 
@@ -278,7 +281,7 @@
 				$query = "SELECT * from connections where tutorid='" . $userid . "'";
 				$result = $db->query($query);
 				$numRecords = $result->num_rows;
-                  echo '<h4>Who I tutor:</h4>';
+                  echo '<ul class="collapsible"><li><h6 class= "collapsible-header">Who I tutor:</h6>';
 				//for every connection the tutor has, print out the information
 				//of the other user
 				for ($i=0; $i < $numRecords; $i++) {
@@ -289,10 +292,10 @@
 					$infoResult = $db->query($infoQuery);
 					$info = $infoResult->fetch_assoc();
 
-					echo "<h3> " . htmlspecialchars($info["first_names"]) . " ";
-					echo htmlspecialchars($info["last_name"]) . "</h3>";
-					echo '<p> Email: ' . $info["email"] . '</p>';
-					echo "<p> Connected Course(s): ";
+					echo "<h4 class='collapsible-body'> " . htmlspecialchars($info["first_names"]) . " ";
+					echo htmlspecialchars($info["last_name"]) . "</h4>";
+					echo '<p class="collapsible-body"> Email: ' . $info["email"] . '</p>';
+					echo "<p class='collapsible-body'> Connected Course(s): ";
 
 					//If the user is in multiple subjects, output all of the subjects that
 					//the user is in
@@ -307,10 +310,8 @@
 					$subj = $subjresults->fetch_assoc();
 					echo $subj["subject"] . "</p>";
 
-					echo "<p> Year: " . $info["year"] . "</p>";
-					echo "<p> " . $info["description"] . "</p>";
-					echo '<form action="viewprofile.php" method="post">';
-					echo '<input type="submit" name="viewtutor'.$info['userid'] .'" value="View Profile"/>';
+					echo '<form class="collapsible-body" name="viewtutor" action="viewprofile.php" method="post">';
+					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile"/></li>';
 					echo '</form>';
 				}
 
@@ -319,7 +320,7 @@
 				$query = "SELECT * from connections where studentid='" . $userid . "'";
 				$result = $db->query($query);
 				$numRecords = $result->num_rows;
-                  echo "<h4>Tutors:</h4>";
+                  echo "<ul class='collapsible'><li><h6 class= 'collapsible-header'>Tutors:</h6>";
 				//prints out info for each connection made by user to tutors
 				for ($i=0; $i < $numRecords; $i++) {
 					$record = $result->fetch_assoc();
@@ -329,11 +330,10 @@
 					$infoResult = $db->query($infoQuery);
 					$info = $infoResult->fetch_assoc();
 
-					echo "<h3> " . htmlspecialchars($info["first_names"]) . " ";
-					echo htmlspecialchars($info["last_name"]) . "</h3>";
-					echo '<p> Email: ' . $info["email"] . '</p>';
+					echo "<h4 class='collapsible-body'> " . htmlspecialchars($info["first_names"]) . " ";
+					echo htmlspecialchars($info["last_name"]) . "</h4>";
 
-					echo "<p> Connected Course(s): ";
+					echo "<p class='collapsible-body'> Connected Course(s): ";
 
 					$subjquery = "SELECT subject from connections where tutorid=" . $tid . " and studentid=".$_SESSION['userid'];
 					$subjresults = $db->query($subjquery);
@@ -346,10 +346,9 @@
 					$subj = $subjresults->fetch_assoc();
 					echo $subj["subject"] . "</p>";
 
-					echo "<p> Year: " . $info["year"] . "</p>";
-					echo "<p> " . $info["description"] . "</p>";
-					echo '<form action="viewprofile.php" method="post">';
-					echo '<input type="submit" name="viewstudent'.$info['userid'] .'" value="View Profile" id="viewprofile"/>';
+					
+					echo '<form class= "collapsible-body" name="viewstudent" action="viewprofile.php" method="post">';
+					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile" id="viewprofile"/></li>';
 					echo '</form>';
         }
 
