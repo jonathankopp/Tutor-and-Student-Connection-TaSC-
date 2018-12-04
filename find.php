@@ -112,10 +112,10 @@
 					echo '<form class="makeconnection" action="viewprofile.php" method="post" name="connect">';
 					while($row = $result->fetch_assoc()) {
 							//selects the info for that user from users table to output
-							$infoQuery = "SELECT userid, first_names, last_name, score from users where userid='" . $row['userid'] . "'";
+							$infoQuery = "SELECT userid, first_names, last_name from users where userid='" . $row['userid'] . "'";
 							$infoResult = $db->query($infoQuery);
 							$info = $infoResult->fetch_assoc();
-							$name = $info["first_names"] . ' ' . $info["last_name"] . ': ' . $info['score'];
+							$name = $info["first_names"] . ' ' . $info["last_name"];
 							//makes a button for each user 
 							echo '<input type="submit" value="' . $name . '" id="' . $info['userid'] . '" name="' . $info['userid'] . '"/>';
 							
