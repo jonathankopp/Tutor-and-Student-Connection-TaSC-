@@ -10,7 +10,8 @@
 
 <html>
 <head>
-	<title>TaSC Profile</title>\	<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
+	<title>TaSC Profile</title>
+		<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
 		<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
@@ -25,7 +26,7 @@
 		<script>
 		  document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.sidenav');
-			var instances = M.Sidenav.init(elems, options);
+			var instances = M.Sidenav.init(elems);
 		  });
 		  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
 		  // var collapsibleElem = document.querySelector('.collapsible');
