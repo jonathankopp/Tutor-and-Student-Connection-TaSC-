@@ -241,6 +241,7 @@
 				echo "<p class='collapsible-body'>". $row["course"]. "</p>";
 			}
 			
+			echo "</li>";
 			$tutorQ='SELECT `course` FROM tutor_subjects WHERE userid='.$_SESSION['userid'].';';
 			$tutorCall = $db->query($tutorQ);
 			echo "<li><h6 class= 'collapsible-header'>Tutor Classes:</h6>";
@@ -314,9 +315,11 @@
 					echo $subj["subject"] . "</p>";
 
 					echo '<form class="collapsible-body" name="viewtutor" action="viewprofile.php" method="post">';
-					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile"/></li>';
+					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile"/>';
 					echo '</form>';
 				}
+				
+				echo "</li></ul>";
 
 
 				//uses the same method as above but matches userid to studentid instead of tutorid
@@ -351,9 +354,11 @@
 
 					
 					echo '<form class= "collapsible-body" name="viewstudent" action="viewprofile.php" method="post">';
-					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile" id="viewprofile"/></li>';
+					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile" id="viewprofile"/>';
 					echo '</form>';
         }
+		
+			echo "</li></ul>";
 
 
 			?>
