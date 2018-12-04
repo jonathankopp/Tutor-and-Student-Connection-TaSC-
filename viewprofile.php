@@ -194,7 +194,7 @@
 	echo '<p> Email: ' . $info['email'] . '</p>';
 	echo '<p> Description: ' . $info['description'] . '</p>';
 	echo '<p> Year: ' . $info['year'] . '</p>';
-	echo '<p> TaSC Rating: ' . $userRank . '</p></div>';
+	echo '<p> TaSC Rating: ' . $userRank . '</p>';
 
 	$conquery = '';
 	if ($_SESSION['tutor']) {
@@ -204,9 +204,10 @@
 	}
 	$isconn = $db->query($conquery);
 	if (!($isconn->fetch_assoc()) && ($_SESSION['searchSubject'] != "")) {
-		echo '<div class="right"><form action="viewprofile.php" method="post">';
-		echo '<input type="submit" name="connected" value="Connect"/></form></div>';
+		echo '<form action="viewprofile.php" method="post">';
+		echo '<input type="submit" name="connected" value="Connect"/></form>';
 	}
+	echo "</div>";
 
 	$avgquery = 'SELECT avg(rating) as a FROM reviews WHERE reviewedemail = "' . $info['email'] . '"';
 
