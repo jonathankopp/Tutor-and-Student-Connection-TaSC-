@@ -53,21 +53,21 @@ section {
     bottom: 0;
 }
 
-.classes {
+.classes ul{
 	padding: 20px;
-	width:50%;
 	margin:1%;
 	font-size: 100%;
 }
 
 .classes li {
-	padding:5%;
+	padding:2%;
 	margin:1%;
+	width: 85%;
 	border-bottom: 1px solid grey;
 
 }
 .posts {
-	width:50%;
+	width: 75%;
 }
 
 .posts ul {
@@ -77,17 +77,28 @@ section {
 
 }
 
-.posts ul li {
-	padding:5%;
-	margin:1%;
+.posts li {
+	margin-left:1%;
+}
+.author {
+	color: grey;
+	font-size: 80%;
 }
 
-.wrapper {
-  display: grid;
-  grid-template-columns: 800px 500px;
-  grid-gap: 1px;
+.wrapperForum {
+	display: grid;
+	grid-template-columns: 75% 29%
+	grid-gap: 1px;
+}
+.wrapperProfile{
+	display: grid;
+	grid-template-columns: 30% 69%;
+	grid-gap: 10px;
 }
 
+.box{
+	padding-left: 2%;
+}
 .left {
   font-size: 100%;
 }
