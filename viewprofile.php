@@ -85,8 +85,8 @@
 <body>
   		<ul id="slide-out" class="sidenav">
 			<li><a id="navlink" href="forum.php"> Discussion Forum </a></li>
-			<li><a class="nav-item" href="profile.php">My Profile</a></li>
-			<li><a id="logout" href="index.php"> Logout </a></li>
+			<li><a class="nav-item" href="profile.php">My Profile</a></li
+		<li class="bottom"><a id="bottom" href="index.php"> Logout </a></li>
 		</ul>
 		<div class="jumbotron">
 			<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
