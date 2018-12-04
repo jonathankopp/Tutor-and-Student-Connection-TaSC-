@@ -62,7 +62,7 @@
 	      if ($focusId == '') $focusId = '#lastName';
 	    }
 	    if ($password == '') {
-	    	$errors .= '<li>password may not be blank</li>';
+	    	$errors .= '<li>Password may not be blank</li>';
 	    	if ($focusId == '') $focusId = '#new_password';
 	    }
 	    if ($vpassword == '') {
@@ -70,7 +70,7 @@
 	    	if ($focusId == '') $focusId = '#verify_password';
 	    }
 	    if ($email == '') {
-	    	$errors .= '<li>email may not be blank</li>';
+	    	$errors .= '<li>Email may not be blank</li>';
 	    	if ($focusId == '') $focusId = '#new_email';
 	    }
 	    if ($description == '') {
@@ -78,7 +78,7 @@
 	    	if ($focusId == '') $focusId = '#userName';
 	    }
 	    if ($password != $vpassword && $password != "") {
-	    	$errors .= '<li>passwords do not match</li>';
+	    	$errors .= '<li>Passwords do not match</li>';
 	    	if ($focusId == '') $focusId = '#new_password';
 	    }
 	    if ($errors != '') { //prints out any errors
@@ -165,14 +165,13 @@
 
         <label class="field">Year</label>
         <div class="value">
-          <select name="year" id="year">
+          <select class="form-control" name="year" id="year">
           	<option value="2018" selected>2018</option>
           	<option value="2019">2019</option>
           	<option value="2020">2020</option>
           	<option value="2021">2021</option>
           	<option value="2022">2022</option>
-          	<option value="2023">2023</option>
-          </select>
+          	<option value="2023">2023</option>          </select>
         </div>
 
         <label class="field">Description</label>
