@@ -18,6 +18,7 @@
 	<head>
 		<title>TaSC</title>
 		<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
+		
 		<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
 		  <!-- Compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -32,7 +33,6 @@
 		  document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.sidenav');
 			var instances = M.Sidenav.init(elems);
-
 		  });
 
 		  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
@@ -51,8 +51,9 @@
 	<body>
 
 	<ul id="slide-out" class="sidenav">
-		<li><a id="navlink" href="connect.php">Connect Page</a></li>
-		<li> <a id ="post" href="makepost.php">New Post</a></li>
+		<li><a class="nav-item" href="find.php">Make a Connection </a></li>
+		<li> <a id ="post" href="makepost.php">New Post</a></li>	
+		<li><a class="nav-item" href="reviews.php">Review</a></li>
 		<li><a class="nav-item" href="profile.php">My Profile</a></li>
 		<li class="bottom"><a id="logout" href="index.php">Logout</a></li> 
 	</ul>
@@ -60,13 +61,12 @@
 	  <div class="jumbotron">
 	  	<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
 		<div>
-		  <h1 class="title">Tutor and Student Connection</>
+		  <h1 class="title">Tutor and Student Connection</h1>
 		</div>
 	  </div>
 	  
 	  <div class="main">
-		<div class="wrapper">
-
+		<div class="wrapperForum">
 		<div class="left">
 				<ul id="post" class="posts">
 				<!-- php to dynamically pull and display all threads for the relevant subject selected
@@ -103,7 +103,7 @@
 						//selected
 						for($i=0; $i <$numRecords; $i++) {
 							$post = $result->fetch_assoc();
-							echo "<ul id='classes'>";
+							echo "<ul id='posts'>";
 
 							//using href="comment.php?post='.$post['postid'].'" so that when on the comment page
 							//the selected thread's postid can be pulled using $_GET['post'] so the right thread and
@@ -125,6 +125,7 @@
 				</ul>
 			</div>
 			<div class="right">
+				<h4 class="dropdownClasses"><strong>Classes</strong></h4>
 				<ul id="classes" class="classes">
 					<!-- below is the php to dynamically pull from the database and display all the 
 					subjects the user is signed up for, in order to view their respective threads -->
@@ -164,6 +165,7 @@
 			
 		</div>
 	</div>
+	
 
-	</body>
+</body>
 </html>

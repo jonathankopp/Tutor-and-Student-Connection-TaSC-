@@ -8,7 +8,6 @@
 <html>
 	<head>
 		<title>TaSC Connections</title>
-
 		
 		<link href="Resources/find-style.css" rel="stylesheet" type="text/css"/>
 		<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
@@ -38,23 +37,21 @@
 			$('.sidenav').sidenav();
 		  });
 		</script>
-
 	</head>
 
 
 	<body>
 		<ul id="slide-out" class="sidenav">
 			<li><a id="navlink" href="forum.php"> Discussion Forum </a></li>
-			<li><a href="connect.php"> Back to Connections </a></li>
+			<li><a class="nav-item" href="reviews.php">Reviews</a></li>
 			<li><a class="nav-item" href="profile.php">My Profile</a></li>
-			<li><a id="logout" href="index.php"> Logout </a></li>
+		<li class="bottom"><a id="logout" href="index.php">Logout</a></li>
 		</ul>
 		<div class="jumbotron">
 			<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
 			<div>
-			  <h1 class="title">Tutor and Student Connection</>
+			  <h1 class="title">Tutor and Student Connection</h1>
 			</div>
-
 		</div>
 		<div class="subject">
 			<form name="search" action="find.php" method="get">
