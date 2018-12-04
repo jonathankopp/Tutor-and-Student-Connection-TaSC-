@@ -67,7 +67,7 @@ section {
 
 }
 .posts {
-	width: 85%;
+	width: 90%;
 }
 
 .posts ul {
@@ -146,7 +146,7 @@ input:hover {
 
 .newpost {
   padding-top: 20px;
-	width: 85%;
+	width: 90%;
 }
 
 div#discussion {
