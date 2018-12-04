@@ -122,3 +122,20 @@ textarea {
   padding: 10px;
   padding-top: 6px;
 }
+
+input {
+  background: white;
+  color: rgba(0, 0, 0, 0.87);
+  border: 0px;
+  padding-left: 32px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+}
+
+input:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
