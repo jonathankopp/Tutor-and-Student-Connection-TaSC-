@@ -83,7 +83,7 @@ showing the relevant information that follows. -->
 	  	$q="select course from student_subjects where userid=".'"'.$_SESSION['userid'].'" UNION select course from tutor_subjects where userid='.'"'.$_SESSION['userid'].'"';
 	  	$prepCourses=$db->query($q);
 		$numRecords = $prepCourses->num_rows;
-
+ 
 		// $_SESSION['course']=1;
 		for($i=0; $i<$numRecords; $i++){
 			$course=$prepCourses->fetch_assoc();
