@@ -74,7 +74,7 @@
 	 
 	<ul id="slide-out" class="sidenav">	
 		<li><a class="nav-item" href="forum.php"> Discussion Forum </a></li>
-		<li><a class="nav-item" href="find.php">Make a Connection </a></li>\
+		<li><a class="nav-item" href="find.php">Make a Connection </a></li>
 		<li><a class="nav-item" href="profile.php">My Profile</a></li>
 		<li class="bottom"><a id="logout" href="index.php">Logout</a></li>
 	</ul>
@@ -84,10 +84,6 @@
 		  <h1 class="title">Tutor and Student Connection</h1>
 		</div>
 	</div>
-
-	<form id="makereview" action="makereview.php" method="post">
-		<select class="browser-default" name="rating">	
-		
 		<script>
 		  document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.sidenav');
@@ -101,20 +97,7 @@
 			 $('.sidenav').sidenav();
 		  });
 		</script>
-</head>
 
-<body>
-  		<ul id="slide-out" class="sidenav">
-			<li><a id="navlink" href="forum.php"> Discussion Forum </a></li>
-			<li><a class="nav-item" href="profile.php">My Profile</a></li>
-			<li><a id="logout" href="index.php"> Logout </a></li>
-		</ul>
-		<div class="jumbotron">
-			<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
-			<div>
-			  <h1 class="title">Tutor and Student Connection</h1>
-			</div>
-		</div>
 <section>
   <form id="makereview" action="makereview.php" method="post">
 		<select class="browser-default" name="rating">
