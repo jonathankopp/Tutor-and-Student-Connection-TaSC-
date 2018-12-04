@@ -22,7 +22,7 @@
 		<script>
 		  document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.sidenav');
-			var instances = M.Sidenav.init(elems, options);
+			var instances = M.Sidenav.init(elems);
 		  });
 
 		  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
