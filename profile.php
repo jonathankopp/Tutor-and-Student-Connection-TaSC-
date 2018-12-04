@@ -9,6 +9,8 @@
 <head>
 	<title>TaSC Connections</title>
 	<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
 		<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
 		  <!-- Compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -35,10 +37,12 @@
 			$('.sidenav').sidenav();
 		  });
 		</script>
+
 </head>
 
 
 <body>
+
 	 
 	<ul id="slide-out" class="sidenav">	
 		<li><a class="nav-item" href="forum.php"> Discussion Forum </a></li>
@@ -46,7 +50,7 @@
 		<li><a class="nav-item" href="profile.php">My Profile</a></li>
 		<li><a id="bottom" href="index.php"> Logout </a></li>
 	</ul>
-	 <div class="jumbotron">
+	  <div class="jumbotron">
 		<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
 		<div>
 		  <h1 class="title">Tutor and Student Connection</>

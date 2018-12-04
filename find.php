@@ -8,6 +8,7 @@
 <html>
 	<head>
 		<title>TaSC Connections</title>
+
 		
 		<link href="Resources/find-style.css" rel="stylesheet" type="text/css"/>
 		<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
@@ -37,6 +38,7 @@
 			$('.sidenav').sidenav();
 		  });
 		</script>
+
 	</head>
 
 
@@ -52,6 +54,7 @@
 			<div>
 			  <h1 class="title">Tutor and Student Connection</>
 			</div>
+
 		</div>
 		<div class="subject">
 			<form name="search" action="find.php" method="get">

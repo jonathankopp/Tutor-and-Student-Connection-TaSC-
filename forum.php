@@ -32,6 +32,7 @@
 		  document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.sidenav');
 			var instances = M.Sidenav.init(elems);
+
 		  });
 
 		  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
@@ -65,6 +66,7 @@
 	  
 	  <div class="main">
 		<div class="wrapper">
+
 		<div class="left">
 				<ul id="post" class="posts">
 				<!-- php to dynamically pull and display all threads for the relevant subject selected
@@ -162,7 +164,6 @@
 			
 		</div>
 	</div>
-	
 
 	</body>
 </html>
