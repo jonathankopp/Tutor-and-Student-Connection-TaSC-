@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
   <script type="text/javascript" src="resources/jquery-1.4.3.min.js"></script>
-  <link href="Resources/index.css" rel="stylesheet" type="text/css"/>
+  <link href="Resources/style.css" rel="stylesheet" type="text/css"/>
   <script type="text/javascript" src="Scripts/index.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

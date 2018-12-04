@@ -1,0 +1,86 @@
+body{
+    margin: 0;
+}
+
+.main {
+	padding-left:5%;
+	padding-right:5%;
+}
+
+
+nav {
+	background-color:#FFFFFF !important;
+}
+
+.sidenav {
+	 height: 100% !important;
+}
+
+.jumbotron { 
+  padding: 0px; /* fills out the jumbotron */
+  background-color: #0cb5ff !important; 	
+  color:#FFFFFF;
+  margin:0px;
+}
+
+.menu {
+	color:#FFFFFF;
+	margin:0px;
+	padding-left:.5%;
+	padding-top:.5%
+}
+
+.title {
+	text-align:center;
+	padding:2.5%;
+	margin:0px;
+	font-size: 80px;
+}
+
+.bottom {
+	position: absolute;
+    bottom: 0;
+}
+
+.classes {
+	padding: 20px;
+	width:50%;
+	margin:1%;
+	font-size: 100%;
+}
+
+.classes li {
+	padding:5%;
+	margin:1%;
+	border-bottom: 1px solid grey;
+
+}
+.posts {
+	width:50%;
+}
+
+.posts ul {
+	padding:5%;
+	margin:1%;
+	border-bottom: 1px solid grey;
+
+}
+
+.posts ul li {
+	padding:5%;
+	margin:1%;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 800px 500px;
+  grid-gap: 1px;
+}
+
+.left {
+  font-size: 100%;
+}
+.right {
+	font-size: 100%;
+}
+
