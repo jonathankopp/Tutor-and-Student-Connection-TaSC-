@@ -71,11 +71,7 @@
 			<form name="search" action="find.php" method="get">
 				<label class="field">Search for a subject:</label>
 				<input type="text" size="60" height="40" value="" id="subject" name="subject"/>
-				<input type="submit" value="Search" id="search" name="search"/>	
-			</form
 
-		<div class="subject">
-			<form name="search" action="find.php" method="post">
 				<label class="field">Choose a Subject:</label>
 				<select class="browser-default" name="subject">
 					<?php
@@ -207,5 +203,6 @@
 					}
 				}
 
- -->
+
  ?>
+ -->
