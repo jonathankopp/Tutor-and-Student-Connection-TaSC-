@@ -72,8 +72,8 @@
 		</div>
 	</div>
   
-	<p>Add a subject:</p>
-	<form action="addsubject.php" method="post">
+	<form id="addSubject" action="addsubject.php" method="post">
+  	<p>Add a subject:</p>
 		<select class="browser-default" name="addsubject">
 			<?php
 			$subquery = 'SELECT course FROM subject WHERE course NOT IN (';

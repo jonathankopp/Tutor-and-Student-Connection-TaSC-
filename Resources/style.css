@@ -201,3 +201,8 @@ a#discussion {
 .collapsible-header h4{
 	padding: 0px;
 }
+
+#addSubject {
+  padding-left: 20px;
+  padding-right: 20px;
+}
