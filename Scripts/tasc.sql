@@ -29,15 +29,23 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `comments` (
+  `commentID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `postid` int(10) UNSIGNED NOT NULL,
   `comment` varchar(1000) NOT NULL,
   `commentdate` date DEFAULT NULL,
-  `uid` int(10) NOT NULL
+  `uid` int(10) NOT NULL,
+  `likes` int(10) DEFAULT 0,
+  PRIMARY KEY(`commentID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `comments`
 --
+
+CREATE TABLE `comment_user` (
+  `postid` int(10) UNSIGNED NOT NULL,
+  `likeID` int(10) NOT NULL
+);
 
 INSERT INTO `comments` (`postid`, `comment`, `commentdate`, `uid`) VALUES
 (2, 'Just use std::list and pretend you know what you\'re doing', '2018-04-30', 0);
@@ -215,7 +223,7 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `description` varchar(1000) NOT NULL,
-  `score` int(10) NOT NULL
+  `score` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

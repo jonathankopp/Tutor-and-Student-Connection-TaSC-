@@ -25,6 +25,10 @@
 			$stmt->close();
 			//echo "here";
 		}
+		$updateScoreQuery = 'UPDATE users SET `score` = `score` + '.$_POST['rating'].' WHERE `email`= "'.$_SESSION['viewemail'].'";';
+		$statement = $db->prepare($updateScoreQuery);
+		$statement->execute();
+		$statement->close();
 
 		header('Location: viewprofile.php');
 	}

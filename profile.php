@@ -168,6 +168,41 @@
         
     </div>
 	<div class="connections">
+        <h2> Classes </h2>
+        <?php
+
+            $dbOk = false;
+
+            //connects to database 
+            @ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+
+            //error message if connection to database fails
+            if ($db->connect_error) {
+                echo '<div class="messages">Could not connect to the database. Error: ';
+                echo $db->connect_errno . ' - ' . $db->connect_error . '</div>';
+            } else {
+                $dbOk = true; 
+            }
+			$studentQ='SELECT `course` FROM student_subjects WHERE userid='.$_SESSION['userid'].';';
+			$studentCall = $db->query($studentQ);
+			echo "<h3>Student Classes:</h3>";
+			while($row=$studentCall->fetch_assoc()){
+				echo "<p>". $row["course"]. "</p>";
+			}
+
+			$tutorQ='SELECT `course` FROM tutor_subjects WHERE userid='.$_SESSION['userid'].';';
+			$tutorCall = $db->query($tutorQ);
+			echo "<h3>Tutor Classes:</h3>";
+			while($row=$tutorCall->fetch_assoc()){
+				echo "<p>". $row["course"]. "</p>";
+			}
+            
+            
+			
+        ?>
+        
+    </div>
+	<div class="connections">
 		<h2> Connections </h2>
 
 			<?php
