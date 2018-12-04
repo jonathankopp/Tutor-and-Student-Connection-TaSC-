@@ -9,21 +9,22 @@
 	$listquery = 'SELECT userid, email FROM users';
 	$result = $db->query($listquery);
 	while ($row = $result->fetch_assoc()) {
+		$index = 'viewstudent'.$row['userid'];
+		if (isset($_POST[$index])) {
+			$_SESSION['searchSubject'] = "";
+			$_SESSION['tutor'] = 1;
+		}
+		$index = 'viewtutor'.$row['userid'];
+		if (isset($_POST[$index])) {
+			$_SESSION['searchSubject'] = "";
+			$_SESSION['tutor'] = 0;
+		}
+
 		if (isset($_POST[$row['userid']])) {
 			$_SESSION['viewuserid'] = $row['userid'];
 			$_SESSION['viewemail'] = $row['email'];
 				break;
 		}
-	}
-
-	if (isset($_POST['viewstudent'])) {
-		$_SESSION['searchSubject'] = "";
-		$_SESSION['tutor'] = 1;
-	}
-
-	if (isset($_POST['viewtutor'])) {
-		$_SESSION['searchSubject'] = "";
-		$_SESSION['tutor'] = 0;
 	}
 
 	if (isset($_POST['connected'])) {
@@ -118,7 +119,7 @@
 		$conquery = 'SELECT 1 FROM connections WHERE tutorid="' . $_SESSION['viewuserid'] . '" and studentid="' . $_SESSION['userid'] . '" and subject="' . $_SESSION['searchSubject'] . '"';
 	}
 	$isconn = $db->query($conquery);
-	if (!($isconn->fetch_assoc())) {
+	if (!($isconn->fetch_assoc()) && ($_SESSION['searchSubject'] != "")) {
 		echo '<form action="viewprofile.php" method="post">';
 		echo '<input type="submit" name="connected" value="Connect"/></form>';
 	}
