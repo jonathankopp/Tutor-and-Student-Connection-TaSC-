@@ -309,8 +309,8 @@
 
 					echo "<p> Year: " . $info["year"] . "</p>";
 					echo "<p> " . $info["description"] . "</p>";
-					echo '<form name="viewtutor" action="viewprofile.php" method="post">';
-					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile"/>';
+					echo '<form action="viewprofile.php" method="post">';
+					echo '<input type="submit" name="viewtutor'.$info['userid'] .'" value="View Profile"/>';
 					echo '</form>';
 				}
 
@@ -348,8 +348,8 @@
 
 					echo "<p> Year: " . $info["year"] . "</p>";
 					echo "<p> " . $info["description"] . "</p>";
-					echo '<form name="viewstudent" action="viewprofile.php" method="post">';
-					echo '<input type="submit" name="'.$info['userid'] .'" value="View Profile" id="viewprofile"/>';
+					echo '<form action="viewprofile.php" method="post">';
+					echo '<input type="submit" name="viewstudent'.$info['userid'] .'" value="View Profile" id="viewprofile"/>';
 					echo '</form>';
         }
 
