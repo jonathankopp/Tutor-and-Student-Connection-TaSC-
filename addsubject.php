@@ -62,7 +62,7 @@
 	<ul id="slide-out" class="sidenav">		
 		<li><a class="nav-item" href="find.php">Make a Connection </a></li>
 		<li><a class="nav-item" href="forum.php"> Discussion Forum </a></li>
-		<li><a class="nav-item" href="reviews.php">Review</a></li>
+		<li><a class="nav-item" href="makereview.php">Review</a></li>
 		<li><a class="nav-item" href="profile.php">My Profile</a></li>
 		<li class="bottom"><a id="logout" href="index.php">Logout</a></li>
 	</ul>
