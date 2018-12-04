@@ -10,18 +10,14 @@
 
 <html>
 <head>
-	<title>TaSC Profile</title>\	<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
+	<title>TaSC Profile</title> <link href="Resources/style.css" rel="stylesheet" type="text/css"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
 		<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
 		  <!-- Compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
 		<!-- Compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 		  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
 		<script>
 		  document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.sidenav');
@@ -35,11 +31,9 @@
 			$('.sidenav').sidenav();
 		  });
 		</script>
-
 </head>
-
 <body>
-	<ul id="slide-out" class="sidenav">
+  <ul id="slide-out" class="sidenav">
 		<li><a class="nav-item" href="forum.php">Discussion Forum </a></li>
 <!--		<li><a class="nav-item" href="find.php" name="findstudent" value="Find a Student">Find a Student</a></li>-->
 		<form action="find.php" method="post">
