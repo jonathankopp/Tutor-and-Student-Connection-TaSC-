@@ -105,7 +105,7 @@
 				} else {
 					$opptable = "tutor_subjects";
 				}
-				$matchquery = 'SELECT userid FROM ' . $opptable . ' WHERE course = "' . $_POST['subject'] . '"';
+				$matchquery = 'SELECT s.userid FROM ' . $opptable . ' s, users u WHERE s.course = "' . $_POST['subject'] . '" and s.userid = u.userid ORDER BY u.score DESC;';
 
 				$result = $db->query($matchquery);
 				if ($result->num_rows == 0) {
