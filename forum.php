@@ -110,7 +110,7 @@ showing the relevant information that follows. -->
 	
 	<div class="main">
 		<div class="wrapperForum">
-		<div class="left">
+		<div class="leftForum">
 	<?php
 	  // We'll need a database connection both for retrieving records and for 
 	  // inserting them.  Let's get it up front and use it for both processes
@@ -269,7 +269,7 @@ showing the relevant information that follows. -->
 				?>
 				</ul>
 			</div>
-			<div class="right">
+			<div class="rightForum">
 				<h4 class="dropdownClasses"><strong>Classes</strong></h4>
 				<ul id="classes" class="classes">
 					<!-- below is the php to dynamically pull from the database and display all the 
