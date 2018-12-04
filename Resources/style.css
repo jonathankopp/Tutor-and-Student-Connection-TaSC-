@@ -107,11 +107,17 @@ section {
 }
 .left {
   font-size: 100%;
+}
+.right {
+  font-size: 100%;
+}
+.leftForum {
+  font-size: 100%;
   overflow-y: scroll;
   width: 95%;
   height: 60%;
 }
-.right {
+.rightForum {
 	font-size: 100%;
   height: 90%;
   overflow-y: scroll;
