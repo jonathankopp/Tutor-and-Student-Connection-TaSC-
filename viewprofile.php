@@ -11,11 +11,15 @@
 	while ($row = $result->fetch_assoc()) {
 		$index = 'viewstudent'.$row['userid'];
 		if (isset($_POST[$index])) {
+			$_SESSION['viewuserid'] = $row['userid'];
+			$_SESSION['viewemail'] = $row['email'];
 			$_SESSION['searchSubject'] = "";
 			$_SESSION['tutor'] = 1;
 		}
 		$index = 'viewtutor'.$row['userid'];
 		if (isset($_POST[$index])) {
+			$_SESSION['viewuserid'] = $row['userid'];
+			$_SESSION['viewemail'] = $row['email'];
 			$_SESSION['searchSubject'] = "";
 			$_SESSION['tutor'] = 0;
 		}
