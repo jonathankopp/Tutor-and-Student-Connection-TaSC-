@@ -1,16 +1,17 @@
 <?php
+	//start the user session
 	session_start();
 ?>
 <html>
 	<head>
 		<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
 		<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
-		  <!-- Compiled and minified CSS -->
+		<!-- Compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
 		<!-- Compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-		  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
 		<script>
@@ -53,16 +54,21 @@
 		//setting up database connection
 		@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
+		//get the user from the post
 		$user = $_POST["reviewid"];
 
+		//query the database to get the average query
 		$avgquery = 'SELECT avg(rating) FROM reviews WHERE uid = "' . $user . '"';
-
 		$avgresult = $db->query($avgquery);
+
+		//let the user know the average result
 		echo '<h1>' . $avgresult . '</h1>';
 
+		//get all reviews of the given user
 		$query = 'SELECT * FROM reviews WHERE uid = "'.$user.'"';
-
 		$result = $db->query($query);
+
+		//show the results
 		while($row = $result->fetch_assoc()) {
 			echo '<h2>' . $row["rating"] . '</h2>';
 			echo '<p>' . $row["review"] . '</p>';

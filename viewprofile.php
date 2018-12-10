@@ -1,14 +1,22 @@
 <?php
+	//start the user session
 	session_start();
+
+	//if the user isn't logged in, go to index
 	if (!isset($_SESSION['userid'])) {
 		header('Location: index.php');
 	}
+
+	//connect to the database
 	@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
-
+	//query for the ids and emails of all users
 	$listquery = 'SELECT userid, email FROM users';
 	$result = $db->query($listquery);
+
+	//go through user info
 	while ($row = $result->fetch_assoc()) {
+		//if the student row is selected, give the values of the students
 		$index = 'viewstudent'.$row['userid'];
 		if (isset($_POST[$index])) {
 			$_SESSION['viewuserid'] = $row['userid'];
@@ -16,6 +24,7 @@
 			$_SESSION['searchSubject'] = "";
 			$_SESSION['tutor'] = 1;
 		}
+		//if the tutot row is selected, give the values of the tutors
 		$index = 'viewtutor'.$row['userid'];
 		if (isset($_POST[$index])) {
 			$_SESSION['viewuserid'] = $row['userid'];
@@ -24,6 +33,7 @@
 			$_SESSION['tutor'] = 0;
 		}
 
+		//if all user ids are selected, give the values
 		if (isset($_POST[$row['userid']])) {
 			$_SESSION['viewuserid'] = $row['userid'];
 			$_SESSION['viewemail'] = $row['email'];
@@ -31,9 +41,12 @@
 		}
 	}
 
+	//if a connection is trying to be made
 	if (isset($_POST['connected'])) {
 		$tutor = 0;
 		$student = 0;
+		
+		//get the information id of the current user and their selected student/tutor
 		if ($_SESSION['tutor']) {
 			$tutor = $_SESSION['userid'];
 			$student = $_SESSION['viewuserid'];
@@ -42,12 +55,14 @@
 			$student = $_SESSION['userid'];
 		}
 
+		//add the connection to the database
 		$insquery = 'INSERT INTO connections (`tutorid`, `studentid`, `subject`) VALUES (?,?,?)';
 		$stmt = $db->prepare($insquery);
 		$stmt->bind_param("iis", $tutor, $student, $_SESSION['searchSubject']);
 		$stmt->execute();
 		$stmt->close();
 
+		//go to the profile page
 		header('Location: profile.php');
 	}
 
@@ -63,27 +78,27 @@
 	<!--<link href="Resources/makepost.css" rel="stylesheet" type="text/css"/>-->
 	<link href="Resources/style.css" rel="stylesheet" type="text/css"/>
 	<script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
-<!--		   Compiled and minified CSS -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<!--Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-<!--		 Compiled and minified JavaScript -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-		  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		
 		
-		<script>
-		  document.addEventListener('DOMContentLoaded', function() {
-			var elems = document.querySelectorAll('.sidenav');
-			var instances = M.Sidenav.init(elems, options);
-		  });
-		  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
-		  // var collapsibleElem = document.querySelector('.collapsible');
-		  // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
-		  // Or with jQuery
-		  $(document).ready(function(){
-			 $('.sidenav').sidenav();
-		  });
-		</script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+		var elems = document.querySelectorAll('.sidenav');
+		var instances = M.Sidenav.init(elems, options);
+		});
+		// Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+		// var collapsibleElem = document.querySelector('.collapsible');
+		// var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+		// Or with jQuery
+		$(document).ready(function(){
+			$('.sidenav').sidenav();
+		});
+	</script>
 </head>
 
 <body>
@@ -99,13 +114,6 @@
 			</div>
 		</div>
 
-<!--
-	<div class="sidebar">
-		<a id="navlink" href="forum.php"> Discussion Forum </a>
-		<a href="profile.php"> Back to Profile </a>
-		<a id="logout" href="index.php"> Logout </a>
-	</div>
--->
 	<?php
 	/*************************************** RANKING SYSTEM ***************************************/
 
@@ -135,9 +143,6 @@
 		$currScore = $allScores->fetch_assoc();
 		$summation += pow((int)((int)$currScore['score']- (int)$maybe['AVG(score)']),(int)2);
 	}
-	//debugging
-	//echo"<p>".$summation."<p>";
-
 	$standardDev = sqrt(((float)$summation / (float)$numScores));
 
 
@@ -190,9 +195,10 @@
 	//Scaling percentile to index in the array of ranks
 	$userRank=$ranks[((int)$percentile/(int)10)-1];
 
-
+	//query to get info on a selected user
 	$infoquery = 'SELECT * FROM users WHERE userid = "' . $_SESSION['viewuserid'] . '"';
 	$result = $db->query($infoquery);
+	//display the user info
 	$info = $result->fetch_assoc();
 	echo '<div class="wrapperViewProf"><div class="right"><h2> ' . $info['first_names'] . ' ' . $info['last_name'].  ' </h2>';
 	echo '<p> Email: ' . $info['email'] . '</p>';
@@ -200,12 +206,15 @@
 	echo '<p> Year: ' . $info['year'] . '</p>';
 	echo '<p> TaSC Rating: ' . $userRank . '</p>';
 
+	//query for connection. The places to grab the neccessary info vary depending on whether the user is a student or tutor
 	$conquery = '';
 	if ($_SESSION['tutor']) {
 		$conquery = 'SELECT 1 FROM connections WHERE tutorid="' . $_SESSION['userid'] . '" and studentid="' . $_SESSION['viewuserid'] . '" and subject="' . $_SESSION['searchSubject'] . '"';
 	} else {
 		$conquery = 'SELECT 1 FROM connections WHERE tutorid="' . $_SESSION['viewuserid'] . '" and studentid="' . $_SESSION['userid'] . '" and subject="' . $_SESSION['searchSubject'] . '"';
 	}
+
+	//execute the query and display it
 	$isconn = $db->query($conquery);
 	if (!($isconn->fetch_assoc()) && ($_SESSION['searchSubject'] != "")) {
 		echo '<form action="viewprofile.php" method="post">';
@@ -213,14 +222,19 @@
 	}
 	echo "</div>";
 
+	//query to get the average rating of a user
 	$avgquery = 'SELECT avg(rating) as a FROM reviews WHERE reviewedemail = "' . $info['email'] . '"';
 
+	//execute the query and display it
 	$avgresult = $db->query($avgquery);
 	$row = $avgresult->fetch_assoc();
 	echo '<div class="left"><h4><u> Average Rating: ' . $row['a'] . '</u></h4>';
 	echo '<a><h5>Reviews:<h5></a>';
+
+	//query to select the reviews of a user
 	$query = 'SELECT * FROM reviews WHERE reviewedemail = "'.$info['email'].'"';
 
+	//execute the query and display it
 	$result = $db->query($query);
 	while($row = $result->fetch_assoc()) {
 		$uq = 'SELECT first_names, last_name FROM users WHERE email = "' . $row["revieweremail"] . '"';

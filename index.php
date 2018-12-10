@@ -1,4 +1,5 @@
 <?php 
+	//start the user session
 	session_start();
 ?>
 
@@ -23,6 +24,7 @@
 	</h1>
 	<?php
 
+		//boolean to make sure db is connected to
 		$dbOk = false;
 
 		//creates a connection to the database
@@ -48,7 +50,7 @@
 
 			$focusId = '';
 
-			//if a field is blank, print out an error
+		//if a field is blank, print out an error
 	    if ($email == '') {
 	    	$errors .= '<li>email may not be blank</li>';
 	    	if ($focusId == '') $focusId = '#new_email';
@@ -67,8 +69,10 @@
 	      echo '    $("' . $focusId . '").focus();';
 	      echo '  });';
 	      echo '</script>';
-	    } else { //if no errors
+		} else { //if no errors
+			//if the db is connected
 	    	if ($dbOk) {
+				//get email and password from form
 			  	$emaildb = trim($_POST["my_email"]);
 			  	$passworddb = trim($_POST["my_password"]);
 			  	$encrypt = crypt($passworddb,"qgwc"); //encrypts the password

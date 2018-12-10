@@ -1,10 +1,9 @@
 <?php
+	//create the user session
 	session_start();
 ?>
 
 <!DOCTYPE html>
-
-
 <html>
 <head>
 	<title>TaSC Connections</title>
@@ -12,7 +11,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <script type="text/javascript" src="Resources/jquery-1.4.3.min.js"></script>
 </head>
-
 
 <body>
 	<h1> 
@@ -111,6 +109,8 @@
 						echo '<p> Email: ' . $info["email"] . '</p>';
 						echo "<p> Course(s): ";
 
+						//If the user is in multiple subjects, output all of the subjects that 
+						//the user is in
 						$subjquery = "SELECT course from user_subjects where userid='" . $tid . "'";
 						$subjresults = $db->query($subjquery);
 						$numSubjects = $subjresults->num_rows;
@@ -129,12 +129,10 @@
 
 			?>
 
-
 		<div class="person"></div>
 
 	</div>
 
 </body>
-
 
 </html>

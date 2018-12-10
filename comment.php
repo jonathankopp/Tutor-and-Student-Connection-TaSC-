@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <?php 
-  session_start();
+	//start the user session
+	session_start();
+	
+	//bring the user to the index if they aren't signed in
   if (!isset($_SESSION['userid'])) {
 		header('Location: index.php');
 	}
@@ -49,15 +52,6 @@
 		</div>
 	  </div>
   
-<!--
-	<div class="sidenav">
-	  <a id="navlink" href="profile.php">Profile Page</a>
-	  <a id="ds" href="forum.php">Back</a>
-	</div>
-
-	<h1><div id="header"> Tutor and Student Connection</div></h1>
-  
--->
 	<div id="discussion">
 		<!-- below php dynamically pulls all relevant comments from the database -->
 		<?php
@@ -93,7 +87,6 @@
 		    	}
 
 					//if there was an upvote must upvote.
-					//TODO: IMPLEMENT INCREMENT
 					if(isset($_POST['commentUID'])){
 						//have to fetch users score and increment it by one.
 						// echo '<script>console.log('.$_POST['UserId'].');</script>';
@@ -123,15 +116,7 @@
 							$insertCommCall->close();
 						}
 	
-						
-
-
-
 					}
-
-
-
-
 
 		    	//Query's the database for the thread that was clicked on by selecting all from forum
 		    	//where the course id is equal to the subject id and where the postid is equal to the 
@@ -158,8 +143,6 @@
 			    for($i=0; $i<$numRecords; $i++){
 		    		$post = $result->fetch_assoc();
 		    		echo "<ul>";
-//						echo '<a id="discussion">' . "Comment:" . '</a>';
-
 		    		echo '<li class="internalDisc">' . $post['comment']. '</li>';
 						echo '<li class="author">'.$post['commentdate'].'</li>';
 						echo '<li class="author">Likes: '.$post['likes'].'</li>';

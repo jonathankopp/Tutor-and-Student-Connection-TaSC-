@@ -17,6 +17,8 @@
 		</div>
 	</h1>
 	<?php
+
+		//boolean to see if the database is connected
 		$dbOk = false;
 
 		//connects to the database
@@ -35,11 +37,11 @@
 
 	  $errors = '';
 
-
+		//if wants to sign up
 	  if ($havePost) {
 	  	//takes in all the input fields 
 	  	$firstNames = htmlspecialchars(trim($_POST["firstNames"]));  
- 		$lastName = htmlspecialchars(trim($_POST["lastName"]));
+ 			$lastName = htmlspecialchars(trim($_POST["lastName"]));
 	  	$password = htmlspecialchars(trim($_POST["new_password"]));
 	  	$vpassword = htmlspecialchars(trim($_POST["verify_password"]));
 	  	$email = htmlspecialchars(trim($_POST["new_email"]));

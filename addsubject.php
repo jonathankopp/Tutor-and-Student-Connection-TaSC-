@@ -1,11 +1,16 @@
 <?php
+	//start the user session
 	session_start();
+
+	//if the userid isn't set yet, the user should be taken to index.php
 	if (!isset($_SESSION['userid'])) {
 		header('Location: index.php');
 	}
 
+	//connect to mysql database
 	@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
+	//if user is looking for a tutor, query the tutor table, else query the student table
 	if (isset($_POST['tutorsubject'])) {
 		$_SESSION['s_table'] = "tutor_subjects";
 	}
@@ -15,19 +20,21 @@
 
 	$table = $_SESSION['s_table'];
 
+	//if the user wants to add a subject
 	if (isset($_POST['addsubject'])) {
+		//create query to add subject and insert it into the chosen table above
 		$inquery = 'INSERT INTO ' . $table . ' (`userid`, `course`) VALUES (?,?)';
 		$stmt = $db->prepare($inquery);
 		$stmt->bind_param("is",$_SESSION['userid'], $_POST['addsubject']);
 		$stmt->execute();
 		$stmt->close();
 
+		//go to the profile page
 		header('Location: profile.php');
 	}
 ?>
 
 <!DOCTYPE html>
-
 
 <html>
 <head>
@@ -76,13 +83,14 @@
   	<p>Add a subject:</p>
 		<select class="browser-default" name="addsubject">
 			<?php
-			$subquery = 'SELECT course FROM subject WHERE course NOT IN (';
-			$subquery .= 'SELECT course FROM ' . $table . ' WHERE userid = ' . $_SESSION['userid'] . ');';
-			echo $subquery;
-			$result = $db->query($subquery);
-			while($row=$result->fetch_assoc()) {
-				echo '<option value="' . $row['course'] . '">'.$row['course'] . ' </option>';
-			}
+				//query to get courses that the user isn't already in
+				$subquery = 'SELECT course FROM subject WHERE course NOT IN (';
+				$subquery .= 'SELECT course FROM ' . $table . ' WHERE userid = ' . $_SESSION['userid'] . ');';
+				//execute the query and display the results
+				$result = $db->query($subquery);
+				while($row=$result->fetch_assoc()) {
+					echo '<option value="' . $row['course'] . '">'.$row['course'] . ' </option>';
+				}
 			?>
 		</select>
 		<input type="submit" name="add" value="Add Subject"/>

@@ -22,15 +22,15 @@ variables -->
 		
 		<script>
 		  document.addEventListener('DOMContentLoaded', function() {
-			var elems = document.querySelectorAll('.sidenav');
-			var instances = M.Sidenav.init(elems);
+				var elems = document.querySelectorAll('.sidenav');
+				var instances = M.Sidenav.init(elems);
 		  });
 		  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
 		  // var collapsibleElem = document.querySelector('.collapsible');
 		  // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
 		  // Or with jQuery
 		  $(document).ready(function(){
-			 $('.sidenav').sidenav();
+				$('.sidenav').sidenav();
 		  });
 		</script>
 </head>
@@ -143,13 +143,13 @@ variables -->
 	        //querying the database for the subject id for the current course($_SESSION['course'])
 	        //from the table 'subject'
 	        $qa='select subjectid from subject where course='."'". $_SESSION['course']."'";
-		    $courses=$db->query($qa);
-		    $courseid=$courses->fetch_assoc();
+		    	$courses=$db->query($qa);
+		    	$courseid=$courses->fetch_assoc();
 
-		    //setting the date of the post and the id to the current user, stored in
-		    //$_SESSION['userid'], and then binds the parameter for injection into the
-		    //database to the questionmarks
-			$d=date('Y-m-d');$id=$_SESSION['userid'];
+		    	//setting the date of the post and the id to the current user, stored in
+		    	//$_SESSION['userid'], and then binds the parameter for injection into the
+		    	//database to the questionmarks
+					$d=date('Y-m-d');$id=$_SESSION['userid'];
 	        $statement->bind_param("sssss",$courseid["subjectid"],$topicForDb,$postForDb,$d,$id);
 	       
 	        // Then executes the statment, submitting the infromation into the database

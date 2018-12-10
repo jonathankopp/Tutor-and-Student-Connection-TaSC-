@@ -60,12 +60,12 @@ showing the relevant information that follows. -->
 		<li class="bottom"><a id="logout" href="index.php">Logout</a></li> 
 	</ul>
 
-	  <div class="jumbotron">
-	  	<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
+	<div class="jumbotron">
+		<a href="#" data-target="slide-out" class="sidenav-trigger menu"><i class="small material-icons menu">menu</i></a>
 		<div>
-		  <h1 class="title">Tutor and Student Connection</h1>
+			<h1 class="title">Tutor and Student Connection</h1>
 		</div>
-	  </div>
+	</div>
   
 	<div class="sidenav">
 	  <a id="navlink" href="profile.php">Profile Page</a>
@@ -188,13 +188,13 @@ showing the relevant information that follows. -->
 	        //querying the database for the subject id for the current course($_SESSION['course'])
 	        //from the table 'subject'
 	        $qa='select subjectid from subject where course='."'". $_SESSION['course']."'";
-		    $courses=$db->query($qa);
-		    $courseid=$courses->fetch_assoc();
+		    	$courses=$db->query($qa);
+		    	$courseid=$courses->fetch_assoc();
 
-		    //setting the date of the post and the id to the current user, stored in
-		    //$_SESSION['userid'], and then binds the parameter for injection into the
-		    //database to the questionmarks
-			$d=date('Y-m-d');$id=$_SESSION['userid'];
+		    	//setting the date of the post and the id to the current user, stored in
+		    	//$_SESSION['userid'], and then binds the parameter for injection into the
+		    	//database to the questionmarks
+					$d=date('Y-m-d');$id=$_SESSION['userid'];
 	        $statement->bind_param("sssss",$courseid["subjectid"],$topicForDb,$postForDb,$d,$id);
 	       
 	        // Then executes the statment, submitting the infromation into the database
@@ -275,46 +275,46 @@ showing the relevant information that follows. -->
 					<!-- below is the php to dynamically pull from the database and display all the 
 					subjects the user is signed up for, in order to view their respective threads -->
 					<?php
-				//setting up database connection
-				@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
-				
-				//Querying the database for all the course names that the user is signed up for
-				//this uses the "$_SESSION['userid']" which stores the current users id, which
-				//is setup during login and is accessable all througout the code
-				$q="select course from student_subjects where userid=".'"'.$_SESSION['userid'].'" UNION select course from tutor_subjects where userid='.'"'.$_SESSION['userid'].'"';
-				$prepCourses=$db->query($q);
-				$numRecords = $prepCourses->num_rows;
+						//setting up database connection
+						@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+						
+						//Querying the database for all the course names that the user is signed up for
+						//this uses the "$_SESSION['userid']" which stores the current users id, which
+						//is setup during login and is accessable all througout the code
+						$q="select course from student_subjects where userid=".'"'.$_SESSION['userid'].'" UNION select course from tutor_subjects where userid='.'"'.$_SESSION['userid'].'"';
+						$prepCourses=$db->query($q);
+						$numRecords = $prepCourses->num_rows;
 
-				// $_SESSION['course']=1;
-				for($i=0; $i<$numRecords; $i++){
-					$course=$prepCourses->fetch_assoc();
-					if($i==0){
-						//Defaults the subject in view to the first one the user
-						//is signed up for
-						$_SESSION['course']=$course['course'];
-					}
+						// $_SESSION['course']=1;
+						for($i=0; $i<$numRecords; $i++){
+							$course=$prepCourses->fetch_assoc();
+							if($i==0){
+								//Defaults the subject in view to the first one the user
+								//is signed up for
+								$_SESSION['course']=$course['course'];
+							}
 
-					//Dynamically creates the html for each "link"
-					//link set up so that each respective course's id gets 
-					//sent to the url so when using $_GET['course'], the right courses
-					//id is there so that it can be dynamically pulled for proper viewing.
-					if(isset($_GET['course'])){
-						if($_GET['course']==$course['course']){
-							echo "<li class='classList'><a href='forum.php?course=".$course['course']."'>--> ".$course['course']. "</a></li>";
-						}else{
-							echo "<li class='classList'><a href='forum.php?course=".$course['course']."'>".$course['course']."</a></li>";
+							//Dynamically creates the html for each "link"
+							//link set up so that each respective course's id gets 
+							//sent to the url so when using $_GET['course'], the right courses
+							//id is there so that it can be dynamically pulled for proper viewing.
+							if(isset($_GET['course'])){
+								if($_GET['course']==$course['course']){
+									echo "<li class='classList'><a href='forum.php?course=".$course['course']."'>--> ".$course['course']. "</a></li>";
+								}else{
+									echo "<li class='classList'><a href='forum.php?course=".$course['course']."'>".$course['course']."</a></li>";
+								}
+							}else{
+								echo "<li class='classList'><a href='forum.php?course=".$course['course']."'>".$course['course']."</a></li>";
+							}
+							
 						}
-					}else{
-						echo "<li class='classList'><a href='forum.php?course=".$course['course']."'>".$course['course']."</a></li>";
-					}
-					
-				}
-				
-				//sets the current $_SESSION['course'] to the course that was selected
-				if (isset($_GET['course'])) {
-					setSession($_GET['course']);
-				}
-			  ?>
+						
+						//sets the current $_SESSION['course'] to the course that was selected
+						if (isset($_GET['course'])) {
+							setSession($_GET['course']);
+						}
+					?>
 				</ul>
 			</div>
 			

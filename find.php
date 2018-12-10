@@ -1,9 +1,15 @@
 <?php 
+	//start the user session
 	session_start();
+	//if the user isn't signed in, go to the index page
 	if (!isset($_SESSION['userid'])) {
 		header('Location: index.php');
 	}
+	
+	//connect to the database
 	@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+
+	//if the user is trying to find a student, use the students table, else use the tutor table
 	if (isset($_POST['findstudent'])) {
 		$_SESSION['s_table'] = "tutor_subjects";
 		$_SESSION['tutor'] = 1;
@@ -16,7 +22,6 @@
 ?>
 
 <!DOCTYPE html>
-
 
 <html>
 <head>
@@ -43,15 +48,14 @@
 		  // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
 		  // Or with jQuery
 		  $(document).ready(function(){
-        $('.sidenav').sidenav();
-//        $('select').material_select();
+        	$('.sidenav').sidenav();
 		  });
 		</script>
 
 </head>
 
 
-	<body>
+<body>
 	<ul id="slide-out" class="sidenav">	
 		<li><a class="nav-item" href="forum.php">Discussion Forum </a></li>
 		<li><a class="nav-item" href="profile.php">My Profile</a></li>
@@ -64,29 +68,24 @@
 		</div>
   </div>
 
-
-<!--
-		<div class="sidebar">
-			<a id="navlink" href="forum.php"> Discussion Forum </a>
-			<a href="profile.php"> Back to Profile </a>
-			<a id="logout" href="index.php"> Logout </a>
-		</div>
--->
     <div class="findPadding">
 		<div class="subject">
 			<form name="search" action="find.php" method="post">
 				<label class="field">Choose a Subject:</label>
 				<select class="browser-default" name="subject">
 					<?php
-					$subjectquery = 'SELECT course FROM ' . $table . ' WHERE userid="' . $_SESSION['userid'] . '"';
-					$result = $db->query($subjectquery);
-					while($subjects = $result->fetch_assoc()) {
-						if (isset($_POST['search']) && $_POST['subject'] == $subjects['course']) {
-							echo '<option value="' . $subjects['course'] . '"selected>' . $subjects['course'] . '</option?>';
-						}else {
-							echo '<option value="' . $subjects['course'] . '">' . $subjects['course'] . '</option?>';
+						//query to get courses the user is in
+						$subjectquery = 'SELECT course FROM ' . $table . ' WHERE userid="' . $_SESSION['userid'] . '"';
+						//execute and display the results
+						$result = $db->query($subjectquery);
+						while($subjects = $result->fetch_assoc()) {
+							//keep the already selected at the top of the results
+							if (isset($_POST['search']) && $_POST['subject'] == $subjects['course']) {
+								echo '<option value="' . $subjects['course'] . '"selected>' . $subjects['course'] . '</option?>';
+							}else {
+								echo '<option value="' . $subjects['course'] . '">' . $subjects['course'] . '</option?>';
+							}
 						}
-					}
 					?>
 				</select>
 				<input type="submit" value="Search" id="search" name="search"/>	
@@ -96,39 +95,47 @@
 		<div class="person">
 
 			<?php
-			if (isset($_POST['subject'])) {
-				$_SESSION['searchSubject'] = $_POST['subject'];
-				$opptable = "";
-				if ($table == "tutor_subjects") {
-					$opptable = "student_subjects";
-				} else {
-					$opptable = "tutor_subjects";
-				}
-				$matchquery = 'SELECT userid FROM ' . $opptable . ' WHERE course = "' . $_POST['subject'] . '"';
-				$result = $db->query($matchquery);
-				if ($result->num_rows == 0) {
-					echo '<p id="nomatch"> No Matches Found </p>';
-				} else {
-					echo '<form class="makeconnection" action="viewprofile.php" method="post" name="connect">';
-					while($row = $result->fetch_assoc()) {
-							//selects the info for that user from users table to output
-							$infoQuery = "SELECT userid, first_names, last_name from users where userid='" . $row['userid'] . "'";
-							$infoResult = $db->query($infoQuery);
-							$info = $infoResult->fetch_assoc();
-							$name = $info["first_names"] . ' ' . $info["last_name"];
-							//makes a button for each user 
-							echo '<input type="submit" value="' . $name . '" id="' . $info['userid'] . '" name="' . $info['userid'] . '"/>';
-							
+				//if the user is looking for a subject
+				if (isset($_POST['subject'])) {
+
+					//get the subject and the right table to search based on the what the user is looking for
+					$_SESSION['searchSubject'] = $_POST['subject'];
+					$opptable = "";
+					if ($table == "tutor_subjects") {
+						$opptable = "student_subjects";
+					} else {
+						$opptable = "tutor_subjects";
 					}
-					echo '</form>';
+
+					//create the query
+					$matchquery = 'SELECT userid FROM ' . $opptable . ' WHERE course = "' . $_POST['subject'] . '"';
+					//execute the query
+					$result = $db->query($matchquery);
+
+					//let the user know if there are no matches
+					if ($result->num_rows == 0) {
+						echo '<p id="nomatch"> No Matches Found </p>';
+					//else display the returned matches
+					} else {
+						echo '<form class="makeconnection" action="viewprofile.php" method="post" name="connect">';
+						while($row = $result->fetch_assoc()) {
+								//selects the info for that user from users table to output
+								$infoQuery = "SELECT userid, first_names, last_name from users where userid='" . $row['userid'] . "'";
+								$infoResult = $db->query($infoQuery);
+								$info = $infoResult->fetch_assoc();
+								$name = $info["first_names"] . ' ' . $info["last_name"];
+								//makes a button for each user 
+								echo '<input type="submit" value="' . $name . '" id="' . $info['userid'] . '" name="' . $info['userid'] . '"/>';
+								
+						}
+						echo '</form>';
+					}
 				}
-			}
 			?>
 
-
 		</div>
-</div>
-	</body>
+	</div>
+</body>
 
 
 </html>
