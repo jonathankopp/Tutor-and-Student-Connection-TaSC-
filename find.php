@@ -6,8 +6,7 @@
 		header('Location: index.php');
 	}
 	
-	//connect to the database
-	@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+	include "config.php";
 
 	//if the user is trying to find a student, use the students table, else use the tutor table
 	if (isset($_POST['findstudent'])) {

@@ -1,6 +1,8 @@
 <?php 
 	//start the user session
 	session_start();
+
+	include "config.php";
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +29,7 @@
 		//boolean to make sure db is connected to
 		$dbOk = false;
 
-		//creates a connection to the database
-		@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+		
 
 		//output errors if connection fails
 		if ($db->connect_error) {

@@ -4,6 +4,7 @@
 variables -->
 <?php 
   session_start();
+  include "config.php";
 ?>
 
 <html>
@@ -72,10 +73,6 @@ variables -->
 	  // to avoid opening the connection twice.  If we make a good connection, 
 	  // we'll change the $dbOk flag.
 	  $dbOk = false;
-	  
-	  /* Create a new database connection object, passing in the host, username,
-	     password, and database to use. The "@" suppresses errors. */
-	  @ $db = new mysqli('localhost', 'root', 'password', 'TaSC');
 	  
 	  //if cannot connect to the database
 	  if ($db->connect_error) {

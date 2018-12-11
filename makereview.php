@@ -6,8 +6,7 @@
 		header('Location: index.php');
 	}
 
-	//connect to the datbase
-	@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+	include "config.php";
 
 	//get current date and time values for Eastern Time
 	date_default_timezone_set("America/New_York");

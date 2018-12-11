@@ -7,6 +7,7 @@
   if (!isset($_SESSION['userid'])) {
 		header('Location: index.php');
 	}
+	include "config.php";
 ?>
 
 <html>
@@ -56,9 +57,6 @@
 		<!-- below php dynamically pulls all relevant comments from the database -->
 		<?php
 			$dbOk = false;
-
-			//Connecting to the database
-			@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
 
 			//if there is a connection error, it displays this
 			if ($db->connect_error) {
@@ -180,9 +178,6 @@
 	  // we'll change the $dbOk flag.
 	  $dbOk = false;
 	  
-	  /* Create a new database connection object, passing in the host, username,
-	     password, and database to use. The "@" suppresses errors. */
-	  @ $db = new mysqli('localhost', 'root', 'password', 'TaSC');
 	  
 	  //if there is a connection error, it displays this
 	  if ($db->connect_error) {

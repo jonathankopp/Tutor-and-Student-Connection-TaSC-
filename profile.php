@@ -5,6 +5,7 @@
 	if (!isset($_SESSION['userid'])) {
 		header('Location: index.php');
 	}
+	include "config.php";
 ?>
 
 <!DOCTYPE html>
@@ -70,8 +71,7 @@
 		  		//boolean to knw of the database is connected
 				$dbOk = false;
 
-				//connects to database
-				@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+				
 
 				//error message if connection to database fails
 				if ($db->connect_error) {
@@ -197,8 +197,7 @@
 					//boolean to know if the database is connected
 					$dbOk = false;
 
-					//connects to database
-					@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+					
 
 					//error message if connection to database fails
 					if ($db->connect_error) {
@@ -242,8 +241,7 @@
 					//boolean to know of the database is connected
 					$dbOk = false;
 
-					//connects to database
-					@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+					
 
 					//error message if connection to database fails
 					if ($db->connect_error) {

@@ -46,10 +46,13 @@ CREATE TABLE `forum` (
 );
 
 CREATE TABLE `comments` (
+  `commentID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `postid` int(10) UNSIGNED NOT NULL,
   `comment` varchar(1000) NOT NULL,
   `commentdate` date DEFAULT NULL,
-  `uid` int(10) NOT NULL
+  `uid` int(10) NOT NULL,
+  `likes` int(10) DEFAULT 0,
+  PRIMARY KEY(`commentID`)
 );
 
 CREATE TABLE `reviews` (
@@ -59,4 +62,9 @@ CREATE TABLE `reviews` (
 	`rating` tinyint(1) NOT NULL,
 	`review` varchar(1000),
 	PRIMARY KEY (`revieweremail`,`reviewedemail`)
+);
+
+CREATE TABLE `comment_user` (
+  `postid` int(10) UNSIGNED NOT NULL,
+  `likeID` int(10) NOT NULL
 );

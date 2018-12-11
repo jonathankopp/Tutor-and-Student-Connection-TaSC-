@@ -7,8 +7,7 @@
 		header('Location: index.php');
 	}
 
-	//connect to mysql database
-	@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+	include "config.php";
 
 	//if user is looking for a tutor, query the tutor table, else query the student table
 	if (isset($_POST['tutorsubject'])) {

@@ -20,9 +20,7 @@
 
 		//boolean to see if the database is connected
 		$dbOk = false;
-
-		//connects to the database
-		@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+		include "config.php";
 
 		//error if connection fails
 		if ($db->connect_error) {

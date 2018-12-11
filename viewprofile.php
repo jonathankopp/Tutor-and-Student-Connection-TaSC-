@@ -7,8 +7,7 @@
 		header('Location: index.php');
 	}
 
-	//connect to the database
-	@ $db =  new mysqli('localhost', 'root', 'password', 'TaSC');
+	include "config.php";
 
 	//query for the ids and emails of all users
 	$listquery = 'SELECT userid, email FROM users';
